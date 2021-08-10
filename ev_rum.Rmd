@@ -297,7 +297,7 @@ In the next section we describe our model and how we implemented random utility 
 # Model Description
 
 
-We developed our model in NetLogo 6.1.1 \citep{wilenskynl} extending \cite{paolillo2018}.\footnote{Model available at \url{https://github.com/RoccoPaolillo/ethnic-value_multinomial.git}} The model and its parameters are shortly described in Tab: \ref{tab:parameters}. 
+We developed our model in NetLogo 6.1.1 \citep{wilenskynl} extending \cite{paolillo2018}.\footnote{Model available at \url{https://github.com/RoccoPaolillo/ethnic_value_rum.git}} The model and its parameters are shortly described in Tab: \ref{tab:parameters}. 
 Agents represent households who relocate in a regular square grid of dimension 51 times 51 with periodic boundary conditions, i.e. a tours world.
 As in \cite{paolillo2018}, each agent is described by two state variables: ethnicity modeled through a color tag and value orientation modeled through a shape tag (see fig: \ref{fig:model}). 
 Given two levels for each dimension, 4 group-type of agents interacts. 
