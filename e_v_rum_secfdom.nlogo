@@ -67,32 +67,6 @@ to move-turtles          ; here the relocation decision, with the beta distribut
     let beta-ie ifelse-value (shape = "square") [dom][dom * sec]
     let beta-iv ifelse-value (shape = "square") [dom * sec][dom]
 
- ;   let beta-ie ifelse-value (beta_distribution = "global") [                   ; beta ethnic distribution global
- ;       ifelse-value (shape = "square") [dominant][dominant * secondary]          ; dominant = parameter specific ; secondary = dominant * secondary parameter [0,1]
- ;     ][
- ;       ifelse-value (beta_distribution = "by-value")                             ; beta ethnic distribution by value orientation
-  ;      [ifelse-value (shape = "square") [con_eth][lib_val * lib_eth]
-  ;      ][
-  ;      ifelse-value (shape = "square")                                                         ; beta ethnic distribution by group-type, first by value orientation, within each value group by ethnicity
-   ;       [ifelse-value (color = blue) [eth_con_maj][eth_con_min]]                              ; beta ethnic for conservative majority and conservative minority
- ;        [ifelse-value (color = blue) [val_lib_maj * eth_lib_maj][val_lib_min * eth_lib_min]]  ; beta ethnic for liberal majority and liberal minority
-  ;      ]
-  ;    ]
-
-                                                                                ; same for beta value
- ;     let beta-iv ifelse-value (beta_distribution = "global") [                   ; beta value distribution global
- ;       ifelse-value (shape = "square") [dominant * secondary][dominant]          ; dominant = parameter specific ; secondary = dominant * secondary parameter [0,1]
-  ;    ][
-   ;     ifelse-value (beta_distribution = "by-value")                             ; beta value distribution by value orientation
-  ;      [ifelse-value (shape = "square") [con_eth * con_val][lib_val]
-  ;      ][
-  ;        ifelse-value (shape = "square")                                                         ; beta value distribution by group-type, first by value orientation, within each value group by ethnicity
-  ;        [ifelse-value (color = blue) [eth_con_maj * val_con_maj] [eth_con_min * val_con_min]]   ; beta value for conservative majority and conservative minority
-  ;        [ifelse-value (color = blue) [val_lib_maj][val_lib_min]]                                ; beta value for liberal majority and liberal minority
-  ;    ]
-  ;    ]
-
-
    let color-myself color
    let shape-myself shape
    let alternative one-of patches with [not any? turtles-here]   ; one empty cell is selected as alternative
@@ -3837,7 +3811,7 @@ NetLogo 6.1.1
       <value value="0"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="secfdom" repetitions="1" runMetricsEveryStep="false">
+  <experiment name="secfdom_lib" repetitions="1" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="1000"/>
@@ -3892,65 +3866,179 @@ NetLogo 6.1.1
     <metric>cls_den_or</metric>
     <metric>cls_den_sq</metric>
     <metric>cls_den_cl</metric>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;by-value&quot;"/>
-    </enumeratedValueSet>
     <enumeratedValueSet variable="density">
       <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="%majority">
       <value value="50"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="20"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="20"/>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="%liberal_min">
       <value value="50"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="1"/>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="lib_eth" first="0" step="0.1" last="1"/>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
       <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="visualize">
       <value value="&quot;exposure&quot;"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="20"/>
+  </experiment>
+  <experiment name="secfdom_con" repetitions="1" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="con_val" first="0" step="0.1" last="1"/>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
     </enumeratedValueSet>
     <enumeratedValueSet variable="val_con_min">
       <value value="0"/>
     </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="20"/>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
