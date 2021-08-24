@@ -9,7 +9,7 @@ fig_caption: yes
 title: "Relocation choice for different homophily preferences: hybrid scenarios for Schelling Model"
 author: "Rocco Paolillo, Andreas Flache"
 keywords: "super-diversity, discrete choice, spatial sorting, Schelling"
-date: "First the experiments section, then delete modeling surplus and text intro, simulation other levels `r format(Sys.time(), '%d/%m/%y %H:%M')`"
+date: "Uploaded abm sec ratio of dominant, First the experiments section, then delete modeling surplus and text intro, simulation other levels `r format(Sys.time(), '%d/%m/%y %H:%M')`"
 bibliography: "references"
 biblio-style: apalike
 
