@@ -40,76 +40,30 @@ to move-turtles          ; here the relocation decision, with the beta distribut
 
   ask  turtles [
 
-    let beta-ie ifelse-value (beta_distribution = "global") [
-      ifelse-value (shape = "square") [dominant][dominant * secondary]
+    let beta-ie ifelse-value (beta_distribution = "global") [                   ; beta ethnic distribution global
+      ifelse-value (shape = "square") [dominant][dominant * secondary]          ; dominant = parameter specific ; secondary = dominant * secondary parameter [0,1]
     ][
-      ifelse-value (beta_distribution = "by-value")
-      [ifelse-value (shape = "square") [con_eth][lib_val * lib_eth] ]
-      [
-      ifelse-value (shape = "square") [
-          ifelse-value (color = blue) [eth_con_maj][eth_con_min]]
-        [ifelse-value (color = blue) [val_lib_maj * eth_lib_maj][val_lib_min * eth_lib_min]]
+      ifelse-value (beta_distribution = "by-value")                             ; beta ethnic distribution by value orientation
+      [ifelse-value (shape = "square") [con_eth][lib_val * lib_eth]
+      ][
+      ifelse-value (shape = "square")                                                         ; beta ethnic distribution by group-type, first by value orientation, within each value group by ethnicity
+        [ifelse-value (color = blue) [eth_con_maj][eth_con_min]]                              ; beta ethnic for conservative majority and conservative minority
+        [ifelse-value (color = blue) [val_lib_maj * eth_lib_maj][val_lib_min * eth_lib_min]]  ; beta ethnic for liberal majority and liberal minority
+      ]
+    ]
 
-    ]]
-
-
-    let beta-iv ifelse-value (beta_distribution = "global") [
-      ifelse-value (shape = "square") [dominant * secondary][dominant]
+                                                                                ; same for beta value
+    let beta-iv ifelse-value (beta_distribution = "global") [                   ; beta value distribution global
+      ifelse-value (shape = "square") [dominant * secondary][dominant]          ; dominant = parameter specific ; secondary = dominant * secondary parameter [0,1]
     ][
-      ifelse-value (beta_distribution = "by-value")
-      [ifelse-value (shape = "square") [con_eth * con_val][lib_val]]
-      [ifelse-value (shape = "square") [
-        ifelse-value (color = blue) [eth_con_maj * val_con_maj] [eth_con_min * val_con_min]]
-        ifelse-value (color = blue) [val_lib_maj][val_lib_min]
-    ]]
-
-
-  ; OK
-  ;  let beta-ie ifelse-value (beta_distribution = "global")
-  ;  [ifelse-value (shape = "square") [dominant][
-  ;    ifelse-value (color = blue) [
-  ;    ifelse-value (lib_maj) [dominant] [secondary]
-  ;    ][ ifelse-value (lib_min) [dominant] [secondary]]
-  ;    ]
-  ;  ]
-  ;   [ifelse-value (beta_distribution = "by-value")
- ;     [ifelse-value (shape = "square") [con_eth][
-   ;     ifelse-value (color = blue) [
- ;       ifelse-value (lib_maj) [lib_val] [lib_eth]
- ;       ][ifelse-value (lib_min) [lib_val] [lib_eth]]
- ;     ]]
-
-   ;   [ifelse-value (shape = "square") [eth_con_maj][
-   ;     ifelse-value (color = blue) [
- ;       ifelse-value (lib_maj) [val_lib_maj][eth_lib_maj]
-   ;     ][ifelse-value (lib_min) [val_lib_min] [eth_lib_min]]
- ;     ]]
- ;   ]
-;
- ;    let beta-iv ifelse-value (beta_distribution = "global")
-;    [ifelse-value (shape = "square") [
-;      ifelse-value (color = blue) [
- ;     ifelse-value (con_maj) [dominant][secondary]
- ;     ][ifelse-value (con_min) [dominant][secondary]]
- ;   ][dominant]
-;    ]
-;    [ifelse-value (beta_distribution = "by-value")
- ;     [ifelse-value (shape = "square") [
-  ;      ifelse-value (color = blue) [
-  ;      ifelse-value (con_maj) [con_eth][con_val]
- ;       ][ifelse-value (con_min) [con_eth][con_val]]
-   ;   ][lib_val]
- ;     ]
-
-   ;     [ifelse-value (shape = "square") [
-   ;     ifelse-value (color =  blue)[
-     ;     ifelse-value (con_maj) [eth_con_maj][val_con_maj]][
-      ;      ifelse-value (con_min) [eth_con_min][val_con_min]]
-
-     ;     ][ifelse-value (color = blue) [val_lib_maj][val_lib_min]]
-    ;    ]
-  ;  ]
-
+      ifelse-value (beta_distribution = "by-value")                             ; beta value distribution by value orientation
+      [ifelse-value (shape = "square") [con_eth * con_val][lib_val]
+      ][
+        ifelse-value (shape = "square")                                                         ; beta value distribution by group-type, first by value orientation, within each value group by ethnicity
+        [ifelse-value (color = blue) [eth_con_maj * val_con_maj] [eth_con_min * val_con_min]]   ; beta value for conservative majority and conservative minority
+        [ifelse-value (color = blue) [val_lib_maj][val_lib_min]]                                ; beta value for liberal majority and liberal minority
+    ]
+    ]
 
 
    let color-myself color
@@ -210,7 +164,7 @@ SLIDER
 %majority
 50
 100
-80.0
+50.0
 1
 1
 NIL
@@ -336,10 +290,10 @@ count turtles with [shape = \"circle\"] / count turtles
 11
 
 SLIDER
-112
-372
-210
-405
+98
+371
+196
+404
 eth_con_maj
 eth_con_maj
 0
@@ -351,40 +305,40 @@ NIL
 HORIZONTAL
 
 SLIDER
-113
-545
-212
-578
+95
+471
+194
+504
 val_lib_maj
 val_lib_maj
 0
 20
-8.0
+20.0
 1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-111
-414
-208
-447
+96
+508
+193
+541
 eth_lib_maj
 eth_lib_maj
 0
 1
-0.0
+1.0
 0.1
 1
 NIL
 HORIZONTAL
 
 SLIDER
-113
-509
-213
-542
+97
+407
+197
+440
 val_con_maj
 val_con_maj
 0
@@ -396,10 +350,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-215
-372
-310
-405
+222
+371
+317
+404
 eth_con_min
 eth_con_min
 0
@@ -411,10 +365,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-215
-416
-310
-449
+219
+507
+317
+540
 eth_lib_min
 eth_lib_min
 0
@@ -426,10 +380,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-218
-545
-313
-578
+221
+471
+316
+504
 val_lib_min
 val_lib_min
 0
@@ -441,10 +395,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-217
-510
-314
-543
+221
+407
+318
+440
 val_con_min
 val_con_min
 0
@@ -456,90 +410,70 @@ NIL
 HORIZONTAL
 
 TEXTBOX
-155
-355
-302
-373
-distribution beta_ethnic
+127
+342
+170
+360
+majority
 11
 0.0
 1
 
 TEXTBOX
-160
-490
-299
-508
-distribution beta_value
+252
+340
+291
+358
+minority
 11
 0.0
 1
 
 TEXTBOX
-100
-366
-115
-450
-↓\n↓\n↓\n↓\n↓\n↓
+79
+447
+329
+465
+-------------------------------------------------------------
 10
 0.0
 1
 
 TEXTBOX
-69
-387
-101
-422
-value group
+208
+331
+223
+558
+|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|
+7
+0.0
+1
+
+TEXTBOX
+19
+400
+82
+418
+conservatives
 10
 0.0
 1
 
 TEXTBOX
-112
-451
-243
-483
-→→→→→→→→→→→\n         ethnic group
-10
-0.0
-1
-
-TEXTBOX
-102
-501
-117
-585
-↓\n↓\n↓\n↓\n↓\n↓
-10
-0.0
-1
-
-TEXTBOX
-72
-527
-106
-559
-value group
-10
-0.0
-1
-
-TEXTBOX
-115
-583
-242
-617
-→→→→→→→→→→→\n         ethnic group
+26
+502
+63
+520
+liberals
 10
 0.0
 1
 
 SLIDER
-118
-210
-210
-243
+227
+139
+319
+172
 dominant
 dominant
 0
@@ -551,20 +485,20 @@ NIL
 HORIZONTAL
 
 CHOOSER
-10
-115
-102
-160
+20
+153
+112
+198
 beta_distribution
 beta_distribution
 "global" "by-value" "type-group"
-2
+1
 
 SLIDER
-117
-269
-209
-302
+125
+232
+217
+265
 con_eth
 con_eth
 0
@@ -576,10 +510,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-118
-305
-210
-338
+226
+271
+318
+304
 lib_eth
 lib_eth
 0
@@ -591,10 +525,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-218
-305
-310
-338
+125
+271
+217
+304
 con_val
 con_val
 0
@@ -606,10 +540,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-218
-270
-310
-303
+226
+233
+318
+266
 lib_val
 lib_val
 0
@@ -621,10 +555,10 @@ NIL
 HORIZONTAL
 
 SLIDER
-220
-211
-312
-244
+227
+175
+319
+208
 secondary
 secondary
 0
@@ -726,16 +660,6 @@ visualize
 0
 
 TEXTBOX
-117
-92
-325
-110
-Secondary preference = dominant preference
-10
-0.0
-1
-
-TEXTBOX
 12
 10
 101
@@ -746,71 +670,75 @@ Initialization demographics
 1
 
 TEXTBOX
-20
-215
-87
-250
+160
+161
+227
+196
 beta global distribution
 11
 0.0
 1
 
 TEXTBOX
-13
-281
-98
-330
+21
+244
+106
+293
 beta value-orientation distribution
 11
 0.0
 1
 
 TEXTBOX
-5
-370
-60
-416
+19
+329
+74
+375
 beta group-type distribution
 11
 0.0
 1
 
 TEXTBOX
-9
-192
-360
-210
-------------------------------------------------------------------------------------------------------------------------------------------------------------
+21
+214
+327
+232
+--------------------------------------------------------------------------------------------------------------------------------------------------------
 6
 0.0
 1
 
 TEXTBOX
 13
-251
-319
-269
---------------------------------------------------------------------------------------------------------------------------------------------------------
-6
-0.0
-1
-
-TEXTBOX
-15
-346
-320
-364
+308
+318
+326
 --------------------------------------------------------------------------------------------------------------------------------------------------------
 6
 0.0
 1
 
 @#$#@#$#@
-To check:
-secondary preference is a dependent function of dominant preference:
-Secondary = Dominant*weight
+# What is new
 
-* Not intuitive name
+secondary preference is a dependent function of dominant preference:
+
+Secondary preference = *ß dominant * s*
+
+with s [0,1]
+
+Example: 
+s = 0: Secondary preference is 0
+s = 1: Secondary preference is as equal as dominant preference
+s = 0.5: Secondary preference = (dominant preference / 2)
+
+# How to use it
+
+
+* beta_distribution chooser: for distribution of dominant preference globally, by value-orientation or by group-type (value orientation X ethnicity)
+
+* For each selection: top parameter: ß dominant, bottom parameter: s seconadary
 @#$#@#$#@
 default
 true
