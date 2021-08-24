@@ -112,6 +112,58 @@ to update-globals
   set percent-similar-eth (similar-eth / total-neighbors)
   set percent-similar-val (similar-val / total-neighbors)
 end
+
+to-report	et_gl	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1]	end
+to-report	vl_gl	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1]	end
+to-report	den_gl	report	mean [count (turtles-on neighbors)] of turtles / 8	end
+to-report	et_sq	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "square"]	end
+to-report	et_cl	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "circle"]	end
+to-report	vl_sq	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "square"]	end
+to-report	vl_cl	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "circle"]	end
+to-report	den_sq	report	mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8	end
+to-report	den_cl	report	mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8	end
+to-report	et_bl	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and color = blue]	end
+to-report	et_or	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and color = orange]	end
+to-report	vl_bl	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and color = blue]	end
+to-report	vl_or	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and color = orange]	end
+to-report	den_bl	report	mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8	end
+to-report	den_or	report	mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8	end
+to-report	et_sq_bl	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "square" and color = blue]	end
+to-report	et_cl_bl	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "circle" and color = blue]	end
+to-report	et_sq_or	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "square" and color = orange]	end
+to-report	et_cl_or	report	mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "circle" and color = orange]	end
+to-report	vl_sq_bl	report	mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "square" and color = blue]	end
+to-report	vl_cl_bl	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "circle" and color = blue]	end
+to-report	vl_sq_or	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and shape = "square" and color = orange]	end
+to-report	vl_cl_or	report	mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) >= 1 and  shape = "circle" and color = orange]	end
+to-report	den_sq_bl	report	mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8	end
+to-report	den_sq_or	report	mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8	end
+to-report	den_cl_bl	report	mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8	end
+to-report	den_cl_or	report	mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8	end
+to-report	cls_et_sq_bl	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_et_cl_bl	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_et_sq_or	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_et_cl_or	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_sq_bl	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_cl_bl	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_sq_or	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_cl_or	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) >= 1]	end
+to-report	cls_den_sq_bl	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8	end
+to-report	cls_den_cl_bl	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8	end
+to-report	cls_den_sq_or	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8	end
+to-report	cls_den_cl_or	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8	end
+to-report	cls_et_bl	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_et_or	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_et_sq	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_et_cl	report	mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_bl	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_or	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_sq	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) >= 1]	end
+to-report	cls_vl_cl	report	mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) >= 1]	end
+to-report	cls_den_bl	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8	end
+to-report	cls_den_or	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8	end
+to-report	cls_den_sq	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8	end
+to-report	cls_den_cl	report	mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8	end
 @#$#@#$#@
 GRAPHICS-WINDOW
 327
@@ -739,6 +791,8 @@ s = 0.5: Secondary preference = (dominant preference / 2)
 * beta_distribution chooser: for distribution of dominant preference globally, by value-orientation or by group-type (value orientation X ethnicity)
 
 * For each selection: top parameter: ß dominant, bottom parameter: s seconadary
+
+** Experiment secfdom
 @#$#@#$#@
 default
 true
@@ -3744,6 +3798,122 @@ NetLogo 6.1.1
     </enumeratedValueSet>
     <enumeratedValueSet variable="val_lib_min">
       <value value="0"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom" repetitions="1" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="beta_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="20"/>
     </enumeratedValueSet>
   </experiment>
 </experiments>
