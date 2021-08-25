@@ -81,6 +81,8 @@ library(kableExtra)
 
 # dataset baseline (ethnic symmetric) condition (wide format for tables). It was handy to divide. Group_by: runs with same conditions (variable column) are collapsed, and mean and standard deviation extracted (summarise_all). So original variable columns y are substituted by one for mean "y_m" and standard deviation "y_sd"
 
+
+
 df_bsl <- read.csv("df_tot.csv",sep =",") %>% select(
   ID,density,majority,liberal_maj,liberal_min,beta_distribution,con_maj,con_min,lib_maj,lib_min,dominant,secondary,con_eth,lib_val,lib_eth,con_val,eth_con_maj,eth_con_min,eth_lib_maj,eth_lib_min,val_con_maj,val_con_min,val_lib_maj,val_lib_min,step,et_cl,et_sq,vl_cl,vl_sq,den_cl,den_sq) %>%
   group_by(
@@ -123,6 +125,47 @@ df_asm_pc <- df_asm %>% gather(key = group_asm, value = Segra_asm, cls_et_sq_bl_
                                            "Conservative Minority" = c("cls_et_sq_or_m","cls_vl_sq_or_m"),
                                            "Liberal Minority" = c("cls_et_cl_or_m","cls_vl_cl_or_m")),"Conservative Majority" ))
 
+
+
+# Dataframe for secfdom abm: secondary preference function of dominant
+
+# df_secf1_lib1 <- read.csv("secfdom/secfdom_lib_10run.csv",sep = ",",skip = 6)
+# df_secf1_lib2 <- read.csv("secfdom/secfdom_lib_10_2run.csv",sep = ",",skip = 6)
+# 
+# df_secf_lib <- rbind(df_secf1_lib1,df_secf1_lib2)
+# df_secf_lib$ID <- "lib"
+# 
+# df_secf1_con1 <- read.csv("secfdom/secfdom_con_10run.csv",sep = ",",skip = 6)
+# df_secf1_con2 <- read.csv("secfdom/secfdom_con_10_2run.csv",sep = ",",skip = 6)
+# 
+# df_secf_con <- rbind(df_secf1_con1,df_secf1_con2)
+# df_secf_con$ID <- "con"
+# 
+# 
+# df_secf <- rbind(df_secf_lib,df_secf_con)
+# 
+# 
+# names(df_secf)[names(df_secf) == 'X.run.number.'] <- 'run'
+# 
+# names(df_secf)[names(df_secf) == 'X.majority'] <- 'majority'
+# names(df_secf)[names(df_secf) == 'X.liberal_maj'] <- 'liberal_maj'
+# names(df_secf)[names(df_secf) == 'X.liberal_min'] <- 'liberal_min'
+# names(df_secf)[names(df_secf) == 'X.step.'] <- 'step'
+# 
+# write.csv(df_secf,"df_secf.csv",row.names = F)
+
+df_secf <- read.csv("df_secf.csv",sep = ",") %>% select(
+  ID,density,majority,liberal_maj,liberal_min,dominant_distribution,secondary_distribution,dominant,secondary,con_eth,con_val,lib_val,lib_eth,eth_con_maj,val_con_maj,eth_con_min,val_con_min,val_lib_maj,eth_lib_maj,val_lib_min,eth_lib_min,step,et_cl,et_sq,vl_cl,vl_sq,den_cl,den_sq) %>% group_by(ID, density,majority,liberal_maj,liberal_min,dominant_distribution,secondary_distribution,dominant,secondary,con_eth,con_val,lib_val,lib_eth,eth_con_maj,val_con_maj,eth_con_min,val_con_min,val_lib_maj,eth_lib_maj,val_lib_min,eth_lib_min,step )  %>% 
+  summarise_all(c("m"= mean,"sd"= sd))
+
+df_secf_pic <- df_secf %>% gather(key = group_bsl, value = Segra_bsl, et_cl_m,et_sq_m,vl_cl_m,vl_sq_m,den_sq_m,den_cl_m)  %>%
+  mutate(`outcome` = fct_relevel(fct_collapse(group_bsl,
+                                              "Ethnic" = c("et_sq_m","et_cl_m"),
+                                              "Density" = c("den_sq_m","den_cl_m"),
+                                              "Value" = c("vl_sq_m","vl_cl_m")),"Ethnic"),
+         `orientation` = fct_relevel(fct_collapse(group_bsl,
+                                                  "Conservative" = c("et_sq_m","vl_sq_m","den_sq_m"),
+                                                  "Liberal" = c("et_cl_m","vl_cl_m","den_cl_m")), "Conservative"))
 
 ```
 

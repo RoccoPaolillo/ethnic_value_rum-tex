@@ -3811,7 +3811,7 @@ NetLogo 6.1.1
       <value value="0"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="secfdom_lib" repetitions="1" runMetricsEveryStep="false">
+  <experiment name="secfdom_lib" repetitions="20" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="1000"/>
@@ -3926,7 +3926,7 @@ NetLogo 6.1.1
       <value value="&quot;exposure&quot;"/>
     </enumeratedValueSet>
   </experiment>
-  <experiment name="secfdom_con" repetitions="1" runMetricsEveryStep="false">
+  <experiment name="secfdom_con" repetitions="20" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
     <timeLimit steps="1000"/>
