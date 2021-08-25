@@ -12,7 +12,7 @@ author:
     | Rocco Paolillo
     | Andreas Flache
     | 
-    | **` HERE SOME NOTES TO BEAR IN MIN `**
+    | **` HERE SOME NOTES TO BEAR IN MIND `**
     | **` Added material secondary preference function of dominant df_secf.csv and .nlogo `**
     | **` To include figure on df_secf.csv `**
     |  
