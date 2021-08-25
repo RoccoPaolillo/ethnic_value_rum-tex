@@ -7,9 +7,17 @@ output:
 toc: false
 fig_caption: yes
 title: "Relocation choice for different homophily preferences: hybrid scenarios for Schelling Model"
-author: "Rocco Paolillo, Andreas Flache"
+author: 
+    |  
+    | Rocco Paolillo
+    | Andreas Flache
+    | 
+    | **` HERE SOME NOTES TO BEAR IN MIN `**
+    | **` Added material secondary preference function of dominant df_secf.csv and .nlogo `**
+    | **` To include figure on df_secf.csv `**
+    |  
 keywords: "super-diversity, discrete choice, spatial sorting, Schelling"
-date: "Uploaded abm sec ratio of dominant, First the experiments section, then delete modeling surplus and text intro, simulation other levels `r format(Sys.time(), '%d/%m/%y %H:%M')`"
+date: "`r format(Sys.time(), '%d/%m/%y %H:%M')`"
 bibliography: "references"
 biblio-style: apalike
 
