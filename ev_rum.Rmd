@@ -13,8 +13,9 @@ author:
     | Andreas Flache
     | 
     | **` HERE SOME NOTES TO BEAR IN MIND `**
-    | **` Added material secondary preference function of dominant df_secf.csv and .nlogo `**
-    | **` To include figure on df_secf.csv `**
+    | **` Fig 4 shows ß secondary = ß dominant * w (df_secf.csv) `**
+    | **` Fig 4 could substitute fig. 5 and 7. Only 3 levels w shown`**
+    | **` Annex A shows all level of w`**
     |  
 keywords: "super-diversity, discrete choice, spatial sorting, Schelling"
 date: "`r format(Sys.time(), '%d/%m/%y %H:%M')`"
@@ -51,6 +52,7 @@ library(xlsx)
 library(xtable)
 library(gridExtra)
 library(kableExtra)
+library(RColorBrewer)
 
 # The dataset used is already combined. Here just to show how datasets from various experiments (ID variable) were merged
 # dfg <- function(x,id){
@@ -462,7 +464,7 @@ An index equal 1 means total segregation, i.e. exposure only to similar agents f
 
 # Results
 
-## Baseline Conditions
+# Baseline Conditions
 
 We run our simulations for 1000 discrete time steps and repeated each condition 20 times. We collected data for the last time step as interested in the emerged equilibria resulting from relocation preferences, population composition and degree of determinism. 
 In this first section, we report results for symmetric conditions, where agents are equally distributed in each group-type.
@@ -522,6 +524,75 @@ The figure shows how liberal agents remain ethnically integrated, which is coher
 For conservative agents, ethnic segregation is higher than value segregation of their value counterpart, with full ethnic segregation reached with highest determinism. 
 What is unexpected is that also value segregation emerges with increase in determinism, while their value preference is imposed to $\beta_v = 0$.
 
+
+
+\rocco{}
+
+<!--
+```{r secfdom1, fig.width = 6,fig.height= 8, out.width="80%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
+
+# Facet by outcome
+
+lib_fsec <- df_secf_pic %>% filter(ID == "lib") %>% filter(lib_eth == 0 | lib_eth == 0.5 | lib_eth == 1) %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation, linetype = as.factor(lib_eth))) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ outcome, dir = "v", labeller = as_labeller(c("Ethnic" = "Ethnic Segregation", "Value" = "Value Segregation", "Density" = "Density"))) +
+  ylab("")+
+  xlab("ß dominant") +
+  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"))+
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+  scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
+  ggtitle("ß ethnic liberal") +
+  theme_bw() + guides(color = FALSE)
+
+con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_val == 0.5 | con_val == 1) %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation, linetype = as.factor(con_val))) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ outcome, dir = "v", labeller = as_labeller(c("Ethnic" = "Ethnic Segregation", "Value" = "Value Segregation", "Density" = "Density"))) +
+  ylab("")+
+  xlab("ß dominant") +
+  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"))+
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+  scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
+  ggtitle("ß value conservative") +
+  theme_bw() + guides(color = FALSE)
+
+secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, legend  = "bottom")
+
+secf_pic
+```
+-->
+
+```{r secfdom, fig.width = 8,fig.height= 8, out.width="100%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
+
+lib_fsec <- df_secf_pic %>% filter(ID == "lib") %>% filter(lib_eth == 0 | lib_eth == 0.5 | lib_eth == 1) %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ lib_eth, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
+  ylab("outcome")+
+  xlab("ß dominant") +
+  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+ # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
+  ggtitle("ß ethnic liberal = ß dominant * w") +
+  theme_bw()
+
+con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_val == 0.5 | con_val == 1) %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ con_val, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
+  ylab("outcome")+
+  xlab("ß dominant") +
+  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+ # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
+  ggtitle("ß value conservative = ß dominant * w") +
+  theme_bw() 
+
+secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, nrow = 2, legend  = "bottom")
+
+secf_pic
+```
 
 ```{r bsl_dom, fig.width= 6, fig.height=3,fig.align='center', out.width="80%",  fig.pos = "H", fig.cap="Baseline condition, ß dominant preference (ethnic for conservative, value for liberals on the x-axis), ß secondary preference (value conservative, ethnic liberal) equal to 0", warning=FALSE}
 bsl_p( subset(df_bsl_pic,ID == "bsl_dom"))
@@ -874,9 +945,47 @@ About diversity in society: Further material I could not integrate properly in t
 
 -->
 
+# Annex A: ß secondary = ß dominant * w
 
 
-#  Annex: Robustness Analysis
+```{r secfdom_all, fig.width = 10,  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
+
+# Facet by outcome
+
+
+
+lib_fsec_all <- df_secf_pic %>% filter(ID == "lib") %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, shape = orientation, color = as.factor(lib_eth))) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_grid(orientation~outcome, labeller = as_labeller(c("Ethnic" = "Ethnic Segregation","Density" = "Density","Value" = "Value Segregation","Conservative" = "Conservative","Liberal" = "Liberal" ))) +
+  ylab("")+
+  xlab("ß dominant") +
+ scale_color_manual(values = brewer.pal(11, "Spectral"), guide = guide_legend(title = "w"))+
+ 
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+ ggtitle("ß ethnic liberal = ß dominant * w") +
+  theme_bw() 
+
+con_fsec_all <- df_secf_pic %>% filter(ID == "con") %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, shape = orientation, color = as.factor(con_val))) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_grid(orientation~outcome, labeller = as_labeller(c("Ethnic" = "Ethnic Segregation","Density" = "Density","Value" = "Value Segregation","Conservative" = "Conservative","Liberal" = "Liberal" ))) +
+  ylab("")+
+  xlab("ß dominant") +
+ scale_color_manual(values = brewer.pal(11, "Spectral"), guide = guide_legend(title = "w"))+
+ 
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+ggtitle("ß value conservative = ß dominant * w") +
+  theme_bw() 
+
+lib_fsec_all
+con_fsec_all
+```
+
+
+
+
+#  Annex B: Robustness Analysis
 
 
 ```{r robustness_table, include = TRUE}
