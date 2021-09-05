@@ -526,42 +526,7 @@ What is unexpected is that also value segregation emerges with increase in deter
 
 
 
-\rocco{}
-
-<!--
-```{r secfdom1, fig.width = 6,fig.height= 8, out.width="80%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
-
-# Facet by outcome
-
-lib_fsec <- df_secf_pic %>% filter(ID == "lib") %>% filter(lib_eth == 0 | lib_eth == 0.5 | lib_eth == 1) %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation, linetype = as.factor(lib_eth))) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ outcome, dir = "v", labeller = as_labeller(c("Ethnic" = "Ethnic Segregation", "Value" = "Value Segregation", "Density" = "Density"))) +
-  ylab("")+
-  xlab("ß dominant") +
-  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"))+
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
-  scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
-  ggtitle("ß ethnic liberal") +
-  theme_bw() + guides(color = FALSE)
-
-con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_val == 0.5 | con_val == 1) %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation, linetype = as.factor(con_val))) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ outcome, dir = "v", labeller = as_labeller(c("Ethnic" = "Ethnic Segregation", "Value" = "Value Segregation", "Density" = "Density"))) +
-  ylab("")+
-  xlab("ß dominant") +
-  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"))+
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
-  scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
-  ggtitle("ß value conservative") +
-  theme_bw() + guides(color = FALSE)
-
-secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, legend  = "bottom")
-
-secf_pic
-```
--->
+Fig. \ref{fig:secfdom} shows the increase in secondary preference equal  to $ß \ dominant * w$
 
 ```{r secfdom, fig.width = 8,fig.height= 8, out.width="100%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
 
@@ -590,6 +555,8 @@ con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_va
   theme_bw() 
 
 secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, nrow = 2, legend  = "bottom")
+
+ggsave("secf_pic.jpg", secf_pic, path = "images",width = 8, height = 8, dpi = 300) 
 
 secf_pic
 ```
@@ -945,10 +912,11 @@ About diversity in society: Further material I could not integrate properly in t
 
 -->
 
-# Annex A: ß secondary = ß dominant * w
+# Annex A: ß secondary liberal = ß dominant * w
 
 
-```{r secfdom_all, fig.width = 10,  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
+
+```{r lib_fsec_all, fig.width = 10,  fig.pos = "H", fig.cap="Increase ß ethnic liberal, all levels w", warning=FALSE}
 
 # Facet by outcome
 
@@ -966,6 +934,16 @@ lib_fsec_all <- df_secf_pic %>% filter(ID == "lib") %>%
  ggtitle("ß ethnic liberal = ß dominant * w") +
   theme_bw() 
 
+ggsave("lib_fsec_all.jpg", lib_fsec_all, path = "images",width = 10,  dpi = 300) 
+
+lib_fsec_all
+```
+
+
+```{r con_fsec_all, fig.width = 10,  fig.pos = "H", fig.cap="Increase ß value conservative, all levels w", warning=FALSE}
+
+# Facet by outcome
+
 con_fsec_all <- df_secf_pic %>% filter(ID == "con") %>% 
   ggplot(aes(x = dominant,y = Segra_bsl, shape = orientation, color = as.factor(con_val))) + 
   geom_point(size = 1.5) + geom_line() +
@@ -978,10 +956,10 @@ con_fsec_all <- df_secf_pic %>% filter(ID == "con") %>%
 ggtitle("ß value conservative = ß dominant * w") +
   theme_bw() 
 
-lib_fsec_all
+ggsave("con_fsec_all.jpg", con_fsec_all, path = "images",width = 10, dpi = 300) 
+
 con_fsec_all
 ```
-
 
 
 
