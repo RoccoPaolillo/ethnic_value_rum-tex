@@ -13,9 +13,9 @@ author:
     | Andreas Flache
     | 
     | **` HERE SOME NOTES TO BEAR IN MIND `**
-    | **` Fig 4 shows ß secondary = ß dominant * w (df_secf.csv) `**
-    | **` Fig 4 could substitute fig. 5 and 7. Only 3 levels w shown`**
-    | **` Annex A shows all level of w`**
+    | **` Annex A for ß secondary = ß dominant * w (df_secf.csv) and ideas `**
+    | **` `**
+    | **` `**
     |  
 keywords: "super-diversity, discrete choice, spatial sorting, Schelling"
 date: "`r format(Sys.time(), '%d/%m/%y %H:%M')`"
@@ -289,7 +289,7 @@ Moreover, we explore how segregation patterns would change when not only ethnic 
 
 \rocco{add: discrete choice and linear utility function to observe scenarios not possible in threshold and deterministic behavior, because agents would be not happy and some conditions not stand, e.g. threshold = 100 was not possible in \cite{paolillo2018} } \andreas{dont think we need this is intro. it s already on the long end, consider splitting into intro proper and some sort of theory section or merge parts with section that follows.}
 
-
+<!--
 # Modeling relocation choice with random utility models 
 
 \rocco{this in general will disappear/be rewritten (see AF and RP comments)}
@@ -338,14 +338,14 @@ As \cite{bruch2009preferences} stress out, agent-based modeling is deeply differ
 Researchers can impose different combinations of utility function for all ranges of neighborhood characteristics and parameters $\beta$ in the relocation decisions of agents to observe their aggregated results.
 <!-- Additionally, modellers can include other elements that contribute to the dynamics of emerging spatial segregation, such as diverse heterogeneous distributions of preferences (see \citep{xie2012modeling}) or population structures that can influence neighborhood composition \citep{bruch2014population}. \andreas{not different from schelling} -->
 
-Also agent-based modelling can benefit from the implementation of discrete choice models, not only for the formalization of the decisional process of agents and calibration with parameters $\beta$ estimated \citep{bruch2006neighborhood}, but also for the inclusion of the stochastic random term. 
+<!-- Also agent-based modelling can benefit from the implementation of discrete choice models, not only for the formalization of the decisional process of agents and calibration with parameters $\beta$ estimated \citep{bruch2006neighborhood}, but also for the inclusion of the stochastic random term. 
 Randomness is useful to both test robustness of observed phenomena in complex systems and increase their realism through inclusion of random fluctuations against deterministic behavior.
 A traditional way to include randomness in the dynamics of an agent-based model is as an external noise, for  instance in Schelling's model, with a percentage of agents, or additional agents, forced to randomly relocate by the researcher. 
 Implementation of discrete choice allows to include randomness as an endogenous component in the relocation decision of individual agents through the random term compared to parameters of determinism. 
 Useful to our interest in the interplay of value and ethnic preferences, the parameter $\beta$ can be attributed based on characteristics of agents that simulate their socio-demographics. We build on this aspect of random utility models to investigate how strength of preferences for either value orientation or ethnicity, or a combination of both, along structural composition of the population can contribute to the emergence of stable equilibria of hybrid segregation. 
 We can moreover explore the interdependence between different types of agents and how determinism of agents would react to different distributions of the two characteristics of ethnicity and value orientation in the population.
 In the next section we describe our model and how we implemented random utility discrete choice.
-
+-->
 
 # Model Description
 
@@ -403,17 +403,21 @@ $U^v_{al}$: value utility of alternative neighborhood \par
 $U^v_{cr}$: value utility of current neighborhood \par
 \andreas{this can be integrated more with equation 2 and text around it.}
 
-The higher $\beta_e$ or $\beta_v$, the higher the option with higher ethnic or value utility is likely to be selected, the lower $\beta_e$ or $\beta_v$, the higher the chance that selection is random for that dimension. \andreas{repetition}
-With both $\beta_e = 0$ and $\beta_v = 0$, the choice is totally random and $P_{al} = P_{cr} = 0.5$. 
-This formula is a transformation of Eq: \ref{eq:cndtnl} for a binary choice with probability to relocate to alternative neighborhood\footnote{The equivalence between logistic function  and conditional logit for two options is valid since the difference between random terms that are assumed to have a Gumbel distributions has a logistic distribution.
-The logistic function in Eq: \ref{eq:lgst} is transformation of Eq: \ref{eq:cndtnl} written as $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$, resulting from division of numerator and denominator by numerator $exp(U_{al})$, with $exp(U_{cr})/exp(U_{al}) = exp(U_{cr}) - exp(U_{al})$ (see \cite[p.39]{train2009discrete} for details)}.\andreas{shorten this}
-Probability computed is compared to a random number ranging between 0 and 1. 
-If probability is higher than random number, then the agent moves to the alternative neighborhood, leaving its cell empty. 
-So,  the logistic  function serves as a simplified version of the roulette wheel selection \footnote{see \cite{bruch2012methodological} for an example of roulette wheel selection}. \andreas{implementation details like these can go to online appendix, online repository containing model code (open abm)}
+The higher $\beta_e$ or $\beta_v$, the higher the option with higher ethnic or value utility is likely to be selected, the lower $\beta_e$ or $\beta_v$, the higher the chance that selection is random for that dimension. With both $\beta_e = 0$ and $\beta_v = 0$, the choice is totally random and $P_{al} = P_{cr} = 0.5$. \footnote{The logistic function is equivalent to the conditional logit formula $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$ for two options. The equivalence is valid since the difference between two random terms that are assumed to have a Gumbel distribution, as in the conditional logit, has a logistic distribution. See \cite[p.39]{train2009discrete} for details on transformation from conditional logit formula to logistic function as implemented in our model}
 
-<!-- As tested, due to continuous iterations of the relocation choice, emerging results would not differ if more than two options are taken into consideration. We opted for a continuous linear function because default assumption in utility maximization and sensitive to changes in neighborhood compositions, which is strategic to our aim \citep{van2009neighborhood}. -->
-Moreover, it lets behavior of agents differ only for parameters of determinism $\beta_e$ and $\beta_v$, so to allow us to disentangle the effect of either ethnic or value similarity preferences on emerging segregation. \rocco{next paragraph: I mean that potentially one can span the parameters so to have ethnic liberal > ethnic conservative.
-We impose preferences as I describe because of theoretical consistency with our research goal}
+
+
+<!-- to delete: The equivalence between logistic function  and conditional logit for two options is valid since the difference between random terms that are assumed to have a Gumbel distributions has a logistic distribution.
+The logistic function in Eq: \ref{eq:lgst} is transformation of Eq: \ref{eq:cndtnl} written as $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$, resulting from division of numerator and denominator by numerator $exp(U_{al})$, with $exp(U_{cr})/exp(U_{al}) = exp(U_{cr}) - exp(U_{al})$ (see \cite[p.39]{train2009discrete} for details)}.\andreas{shorten this} -->
+
+<!--Probability computed is compared to a random number ranging between 0 and 1. 
+If probability is higher than random number, then the agent moves to the alternative neighborhood, leaving its cell empty. 
+So,  the logistic  function serves as a simplified version of the roulette wheel selection \footnote{see \cite{bruch2012methodological} for an example of roulette wheel selection}. \andreas{implementation details like these can go to online appendix, online repository containing model code (open abm)} -->
+
+<!-- As tested, due to continuous iterations of the relocation choice, emerging results would not differ if more than two options are taken into consideration. We opted for a continuous linear function because default assumption in utility maximization and sensitive to changes in neighborhood compositions, which is strategic to our aim \citep{van2009neighborhood}.
+Moreover, it lets behavior of agents differ only for parameters of determinism $\beta_e$ and $\beta_v$, so to allow us to disentangle the effect of either ethnic or value similarity preferences on emerging segregation. \rocco{next paragraph: I mean that potentially one can span the parameters so to have ethnic liberal > ethnic conservative. 
+We impose preferences as I describe because of theoretical consistency with our research goal}-->
+
 \andreas{here (next paragraph rp) we say what we do, but not really why we do it. this has also not been said very clearly further above, i suggest to add a few sentences on that further above.} We vary $\beta_e$ and $\beta_v$ depending on the value orientation of agents and in our experiments impose differences in heterogeneous preferences between the two types of agents. Liberal agents, considered as more  prone to ethnic tolerance, hold higher value preferences: weight for ethnic similarity cannot exceed their weight for value similarity ($\beta^{L}_v \geq \beta^{L}_e$). 
 Conservative agents hold higher ethnic preferences: weight for value similarity cannot exceed their weight for  ethnic similarity ($\beta^{C}_e \geq \beta^{C}_v$). 
 Moreover, the heterogeneity between conservative and liberal agents exists so that ethnic preferences of liberals do not exceed those of conservatives ($\beta^{C}_e \geq \beta^{L}_e$), and value preferences of conservatives do not exceed those of liberals ($\beta^{L}_v \geq \beta^{C}_v$). 
@@ -526,40 +530,8 @@ What is unexpected is that also value segregation emerges with increase in deter
 
 
 
-Fig. \ref{fig:secfdom} shows the increase in secondary preference equal  to $ß \ dominant * w$
 
-```{r secfdom, fig.width = 8,fig.height= 8, out.width="100%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative", warning=FALSE}
 
-lib_fsec <- df_secf_pic %>% filter(ID == "lib") %>% filter(lib_eth == 0 | lib_eth == 0.5 | lib_eth == 1) %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ lib_eth, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
-  ylab("outcome")+
-  xlab("ß dominant") +
-  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
- # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
-  ggtitle("ß ethnic liberal = ß dominant * w") +
-  theme_bw()
-
-con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_val == 0.5 | con_val == 1) %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ con_val, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
-  ylab("outcome")+
-  xlab("ß dominant") +
-  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
- # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
-  ggtitle("ß value conservative = ß dominant * w") +
-  theme_bw() 
-
-secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, nrow = 2, legend  = "bottom")
-
-ggsave("secf_pic.jpg", secf_pic, path = "images",width = 8, height = 8, dpi = 300) 
-
-secf_pic
-```
 
 ```{r bsl_dom, fig.width= 6, fig.height=3,fig.align='center', out.width="80%",  fig.pos = "H", fig.cap="Baseline condition, ß dominant preference (ethnic for conservative, value for liberals on the x-axis), ß secondary preference (value conservative, ethnic liberal) equal to 0", warning=FALSE}
 bsl_p( subset(df_bsl_pic,ID == "bsl_dom"))
@@ -912,11 +884,64 @@ About diversity in society: Further material I could not integrate properly in t
 
 -->
 
-# Annex A: ß secondary liberal = ß dominant * w
+# Annex A: ß secondary as function of ß dominant
+
+In this version of the model (e_v_rum_secfdom.nlogo), secondary preference is derived from dominant preference
+
+$$
+\beta \ secondary  = \beta \ dominant * w
+$$
+
+with $w \in [0,1]$. For $w = 0$, ß secondary is equal 0; for $w = 1$, ß secondary is equal to ß dominant.
+
+Fig. \ref{fig:secfdom} compares increase in secondary preference for liberals (top row) and conservatives (bottom row) for all ranges of ß dominant which is reported on the x-axis. It reports 3 conditions: $w = 0$, $w = 1$ and the intermediate condition $w = 0.5$, i.e. ß secondary is half of ß dominant.
+
+
+Fig: \ref{fig:libfsecc} focuses on change in secondary ß ethnic of liberals for all levels of $w$, showing results for conservatives (top row) and liberals (bottom row). Fig: \ref{fig:confsecc} repeats for change in secondary ß value of conservatives
+
+Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} show all levels of $w$ for secondary preference of liberals or conservatives. 
+
+Fig. \ref{fig:secfdom} is a filtered and more text-wise combination of Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc}. In all conditions we have too much information in the figures. For sake of simplicity we could decide:
+1) Keep Fig. \ref{fig:secfdom} in the text, deleting what are now Fig: \ref{fig:bsl_dom}, equal to $w = 0$ and \ref{fig:bsl_sec} equal to $w = 1$ and leave Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} in an Annex
+2) Leave as it is now with \ref{fig:bsl_dom} and \ref{fig:bsl_sec}, and still Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} in an Annex
+
+
+```{r secfdom, fig.width = 8,fig.height= 8, out.width="100%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. X-axis reports ß dominant for all agents (value for liberals and ethnic for conservative). In the top row, change in secondary ß ethnic of liberals (secondary ß value of conservative = 0 in all conditions). In the bottom row, change in secondary ß value of conservatives (secondary ß ethnic of liberals = 0 in all conditions). Each panel refers to one level of w", warning=FALSE}
+
+lib_fsec <- df_secf_pic %>% filter(ID == "lib") %>% filter(lib_eth == 0 | lib_eth == 0.5 | lib_eth == 1) %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ lib_eth, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
+  ylab("outcome")+
+  xlab("ß dominant") +
+  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+ # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
+  ggtitle("ß ethnic liberal = ß dominant * w") +
+  theme_bw()
+
+con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_val == 0.5 | con_val == 1) %>% 
+  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ con_val, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
+  ylab("outcome")+
+  xlab("ß dominant") +
+  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
+  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
+ # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
+  ggtitle("ß value conservative = ß dominant * w") +
+  theme_bw() 
+
+secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, nrow = 2, legend  = "bottom")
+
+ggsave("secf_pic.jpg", secf_pic, path = "images",width = 8, height = 8, dpi = 300) 
+
+secf_pic
+```
 
 
 
-```{r lib_fsec_all, fig.width = 10,  fig.pos = "H", fig.cap="Increase ß ethnic liberal, all levels w", warning=FALSE}
+```{r libfsecc, fig.width = 8,fig.height= 5, out.width="100%", fig.pos = "H", fig.cap="Focus on secondary ß ethnic of liberals for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß value of conservative = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
 
 # Facet by outcome
 
@@ -940,7 +965,7 @@ lib_fsec_all
 ```
 
 
-```{r con_fsec_all, fig.width = 10,  fig.pos = "H", fig.cap="Increase ß value conservative, all levels w", warning=FALSE}
+```{r confsecc,  fig.width = 8,fig.height= 5, out.width="100%",fig.cap="Focus on secondary ß value of conservatives for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß ethnic of liberals = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
 
 # Facet by outcome
 
@@ -960,6 +985,8 @@ ggsave("con_fsec_all.jpg", con_fsec_all, path = "images",width = 10, dpi = 300)
 
 con_fsec_all
 ```
+
+
 
 
 

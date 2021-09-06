@@ -91,10 +91,10 @@ scenarios for Schelling Model}
 Andreas Flache\\
 ~\\
 \textbf{\texttt{HERE\ SOME\ NOTES\ TO\ BEAR\ IN\ MIND}}~\\
-\textbf{\texttt{Fig\ 4\ shows\ ß\ secondary\ =\ ß\ dominant\ *\ w\ (df\_secf.csv)}}~\\
-\textbf{\texttt{Fig\ 4\ could\ substitute\ fig.\ 5\ and\ 7.\ Only\ 3\ levels\ w\ shown}}~\\
-\textbf{\texttt{Annex\ A\ shows\ all\ level\ of\ w}}~\\}
-\date{06/09/21 01:08}
+\textbf{\texttt{Annex\ A\ for\ ß\ secondary\ =\ ß\ dominant\ *\ w\ (df\_secf.csv)\ and\ ideas}}~\\
+\textbf{\texttt{}}~\\
+\textbf{\texttt{}}~\\}
+\date{06/09/21 23:56}
 
 \begin{document}
 \maketitle
@@ -301,139 +301,6 @@ different distributions of value types within agents' population.
 {\textcolor{red}{Rocco: add: discrete choice and linear utility function to observe scenarios not possible in threshold and deterministic behavior, because agents would be not happy and some conditions not stand, e.g. threshold = 100 was not possible in \cite{paolillo2018} }}
 \textcolor{blue}{{Andreas: }dont think we need this is intro. it s already on the long end, consider splitting into intro proper and some sort of theory section or merge parts with section that follows.}
 
-\hypertarget{modeling-relocation-choice-with-random-utility-models}{%
-\section{Modeling relocation choice with random utility
-models}\label{modeling-relocation-choice-with-random-utility-models}}
-
-{\textcolor{red}{Rocco: this in general will disappear/be rewritten (see AF and RP comments)}}
-{\textcolor{red}{Rocco: divide: why rum and utility within Introduction: contribution of the paper, formalization with logistic function in the model description}} 
-\textcolor{blue}{{Andreas: }it this a theory or a model section? bit unclear. I  would propose to turn it into a „theory“ section (moving some parts from the intro here) and fold the „modelling“ parts into the modelling section.}
-
-Random utility models for discrete choice have a long history in housing
-research \citep{frankhauser2016deciding} and in recent years they have
-been applied in the agent-based modeling framework
-\citep{bruch2006neighborhood,bruch2012methodological}. Stemming from the
-utility maximization paradigm, these models assume that the decision
-process underlying the choice of economic actors is unknown, and it can
-be deduced by observed choice, i.e.~how selection of respondents differ
-for attributes of the options available \citep{hess2018revisiting},
-e.g.~different neighborhood composition. Utility in this context is
-defined as the attractiveness for each characteristic the options differ
-for and its formalization is based on the response curve of the
-respondent \citep{bruch2015agent,train2009discrete}. Random utility
-models divide between a systematic component of utility, i.e.~observable
-differences between options based on their utility, and a random term,
-representing all unknown factors associated with selection of that
-options, might they depend on other characteristics of the option,
-characteristics of the selector or an interaction of both. In our model,
-random utility for a generic neighborhood is:
-
-\begin{equation}
-    U = \beta_e U_e + \beta_v U_v + \epsilon
-\end{equation}
-
-where:
-
-\par
-
-\(\beta_e\) = weight parameter for ethnic similarity, with
-\(\beta_e [0, \infty)\)
-
-\par
-
-\(U_e\) = ethnic utility of neighborhood
-
-\par
-
-\(\beta_v\) = weight parameter for value similarity, with
-\(\beta_v [0, \infty)\)
-
-\par
-
-\(U_v\) = value utility of neighborhood
-
-\par
-
-\(\epsilon\) = random term
-
-\par
-
-While parameters \(\beta_e\) and \(\beta_v\) can be estimated through
-regression models, the random term \(\epsilon\) remains unknown. The
-conditional logit model introduced by \cite{mcfadden1973conditional} is
-a specific type of discrete choice model that allow to quantify the
-effect of systematic utility over random component, though remaining the
-latter unknown. Assuming the random term \(\epsilon\) follows a type I
-extreme value distribution, e.g.~Gumbel distribution, the probability to
-select neighborhood \textit{j} out of options \textit{k} in choice set
-\textit{C} is:
-\textcolor{blue}{{Andreas: }lenghty, reads more like dissertation. Shorten.}{\textcolor{red}{Rocco: added a note, not sure how in computation, but to take back in the end, if it remains}}
-
-\begin{equation}
-P_{j} = \frac{exp(\beta_e U^e_j + \beta_v U^v_j)}{\sum\limits_{{k\in{C}}}exp(\beta_e U^e_k + \beta_v U^v_k)}
-\label{eq:cndtnl}
-\end{equation}
-
-where \textit{j} and \textit{k} are two options available in the choice
-set \textit{C}.
-
-\par
-\par
-
-In this computation of probability, parameters \(\beta_e\) and
-\(\beta_v\) represent the weight of how much the systematic component of
-utility for that dimension matters in the selection of the option
-compared to the random component represented by the unknown random term.
-The higher \(\beta_e\) or \(\beta_v\), the higher the likelihood that
-the option with highest utility for that dimension will be selected, the
-lower \(\beta_e\) or \(\beta_v\), the higher the chance that the choice
-among options will occur randomly. With both \(\beta_e\) and \(\beta_v\)
-equal 0, all options have equal probability to be selected, since the
-choice is totally stochastic, i.e.~dependent on the random term.
-
-Implementation of discrete choice in agent-based modelling has some
-peculiarities compared to empirical regression models. First and above
-all, estimated preferences in regression models depend on a the
-comparison of a limited set of observed cases that can profoundly affect
-results.
-\textcolor{blue}{{Andreas: }generally this section can be shortened a lot. jms readers can be expected to know most of this and for much of the information lit references suffice.}
-Moreover, utility remains a random variable estimated through parameters
-\(\beta\) and computation of probability to select one option.
-Probability to select one option over the others as behavioral response
-to change in their attributes is the equivalent to utility. As
-\cite{bruch2009preferences} stress out, agent-based modeling is deeply
-different in this aspect, allowing to model independently and quantify
-the elements of the conditional logit based on a theoretical model.
-Researchers can impose different combinations of utility function for
-all ranges of neighborhood characteristics and parameters \(\beta\) in
-the relocation decisions of agents to observe their aggregated results.
-
-Also agent-based modelling can benefit from the implementation of
-discrete choice models, not only for the formalization of the decisional
-process of agents and calibration with parameters \(\beta\) estimated
-\citep{bruch2006neighborhood}, but also for the inclusion of the
-stochastic random term. Randomness is useful to both test robustness of
-observed phenomena in complex systems and increase their realism through
-inclusion of random fluctuations against deterministic behavior. A
-traditional way to include randomness in the dynamics of an agent-based
-model is as an external noise, for instance in Schelling's model, with a
-percentage of agents, or additional agents, forced to randomly relocate
-by the researcher. Implementation of discrete choice allows to include
-randomness as an endogenous component in the relocation decision of
-individual agents through the random term compared to parameters of
-determinism. Useful to our interest in the interplay of value and ethnic
-preferences, the parameter \(\beta\) can be attributed based on
-characteristics of agents that simulate their socio-demographics. We
-build on this aspect of random utility models to investigate how
-strength of preferences for either value orientation or ethnicity, or a
-combination of both, along structural composition of the population can
-contribute to the emergence of stable equilibria of hybrid segregation.
-We can moreover explore the interdependence between different types of
-agents and how determinism of agents would react to different
-distributions of the two characteristics of ethnicity and value
-orientation in the population. In the next section we describe our model
-and how we implemented random utility discrete choice.
-
 \hypertarget{model-description}{%
 \section{Model Description}\label{model-description}}
 
@@ -557,27 +424,10 @@ where:
 The higher \(\beta_e\) or \(\beta_v\), the higher the option with higher
 ethnic or value utility is likely to be selected, the lower \(\beta_e\)
 or \(\beta_v\), the higher the chance that selection is random for that
-dimension. \textcolor{blue}{{Andreas: }repetition} With both
-\(\beta_e = 0\) and \(\beta_v = 0\), the choice is totally random and
-\(P_{al} = P_{cr} = 0.5\). This formula is a transformation of Eq:
-\ref{eq:cndtnl} for a binary choice with probability to relocate to
-alternative
-neighborhood\footnote{The equivalence between logistic function  and conditional logit for two options is valid since the difference between random terms that are assumed to have a Gumbel distributions has a logistic distribution.
-The logistic function in Eq: \ref{eq:lgst} is transformation of Eq: \ref{eq:cndtnl} written as $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$, resulting from division of numerator and denominator by numerator $exp(U_{al})$, with $exp(U_{cr})/exp(U_{al}) = exp(U_{cr}) - exp(U_{al})$ (see \cite[p.39]{train2009discrete} for details)}.\textcolor{blue}{{Andreas: }shorten this}
-Probability computed is compared to a random number ranging between 0
-and 1. If probability is higher than random number, then the agent moves
-to the alternative neighborhood, leaving its cell empty. So, the
-logistic function serves as a simplified version of the roulette wheel
-selection
-\footnote{see \cite{bruch2012methodological} for an example of roulette wheel selection}.
-\textcolor{blue}{{Andreas: }implementation details like these can go to online appendix, online repository containing model code (open abm)}
+dimension. With both \(\beta_e = 0\) and \(\beta_v = 0\), the choice is
+totally random and \(P_{al} = P_{cr} = 0.5\).
+\footnote{The logistic function is equivalent to the conditional logit formula $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$ for two options. The equivalence is valid since the difference between two random terms that are assumed to have a Gumbel distribution, as in the conditional logit, has a logistic distribution. See \cite[p.39]{train2009discrete} for details on transformation from conditional logit formula to logistic function as implemented in our model}
 
-Moreover, it lets behavior of agents differ only for parameters of
-determinism \(\beta_e\) and \(\beta_v\), so to allow us to disentangle
-the effect of either ethnic or value similarity preferences on emerging
-segregation.
-{\textcolor{red}{Rocco: next paragraph: I mean that potentially one can span the parameters so to have ethnic liberal > ethnic conservative.
-We impose preferences as I describe because of theoretical consistency with our research goal}}
 \textcolor{blue}{{Andreas: }here (next paragraph rp) we say what we do, but not really why we do it. this has also not been said very clearly further above, i suggest to add a few sentences on that further above.}
 We vary \(\beta_e\) and \(\beta_v\) depending on the value orientation
 of agents and in our experiments impose differences in heterogeneous
@@ -767,13 +617,6 @@ value counterpart, with full ethnic segregation reached with highest
 determinism. What is unexpected is that also value segregation emerges
 with increase in determinism, while their value preference is imposed to
 \(\beta_v = 0\).
-
-Fig. \ref{fig:secfdom} shows the increase in secondary preference equal
-to \(ß \ dominant * w\)
-
-\begin{figure}[H]
-\includegraphics[width=1\linewidth]{ev_rum_files/figure-latex/secfdom-1} \caption{Baseline condition, ß secondary as function of ß dominant. Comparison increase in ß ethnic liberal or ß value conservative}\label{fig:secfdom}
-\end{figure}
 
 \begin{figure}[H]
 
@@ -1250,20 +1093,54 @@ change the shape of utility function, along with the two-dimensional
 homophily behavior.
 {\textcolor{red}{Rocco: This links to the literature showing how segregation emerges also for integrationist preferences (Zhang, Van Rijt etc.) third paper of the dissertation I am working on}}
 
-\hypertarget{annex-a-uxdf-secondary-liberal-uxdf-dominant-w}{%
-\section{Annex A: ß secondary liberal = ß dominant *
-w}\label{annex-a-uxdf-secondary-liberal-uxdf-dominant-w}}
+\hypertarget{annex-a-uxdf-secondary-as-function-of-uxdf-dominant}{%
+\section{Annex A: ß secondary as function of ß
+dominant}\label{annex-a-uxdf-secondary-as-function-of-uxdf-dominant}}
 
-\begin{figure}
-\centering
-\includegraphics{ev_rum_files/figure-latex/lib_fsec_all-1.pdf}
-\caption{Increase ß ethnic liberal, all levels w}
+In this version of the model (e\_v\_rum\_secfdom.nlogo), secondary
+preference is derived from dominant preference
+
+\[
+\beta \ secondary  = \beta \ dominant * w
+\]
+
+with \(w \in [0,1]\). For \(w = 0\), ß secondary is equal 0; for
+\(w = 1\), ß secondary is equal to ß dominant.
+
+Fig. \ref{fig:secfdom} compares increase in secondary preference for
+liberals (top row) and conservatives (bottom row) for all ranges of ß
+dominant which is reported on the x-axis. It reports 3 conditions:
+\(w = 0\), \(w = 1\) and the intermediate condition \(w = 0.5\), i.e.~ß
+secondary is half of ß dominant.
+
+Fig: \ref{fig:libfsecc} focuses on change in secondary ß ethnic of
+liberals for all levels of \(w\), showing results for conservatives (top
+row) and liberals (bottom row). Fig: \ref{fig:confsecc} repeats for
+change in secondary ß value of conservatives
+
+Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} show all levels of
+\(w\) for secondary preference of liberals or conservatives.
+
+Fig. \ref{fig:secfdom} is a filtered and more text-wise combination of
+Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc}. In all conditions
+we have too much information in the figures. For sake of simplicity we
+could decide: 1) Keep Fig. \ref{fig:secfdom} in the text, deleting what
+are now Fig: \ref{fig:bsl_dom}, equal to \(w = 0\) and \ref{fig:bsl_sec}
+equal to \(w = 1\) and leave Fig: \ref{fig:libfsecc} and Fig:
+\ref{fig:confsecc} in an Annex 2) Leave as it is now with
+\ref{fig:bsl_dom} and \ref{fig:bsl_sec}, and still Fig:
+\ref{fig:libfsecc} and Fig: \ref{fig:confsecc} in an Annex
+
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{ev_rum_files/figure-latex/secfdom-1} \caption{Baseline condition, ß secondary as function of ß dominant. X-axis reports ß dominant for all agents (value for liberals and ethnic for conservative). In the top row, change in secondary ß ethnic of liberals (secondary ß value of conservative = 0 in all conditions). In the bottom row, change in secondary ß value of conservatives (secondary ß ethnic of liberals = 0 in all conditions). Each panel refers to one level of w}\label{fig:secfdom}
+\end{figure}
+
+\begin{figure}[H]
+\includegraphics[width=1\linewidth]{ev_rum_files/figure-latex/libfsecc-1} \caption{Focus on secondary ß ethnic of liberals for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß value of conservative = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported}\label{fig:libfsecc}
 \end{figure}
 
 \begin{figure}
-\centering
-\includegraphics{ev_rum_files/figure-latex/con_fsec_all-1.pdf}
-\caption{Increase ß value conservative, all levels w}
+\includegraphics[width=1\linewidth]{ev_rum_files/figure-latex/confsecc-1} \caption{Focus on secondary ß value of conservatives for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß ethnic of liberals = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported}\label{fig:confsecc}
 \end{figure}
 
 \hypertarget{annex-b-robustness-analysis}{%
