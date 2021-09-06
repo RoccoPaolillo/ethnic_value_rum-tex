@@ -897,13 +897,13 @@ with $w \in [0,1]$. For $w = 0$, ß secondary is equal 0; for $w = 1$, ß second
 Fig. \ref{fig:secfdom} compares increase in secondary preference for liberals (top row) and conservatives (bottom row) for all ranges of ß dominant which is reported on the x-axis. It reports 3 conditions: $w = 0$, $w = 1$ and the intermediate condition $w = 0.5$, i.e. ß secondary is half of ß dominant.
 
 
-Fig: \ref{fig:libfsecc} focuses on change in secondary ß ethnic of liberals for all levels of $w$, showing results for conservatives (top row) and liberals (bottom row). Fig: \ref{fig:confsecc} repeats for change in secondary ß value of conservatives
+Fig: \ref{fig:lib_fsec_all} focuses on change in secondary ß ethnic of liberals for all levels of $w$, showing results for conservatives (top row) and liberals (bottom row). Fig: \ref{fig:con_fsec_all} repeats for change in secondary ß value of conservatives
 
-Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} show all levels of $w$ for secondary preference of liberals or conservatives. 
+Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all} show all levels of $w$ for secondary preference of liberals or conservatives. 
 
-Fig. \ref{fig:secfdom} is a filtered and more text-wise combination of Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc}. In all conditions we have too much information in the figures. For sake of simplicity we could decide:
-1) Keep Fig. \ref{fig:secfdom} in the text, deleting what are now Fig: \ref{fig:bsl_dom}, equal to $w = 0$ and \ref{fig:bsl_sec} equal to $w = 1$ and leave Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} in an Annex
-2) Leave as it is now with \ref{fig:bsl_dom} and \ref{fig:bsl_sec}, and still Fig: \ref{fig:libfsecc} and Fig: \ref{fig:confsecc} in an Annex
+Fig. \ref{fig:secfdom} is a filtered and more text-wise combination of Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all}. In all conditions we have too much information in the figures. For sake of simplicity we could decide:
+1) Keep Fig. \ref{fig:secfdom} in the text, deleting what are now Fig: \ref{fig:bsl_dom}, equal to $w = 0$ and \ref{fig:bsl_sec} equal to $w = 1$ and leave Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all} in an Annex
+2) Leave as it is now with \ref{fig:bsl_dom} and \ref{fig:bsl_sec}, and still Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all} in an Annex
 
 
 ```{r secfdom, fig.width = 8,fig.height= 8, out.width="100%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. X-axis reports ß dominant for all agents (value for liberals and ethnic for conservative). In the top row, change in secondary ß ethnic of liberals (secondary ß value of conservative = 0 in all conditions). In the bottom row, change in secondary ß value of conservatives (secondary ß ethnic of liberals = 0 in all conditions). Each panel refers to one level of w", warning=FALSE}
@@ -941,7 +941,7 @@ secf_pic
 
 
 
-```{r libfsecc, fig.width = 8,fig.height= 5, out.width="100%", fig.pos = "H", fig.cap="Focus on secondary ß ethnic of liberals for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß value of conservative = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
+```{r lib_fsec_all, fig.width = 8,fig.height= 5, out.width="100%", fig.pos = "H", fig.cap="Focus on secondary ß ethnic of liberals for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß value of conservative = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
 
 # Facet by outcome
 
@@ -965,7 +965,7 @@ lib_fsec_all
 ```
 
 
-```{r confsecc,  fig.width = 8,fig.height= 5, out.width="100%",fig.cap="Focus on secondary ß value of conservatives for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß ethnic of liberals = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
+```{r con_fsec_all,  fig.width = 8,fig.height= 5, out.width="100%",fig.cap="Focus on secondary ß value of conservatives for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß ethnic of liberals = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
 
 # Facet by outcome
 
