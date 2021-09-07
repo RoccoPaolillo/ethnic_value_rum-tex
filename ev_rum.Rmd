@@ -401,7 +401,7 @@ $U^e_{al}$: ethnic utility of alternative neighborhood \par
 $U^e_{cr}$: ethnic utility of current neighborhood \par
 $U^v_{al}$: value utility of alternative neighborhood \par
 $U^v_{cr}$: value utility of current neighborhood \par
-\andreas{this can be integrated more with equation 2 and text around it.}
+<!-- \andreas{this can be integrated more with equation 2 and text around it.} -->
 
 The higher $\beta_e$ or $\beta_v$, the higher the option with higher ethnic or value utility is likely to be selected, the lower $\beta_e$ or $\beta_v$, the higher the chance that selection is random for that dimension. With both $\beta_e = 0$ and $\beta_v = 0$, the choice is totally random and $P_{al} = P_{cr} = 0.5$. \footnote{The logistic function is equivalent to the conditional logit formula $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$ for two options. The equivalence is valid since the difference between two random terms that are assumed to have a Gumbel distribution, as in the conditional logit, has a logistic distribution. See \cite[p.39]{train2009discrete} for details on transformation from conditional logit formula to logistic function as implemented in our model}
 
@@ -480,7 +480,7 @@ Fig. \ref{fig:model_space} shows the parameter space we explore in this baseline
 Dominant preference of conservative agents is ethnic similarity, while secondary preference is value similarity.
 Dominant preference of liberal agents is value similarity, while secondary preference is ethnic similarity.
 The aim of the figure is also to show visually the segregation scenarios that emerge within the parameter space and that we plot in each figure.
-We describe later each picture and motivation in details. \rocco{including more description of space model Fig. \ref{fig:model_space}, for matching figures, in the end}
+We describe later each picture and motivation in details. <!--\rocco{including more description of space model Fig. \ref{fig:model_space}, for matching figures, in the end}-->
 The origin of the axes equals to all agents holding $\beta = 0$, i.e. extreme randomness, for both dominant and secondary preference in their relocation decision, so to relocate randomly from the initial distribution and generate no segregation.
 Moving along the diagonal, dominant preference of agents is equal to secondary preference (Fig.\ref{fig:bsl}), showing clustering between the 4 group-type as determinism increases. 
 Fig. \ref{fig:bsl_sec} occurs along the diagonal as well, but with either liberals or conservatives in each condition holding $\beta \ dominant$ equal to $\beta \ secondary$. 
@@ -506,7 +506,7 @@ $X_i$: total number agents in neighborhood of agent \textit{i} \par
 We report additionally the average density of the neighborhood agents form, calculated as the fraction of inhabited grid cells in the Moore neighborhood of agents. We are interested in density as indicator of clustering of agents and how it relates to segregation patterns.
 
 
-```{r model_space, fig.width= 6, fig.height=6,fig.align='center',fig.pos = "h", out.width="70%", fig.cap="Preference model space parameter and figure associated. Figure reference label: black color means liberals and conservatives hold same level of ß parameter (though with different definition of similarity). Red color means they hold different level of either dominant or secondary preference.Match figure-label to check/change in the end", warning=FALSE}
+```{r model_space, fig.width= 6, fig.height=6,fig.align='center',fig.pos = "H", out.width="70%", fig.cap="Preference model space parameter and figure associated. Figure reference label: black color means liberals and conservatives hold same level of ß parameter (though with different definition of similarity). Red color means they hold different level of either dominant or secondary preference.Match figure-label to check/change in the end", warning=FALSE}
 
 knitr::include_graphics("model_space.jpg")
 
