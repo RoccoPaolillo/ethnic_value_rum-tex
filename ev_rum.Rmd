@@ -88,7 +88,6 @@ library(RColorBrewer)
 # df_tot <- rbind(bsl,bsl_dom, bsl_sec_cl, bsl_sec_sq,sens_lib,sens_con,bsl_lib_con ,bsl_con_lib ,hmp,  asm , asm_dom , libmj , libmn  ,dislib , dislib_maj,dislib_min  ,etlib_bsl,etlib_maj ,etlib_min ,dislibet_maj ,dislibet_min)
 # 
 
-
 # dataset baseline (ethnic symmetric) condition (wide format for tables). It was handy to divide. Group_by: runs with same conditions (variable column) are collapsed, and mean and standard deviation extracted (summarise_all). So original variable columns y are substituted by one for mean "y_m" and standard deviation "y_sd"
 
 
