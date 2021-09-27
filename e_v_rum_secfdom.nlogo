@@ -217,7 +217,7 @@ SLIDER
 %majority
 50
 100
-50.0
+80.0
 1
 1
 NIL
@@ -381,7 +381,7 @@ eth_lib_maj
 eth_lib_maj
 0
 1
-0.0
+0.3
 0.1
 1
 NIL
@@ -571,7 +571,7 @@ lib_eth
 lib_eth
 0
 1
-1.0
+0.0
 0.1
 1
 NIL
@@ -710,7 +710,7 @@ CHOOSER
 visualize
 visualize
 "exposure" "spatial clustering"
-0
+1
 
 TEXTBOX
 12
@@ -780,7 +780,7 @@ CHOOSER
 secondary_distribution
 secondary_distribution
 "global" "by-value" "group-type"
-1
+2
 
 @#$#@#$#@
 # What is new
@@ -1115,2702 +1115,6 @@ NetLogo 6.1.1
 @#$#@#$#@
 @#$#@#$#@
 <experiments>
-  <experiment name="bsl_dom_secNO" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_dom_sec" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_dom_sec_circle" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_dom_sec_square" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_dom_sec_htmp" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <steppedValueSet variable="secondary" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_value_con_lib" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;by-value&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="con_eth" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-      <value value="1"/>
-      <value value="20"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_value_lib_con" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;by-value&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-      <value value="1"/>
-      <value value="20"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="lib_val" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="sens_lib" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;by-value&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="lib_val" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="sens_con" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;by-value&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="con_eth" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_bsl_secNO" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_bsl_sec" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_libmj_mn" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="80"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="val_lib_maj" first="0" step="1" last="15"/>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-      <value value="1"/>
-      <value value="15"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_libmn_mj" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="80"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-      <value value="1"/>
-      <value value="15"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="val_lib_min" first="0" step="1" last="15"/>
-  </experiment>
-  <experiment name="asym_dislib" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_dislib_libmajL" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="1"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_dislib_libminL" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="1"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_et_bsl" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="80"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_et_mj" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="80"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_et_mn" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="80"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;global&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="true"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_dislib_et_mj" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="asym_dislib_et_mn" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;type-group&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="15"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="15"/>
-    </enumeratedValueSet>
-  </experiment>
-  <experiment name="bsl_htmp2" repetitions="10" runMetricsEveryStep="false">
-    <setup>setup</setup>
-    <go>go</go>
-    <timeLimit steps="1000"/>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square"]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle"]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [color = [color] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [ shape = [ shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "circle" and color = blue]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and shape = "square" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors) with [shape = [shape] of myself] / count (turtles-on neighbors) ] of turtles with [ count (turtles-on neighbors) &gt;= 1 and  shape = "circle" and color = orange]</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "square"  and color = orange] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = blue] / 8</metric>
-    <metric>mean [count (turtles-on neighbors)] of turtles with [shape = "circle"  and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors))  /  ((count turtles with [color = [color] of myself]) / count turtles)) ] of turtles with  [color =  blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = blue  and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "square" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))] of turtles with [color = orange and shape = "circle" and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square" and color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle" and color = orange] / 8</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "square"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [color = [color] of myself]) / (count turtles-on neighbors)) / ((count turtles with [color = [color] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = blue  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [color = orange  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "square"   and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [(((count (turtles-on neighbors) with [shape = [shape] of myself]) / (count turtles-on neighbors)) / ((count turtles with [shape = [shape] of myself]) / count turtles))]  of turtles with [shape = "circle"  and count (turtles-on neighbors) &gt;= 1]</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = blue] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [color = orange] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "square"] / 8</metric>
-    <metric>mean [ count (turtles-on neighbors) / (count turtles / count patches)] of turtles with [shape = "circle"] / 8</metric>
-    <enumeratedValueSet variable="density">
-      <value value="70"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%majority">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_maj">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="%liberal_min">
-      <value value="50"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="beta_distribution">
-      <value value="&quot;by-value&quot;"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_maj">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="lib_min">
-      <value value="false"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="dominant">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="secondary">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <steppedValueSet variable="con_eth" first="0" step="1" last="20"/>
-    <steppedValueSet variable="lib_val" first="0" step="1" last="20"/>
-    <enumeratedValueSet variable="lib_eth">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="con_val">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="eth_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_con_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_maj">
-      <value value="0"/>
-    </enumeratedValueSet>
-    <enumeratedValueSet variable="val_lib_min">
-      <value value="0"/>
-    </enumeratedValueSet>
-  </experiment>
   <experiment name="secfdom_lib" repetitions="20" runMetricsEveryStep="false">
     <setup>setup</setup>
     <go>go</go>
@@ -4007,6 +1311,1067 @@ NetLogo 6.1.1
       <value value="0"/>
     </enumeratedValueSet>
     <steppedValueSet variable="con_val" first="0" step="0.1" last="1"/>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_glob" repetitions="20" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_secsend_con" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="con_eth" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_secsend_lib" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+      <value value="20"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="lib_val" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_bsc" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_libmaj" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="val_lib_maj" first="0" step="1" last="15"/>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+      <value value="1"/>
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_libmin" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+      <value value="1"/>
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="val_lib_min" first="0" step="1" last="15"/>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_ethlibmaj" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+      <value value="0.5"/>
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_ethlibmin" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+      <value value="0.5"/>
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_htmp" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <steppedValueSet variable="secondary" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
     <enumeratedValueSet variable="lib_val">
       <value value="0"/>
     </enumeratedValueSet>
