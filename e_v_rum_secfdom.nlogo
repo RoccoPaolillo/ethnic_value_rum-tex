@@ -351,7 +351,7 @@ eth_con_maj
 eth_con_maj
 0
 20
-0.0
+15.0
 1
 1
 NIL
@@ -366,7 +366,7 @@ val_lib_maj
 val_lib_maj
 0
 20
-0.0
+1.0
 1
 1
 NIL
@@ -381,7 +381,7 @@ eth_lib_maj
 eth_lib_maj
 0
 1
-0.3
+0.0
 0.1
 1
 NIL
@@ -411,7 +411,7 @@ eth_con_min
 eth_con_min
 0
 20
-0.0
+15.0
 1
 1
 NIL
@@ -441,7 +441,7 @@ val_lib_min
 val_lib_min
 0
 20
-0.0
+15.0
 1
 1
 NIL
@@ -545,7 +545,7 @@ CHOOSER
 dominant_distribution
 dominant_distribution
 "global" "by-value" "group-type"
-0
+2
 
 SLIDER
 125
@@ -2402,6 +2402,581 @@ NetLogo 6.1.1
     <enumeratedValueSet variable="eth_lib_min">
       <value value="0"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_annex1_bsl" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_annex1_libmaj" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_annex1_libmin" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="%majority" first="50" step="10" last="90"/>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="%liberal_min" first="10" step="10" last="90"/>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="15"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="1"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_ethlibmaj_full" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="eth_lib_maj" first="0" step="0.1" last="1"/>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="secfdom_asm_ethlibmin_full" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>vl_gl</metric>
+    <metric>den_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="80"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;group-type&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="eth_lib_min" first="0" step="0.1" last="1"/>
     <enumeratedValueSet variable="visualize">
       <value value="&quot;exposure&quot;"/>
     </enumeratedValueSet>
