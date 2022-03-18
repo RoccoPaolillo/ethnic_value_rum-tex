@@ -54,42 +54,47 @@ library(gridExtra)
 library(kableExtra)
 library(RColorBrewer)
 
-# The dataset used is already combined. Here just to show how datasets from various experiments (ID variable) were merged
-# dfg <- function(x,id){
-# lg <- read.csv("code_dv.csv", sep = ";")
-# x <- rbind(read.csv(paste0(x,".csv"),sep = ",",skip = 6),read.csv(paste0(x,".csv"),sep = ",",skip = 6))
-# names(x) <- lg[,1]
-# x$ID <- id
-# as.data.frame(x)
-# }
+# Dataset formation
+# basic1 <- read.csv("DATA/03_03_2022/basic.csv",sep =",",skip = 6)
+# basic2 <- read.csv("DATA/03_03_2022/basic_2.csv",sep =",",skip = 6)
+# basic_all <- rbind(basic1,basic2)
+# basic_all$ID <- "basic"
 # 
-# bsl <- dfg("bsl_dom_sec","bsl")
-# bsl_dom <- dfg("bsl_dom","bsl_dom")
-# bsl_sec_cl <- dfg("bsl_dom_sec_circle","bsl_sec_cl")
-# bsl_sec_sq <- dfg("bsl_dom_sec_square","bsl_sec_sq")
-# sens_lib  <- dfg("sens_lib" ,"sens_lib")
-# sens_con  <- dfg( "sens_con" ,"sens_con")
-# bsl_lib_con   <- dfg("bsl_value_lib_con","bsl_lib_con")
-# bsl_con_lib  <- dfg("bsl_value_con_lib","bsl_con_lib")
-# hmp  <- dfg("bsl_dom_sec_htmp","hmp")
-# asm  <- dfg("asym_bsl_sec","asm")
-# asm_dom  <- dfg("asym_bsl_secno","asm_dom")
-# libmj  <- dfg("asym_libmj_mn","libmj")
-# libmn  <- dfg("asym_libmn_mj","libmn")
-# dislib  <- dfg("asym_dislib","dislib")
-# dislib_maj  <- dfg("asym_dislib_libmajL","dislib_maj")
-# dislib_min  <- dfg("asym_dislib_libminL","dislib_min")
-# etlib_bsl  <- dfg("asym_et_bsl","etlib_bsl")
-# etlib_maj  <- dfg("asym_et_mj","etlib_maj")
-# etlib_min  <- dfg("asym_et_mn","etlib_min")
-# dislibet_maj  <- dfg("asym_dislib_et_mj", "dislibet_maj")
-# dislibet_min  <- dfg("asym_dislib_et_mn","dislibet_min")
+# ethnicsize <- read.csv("DATA/03_03_2022/ethnicsize_10.csv",sep =",",skip = 6)
+# ethnicsize2 <- read.csv("DATA/03_03_2022/ethnicsize_10_2.csv",sep =",",skip = 6)
+# ethnicsize$relative_size <- "ethnic"
+# ethnicsize_all <- rbind(ethnicsize,ethnicsize2)
+# ethnicsize_all$ID <- "ethnicsize"
 # 
-# df_tot <- rbind(bsl,bsl_dom, bsl_sec_cl, bsl_sec_sq,sens_lib,sens_con,bsl_lib_con ,bsl_con_lib ,hmp,  asm , asm_dom , libmj , libmn  ,dislib , dislib_maj,dislib_min  ,etlib_bsl,etlib_maj ,etlib_min ,dislibet_maj ,dislibet_min)
 # 
+# valuesize <- read.csv("DATA/03_03_2022/valuesize_10.csv",sep =",",skip = 6)
+# valuesize2 <- read.csv("DATA/03_03_2022/valuesize_10_2.csv",sep =",",skip = 6)
+# valuesize$relative_size <- "value"
+# valuesize_all <- rbind(valuesize,valuesize2)
+# valuesize_all$ID <- "valuesize"
+# 
+# sens_con <- read.csv("DATA/03_03_2022/sens_con.csv",sep =",",skip = 6)
+# sens_con2 <- read.csv("DATA/03_03_2022/sens_con_2.csv",sep =",",skip = 6)
+# sens_con_all <- rbind(sens_con,sens_con2)
+# sens_con_all$ID <- "sens_con"
+# 
+# sens_lib <- read.csv("DATA/03_03_2022/sens_lib.csv",sep =",",skip = 6)
+# sens_lib2 <- read.csv("DATA/03_03_2022/sens_lib_2.csv",sep =",",skip = 6)
+# sens_lib_all <- rbind(sens_lib,sens_lib2)
+# sens_lib_all$ID <- "sens_lib"
+# 
+# 
+# df <- rbind(basic_all,ethnicsize_all,valuesize_all,sens_con_all,sens_lib_all)
+# 
+# names(df)[names(df) == "X.run.number."] <- "run"
+# names(df)[names(df) == "per_majority"] <- "majority"
+# names(df)[names(df) == "X.liberal_maj"] <- "liberal_maj"
+# names(df)[names(df) == "X.liberal_min"] <- "liberal_min"
+# names(df)[names(df) == "X.step."] <- "step"
+# 
+# write.csv(df,file = "dataset.csv", row.names = FALSE)
 
-# dataset baseline (ethnic symmetric) condition (wide format for tables). It was handy to divide. Group_by: runs with same conditions (variable column) are collapsed, and mean and standard deviation extracted (summarise_all). So original variable columns y are substituted by one for mean "y_m" and standard deviation "y_sd"
-
+df <- read.csv("dataset.csv")
 
 
 df_bsl <- read.csv("df_tot.csv",sep =",") %>% select(
