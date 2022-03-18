@@ -6,7 +6,7 @@ output:
     citation_package: natbib
 toc: false
 fig_caption: yes
-title: "Relocation choice for different homophily preferences: hybrid scenarios for Schelling Model"
+title: "Relocation choice for different homophily preferences: hybrid scenarios for Schelling Model, testing beta secondary proportional"
 author: 
     |  
     | Rocco Paolillo
