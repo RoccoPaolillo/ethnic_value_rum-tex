@@ -55,31 +55,31 @@ library(kableExtra)
 library(RColorBrewer)
 
 # Dataset formation
-# basic1 <- read.csv("DATA/03_03_2022/basic.csv",sep =",",skip = 6)
-# basic2 <- read.csv("DATA/03_03_2022/basic_2.csv",sep =",",skip = 6)
+# basic1 <- read.csv("BACK/DATA/03_03_2022/basic.csv",sep =",",skip = 6)
+# basic2 <- read.csv("BACK/DATA/03_03_2022/basic_2.csv",sep =",",skip = 6)
 # basic_all <- rbind(basic1,basic2)
 # basic_all$ID <- "basic"
 # 
-# ethnicsize <- read.csv("DATA/03_03_2022/ethnicsize_10.csv",sep =",",skip = 6)
-# ethnicsize2 <- read.csv("DATA/03_03_2022/ethnicsize_10_2.csv",sep =",",skip = 6)
+# ethnicsize <- read.csv("BACK/DATA/03_03_2022/ethnicsize_10.csv",sep =",",skip = 6)
+# ethnicsize2 <- read.csv("BACK/DATA/03_03_2022/ethnicsize_10_2.csv",sep =",",skip = 6)
 # ethnicsize$relative_size <- "ethnic"
 # ethnicsize_all <- rbind(ethnicsize,ethnicsize2)
 # ethnicsize_all$ID <- "ethnicsize"
 # 
 # 
-# valuesize <- read.csv("DATA/03_03_2022/valuesize_10.csv",sep =",",skip = 6)
-# valuesize2 <- read.csv("DATA/03_03_2022/valuesize_10_2.csv",sep =",",skip = 6)
+# valuesize <- read.csv("BACK/DATA/03_03_2022/valuesize_10.csv",sep =",",skip = 6)
+# valuesize2 <- read.csv("BACK/DATA/03_03_2022/valuesize_10_2.csv",sep =",",skip = 6)
 # valuesize$relative_size <- "value"
 # valuesize_all <- rbind(valuesize,valuesize2)
 # valuesize_all$ID <- "valuesize"
 # 
-# sens_con <- read.csv("DATA/03_03_2022/sens_con.csv",sep =",",skip = 6)
-# sens_con2 <- read.csv("DATA/03_03_2022/sens_con_2.csv",sep =",",skip = 6)
+# sens_con <- read.csv("BACK/DATA/03_03_2022/sens_con.csv",sep =",",skip = 6)
+# sens_con2 <- read.csv("BACK/DATA/03_03_2022/sens_con_2.csv",sep =",",skip = 6)
 # sens_con_all <- rbind(sens_con,sens_con2)
 # sens_con_all$ID <- "sens_con"
 # 
-# sens_lib <- read.csv("DATA/03_03_2022/sens_lib.csv",sep =",",skip = 6)
-# sens_lib2 <- read.csv("DATA/03_03_2022/sens_lib_2.csv",sep =",",skip = 6)
+# sens_lib <- read.csv("BACK/DATA/03_03_2022/sens_lib.csv",sep =",",skip = 6)
+# sens_lib2 <- read.csv("BACK/DATA/03_03_2022/sens_lib_2.csv",sep =",",skip = 6)
 # sens_lib_all <- rbind(sens_lib,sens_lib2)
 # sens_lib_all$ID <- "sens_lib"
 # 
@@ -91,16 +91,16 @@ library(RColorBrewer)
 # names(df)[names(df) == "X.liberal_maj"] <- "liberal_maj"
 # names(df)[names(df) == "X.liberal_min"] <- "liberal_min"
 # names(df)[names(df) == "X.step."] <- "step"
-# 
+# names(df)[names(df) == "X.majority"] <- "majority"
 # write.csv(df,file = "dataset.csv", row.names = FALSE)
 
 df <- read.csv("dataset.csv")
 
 
-df_bsl <- read.csv("df_tot.csv",sep =",") %>% select(
-  ID,density,majority,liberal_maj,liberal_min,beta_distribution,con_maj,con_min,lib_maj,lib_min,dominant,secondary,con_eth,lib_val,lib_eth,con_val,eth_con_maj,eth_con_min,eth_lib_maj,eth_lib_min,val_con_maj,val_con_min,val_lib_maj,val_lib_min,step,et_cl,et_sq,vl_cl,vl_sq,den_cl,den_sq) %>%
-  group_by(
-    ID,density,majority,liberal_maj,liberal_min,beta_distribution,con_maj,con_min,lib_maj,lib_min,dominant,secondary,con_eth,lib_val,lib_eth,con_val,eth_con_maj,eth_con_min,eth_lib_maj,eth_lib_min,val_con_maj,val_con_min,val_lib_maj,val_lib_min,step) %>% 
+df_bsl <- df %>% select(-c(run,density,step,visualize)) %>%
+  group_by(ID,relative_size,dominant_distribution,secondary_distribution,
+    majority,liberal_maj,liberal_min,dominant, secondary,con_eth,lib_val,con_val,lib_eth,eth_con_maj,
+    eth_con_min, val_con_maj,val_con_min,val_lib_maj,val_lib_min,eth_lib_maj,eth_lib_min) %>% 
   summarise_all(c("m"= mean,"sd"= sd))
 
 # dataset baseline (ethnic symmetric) condition (long format for pictures)
