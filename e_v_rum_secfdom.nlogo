@@ -242,7 +242,7 @@ SLIDER
 %majority
 50
 100
-50.0
+60.0
 1
 1
 NIL
@@ -291,7 +291,7 @@ SLIDER
 %liberal_maj
 0
 100
-70.0
+50.0
 1
 1
 NIL
@@ -815,7 +815,7 @@ CHOOSER
 relative_size
 relative_size
 "ethnic" "value"
-1
+0
 
 MONITOR
 1005

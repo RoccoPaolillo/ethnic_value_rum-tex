@@ -666,7 +666,9 @@ Fig: \ref{fig:asm_dom} wants to inform the reader of what is the direct effect o
 # bl_cl
 # 
 
-seg_vis <- function(rel_siz,db,var_seg,var_seg_y,var_seg_tit){
+## equal ethnic size
+
+seg_vis <- function(db,var_seg,var_seg_y,var_seg_tit){
  
 pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
   labeller = label_both) +
@@ -676,7 +678,7 @@ pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(liberal_m
                      labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
                      
                      ) +
-  labs(title = rel_siz , subtitle = var_seg_tit) +
+  labs(title = "Equal ethnic size" , subtitle = var_seg_tit) +
   # ggtitle(var_seg_tit) +
   # ggsubtitle(rel_siz) +
   theme_bw() +
@@ -687,15 +689,70 @@ pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(liberal_m
 pic
 }
 
-et_sq_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_bl_m,"Ethnic Exposure", "Conservative Blue")
-vl_sq_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_bl_m,"Value Exposure", "Conservative Blue")
-et_cl_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_bl_m,"Ethnic Exposure", "Liberal Blue")
-vl_cl_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_bl_m,"Value Exposure", "Liberal Blue")
+et_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_bl_m,"Ethnic Exposure", "Conservative Blue")
+vl_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_bl_m,"Value Exposure", "Conservative Blue")
+et_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_bl_m,"Ethnic Exposure", "Liberal Blue")
+vl_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_bl_m,"Value Exposure", "Liberal Blue")
 
-et_sq_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_or_m,"Ethnic Exposure", "Conservative Orange")
-vl_sq_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_or_m,"Value Exposure", "Conservative Orange")
-et_cl_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_or_m,"Ethnic Exposure", "Liberal Orange")
-vl_cl_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_or_m,"Value Exposure", "Liberal Orange")
+et_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_or_m,"Ethnic Exposure", "Conservative Orange")
+vl_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_or_m,"Value Exposure", "Conservative Orange")
+et_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_or_m,"Ethnic Exposure", "Liberal Orange")
+vl_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_or_m,"Value Exposure", "Liberal Orange")
+
+cls_et_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_sq_bl_m,"Ethnic Cluster", "Conservative Blue")
+cls_vl_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_sq_bl_m,"Value Cluster", "Conservative Blue")
+cls_et_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_cl_bl_m,"Ethnic Cluster", "Liberal Blue")
+cls_vl_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_cl_bl_m,"Value Cluster", "Liberal Blue")
+
+cls_et_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_sq_or_m,"Ethnic Cluster", "Conservative Orange")
+cls_vl_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_sq_or_m,"Value Cluster", "Conservative Orange")
+cls_et_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_cl_or_m,"Ethnic Cluster", "Liberal Orange")
+cls_vl_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_cl_or_m,"Value Cluster", "Liberal Orange")
+
+
+## majority/minority condition
+
+
+seg_vis_mj <- function(db,var_seg,var_seg_y,var_seg_tit){
+ 
+pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(majority ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+  labeller = label_both) +
+ ylab(var_seg_y) +
+  xlab("ß dominant") +
+  scale_color_manual("% Ethnic majority / % Ethnic minority", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
+                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
+                     
+                     ) +
+  labs(title = "Majority (blue)/Minority (orange)" , subtitle = var_seg_tit) +
+  # ggtitle(var_seg_tit) +
+  # ggsubtitle(rel_siz) +
+  theme_bw() +
+ 
+  theme(legend.position = "bottom")
+
+
+pic
+}
+
+mj_et_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_sq_bl_m,"Ethnic Exposure", "Conservative Majority")
+mj_vl_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_sq_bl_m,"Value Exposure", "Conservative Majority")
+mj_et_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_cl_bl_m,"Ethnic Exposure", "Liberal Majority")
+mj_vl_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_cl_bl_m,"Value Exposure", "Liberal Majority")
+
+mj_et_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_sq_or_m,"Ethnic Exposure", "Conservative Minority")
+mj_vl_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_sq_or_m,"Value Exposure", "Conservative Minority")
+mj_et_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_cl_or_m,"Ethnic Exposure", "Liberal Minority")
+mj_vl_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_cl_or_m,"Value Exposure", "Liberal Minority")
+
+mj_cls_et_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_sq_bl_m,"Ethnic Cluster", "Conservative Majority")
+mj_cls_vl_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_sq_bl_m,"Value Cluster", "Conservative Majority")
+mj_cls_et_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_cl_bl_m,"Ethnic Cluster", "Liberal Majority")
+mj_cls_vl_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_cl_bl_m,"Value Cluster", "Liberal Majority")
+
+mj_cls_et_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_sq_or_m,"Ethnic Cluster", "Conservative Minority")
+mj_cls_vl_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_sq_or_m,"Value Cluster", "Conservative Minority")
+mj_cls_et_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_cl_or_m,"Ethnic Cluster", "Liberal Minority")
+mj_cls_vl_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_cl_or_m,"Value Cluster", "Liberal Minority")
 
 ```
 
