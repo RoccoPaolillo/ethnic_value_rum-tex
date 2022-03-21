@@ -192,9 +192,9 @@ to-report	cls_den_sq	report	((mean [ count (turtles-on neighbors)] of turtles wi
 to-report	cls_den_cl	report	((mean [ count (turtles-on neighbors)] of turtles with [ shape = "circle"] / 8 ) / (count turtles /  count patches))	end
 @#$#@#$#@
 GRAPHICS-WINDOW
-327
+325
 10
-802
+800
 486
 -1
 -1
@@ -291,7 +291,7 @@ SLIDER
 %liberal_maj
 0
 100
-50.0
+70.0
 1
 1
 NIL
@@ -313,10 +313,10 @@ NIL
 HORIZONTAL
 
 MONITOR
-463
-489
-527
-534
+1005
+475
+1084
+520
 % lib maj
 count turtles with [shape = \"circle\" and color = blue] / count turtles
 2
@@ -324,10 +324,10 @@ count turtles with [shape = \"circle\" and color = blue] / count turtles
 11
 
 MONITOR
-462
-534
-527
-579
+1005
+525
+1083
+570
 % con maj
 count turtles with [shape = \"square\" and color = blue] / count turtles
 2
@@ -335,10 +335,10 @@ count turtles with [shape = \"square\" and color = blue] / count turtles
 11
 
 MONITOR
-531
-486
-595
-531
+1092
+476
+1173
+521
 % lib min
 count turtles with [shape = \"circle\" and color = orange] / count turtles
 2
@@ -346,10 +346,10 @@ count turtles with [shape = \"circle\" and color = orange] / count turtles
 11
 
 MONITOR
-530
-534
-595
-579
+1091
+524
+1173
+569
 % con min
 count turtles with [shape = \"square\" and color = orange] / count turtles
 2
@@ -357,11 +357,11 @@ count turtles with [shape = \"square\" and color = orange] / count turtles
 11
 
 MONITOR
-330
-490
-392
-535
-%lib pop
+909
+473
+995
+518
+%liberal
 count turtles with [shape = \"circle\"] / count turtles
 2
 1
@@ -406,7 +406,7 @@ eth_lib_maj
 eth_lib_maj
 0
 1
-0.0
+0.5
 0.1
 1
 NIL
@@ -556,7 +556,7 @@ dominant
 dominant
 0
 20
-0.0
+1.0
 1
 1
 NIL
@@ -570,7 +570,7 @@ CHOOSER
 dominant_distribution
 dominant_distribution
 "global" "by-value" "group-type"
-1
+0
 
 SLIDER
 125
@@ -581,7 +581,7 @@ con_eth
 con_eth
 0
 20
-19.0
+0.0
 1
 1
 NIL
@@ -626,7 +626,7 @@ lib_val
 lib_val
 0
 20
-20.0
+0.0
 1
 1
 NIL
@@ -728,10 +728,10 @@ PENS
 "density" 1.0 0 -7500403 true "" "plot mean [count (turtles-on neighbors)] of turtles with [shape = \"circle\"  and color = orange] / 8"
 
 CHOOSER
-1013
-390
-1154
-435
+818
+377
+959
+422
 visualize
 visualize
 "exposure" "spatial clustering"
@@ -805,17 +805,50 @@ CHOOSER
 secondary_distribution
 secondary_distribution
 "global" "by-value" "group-type"
-1
+2
 
 CHOOSER
-837
-398
-975
-443
+350
+494
+488
+539
 relative_size
 relative_size
 "ethnic" "value"
-0
+1
+
+MONITOR
+1005
+423
+1085
+468
+%majority
+count turtles with [color = blue] / count turtles
+2
+1
+11
+
+MONITOR
+1091
+425
+1174
+470
+%minority
+count turtles with [color = orange] / count turtles
+2
+1
+11
+
+MONITOR
+908
+522
+994
+567
+%conservative
+count turtles with [shape = \"square\"] / count turtles
+2
+1
+11
 
 @#$#@#$#@
 # What is new

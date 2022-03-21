@@ -92,12 +92,10 @@ library(RColorBrewer)
 # names(df)[names(df) == "X.liberal_min"] <- "liberal_min"
 # names(df)[names(df) == "X.step."] <- "step"
 # names(df)[names(df) == "X.majority"] <- "majority"
+# df$liberal_min <- 50
 # write.csv(df,file = "dataset.csv", row.names = FALSE)
 
-df <- read.csv("dataset.csv")
-
-
-df_bsl <- df %>% select(-c(run,density,step,visualize)) %>%
+df <- read.csv("dataset.csv") %>% select(-c(run,density,step,visualize)) %>%
   group_by(ID,relative_size,dominant_distribution,secondary_distribution,
     majority,liberal_maj,liberal_min,dominant, secondary,con_eth,lib_val,con_val,lib_eth,eth_con_maj,
     eth_con_min, val_con_maj,val_con_min,val_lib_maj,val_lib_min,eth_lib_maj,eth_lib_min) %>% 
@@ -105,30 +103,18 @@ df_bsl <- df %>% select(-c(run,density,step,visualize)) %>%
 
 # dataset baseline (ethnic symmetric) condition (long format for pictures)
 
-df_bsl_pic <- df_bsl %>% gather(key = group_bsl, value = Segra_bsl, et_cl_m,et_sq_m,vl_cl_m,vl_sq_m,den_sq_m,den_cl_m)  %>%
-  mutate(`outcome` = fct_relevel(fct_collapse(group_bsl,
+df_bsl_pic <- df %>% gather(key = group_bsl, value = Segra_bsl, et_cl_m,et_sq_m,vl_cl_m,vl_sq_m,den_sq_m,den_cl_m)  %>%
+  mutate(`outcome_bsl` = fct_relevel(fct_collapse(group_bsl,
                                               "Ethnic" = c("et_sq_m","et_cl_m"),
                                               "Density" = c("den_sq_m","den_cl_m"),
                                               "Value" = c("vl_sq_m","vl_cl_m")),"Ethnic"),
-         `orientation` = fct_relevel(fct_collapse(group_bsl,
+         `orientation_bsl` = fct_relevel(fct_collapse(group_bsl,
                                                   "Conservative" = c("et_sq_m","vl_sq_m","den_sq_m"),
-                                                  "Liberal" = c("et_cl_m","vl_cl_m","den_cl_m")), "Conservative"))
+                                                  "Liberal" = c("et_cl_m","vl_cl_m","den_cl_m")), "Conservative")
+         )
 
-# dataset ethnic asymmetric condition (wide format)
 
-df_asm <- read.csv("df_tot.csv",sep =",") %>%  select(
-  ID,density,majority,liberal_maj,liberal_min,beta_distribution,con_maj,con_min,lib_maj,lib_min,dominant,secondary,con_eth,lib_val,lib_eth,con_val,eth_con_maj,eth_con_min,eth_lib_maj,eth_lib_min,val_con_maj,val_con_min,val_lib_maj,val_lib_min,step,
-  et_sq_bl, et_cl_bl, et_sq_or, et_cl_or, vl_sq_bl, vl_cl_bl, vl_sq_or, vl_cl_or,den_sq_bl, den_cl_bl, den_sq_or, den_cl_or,
-  cls_et_sq_bl,cls_et_cl_bl,cls_et_sq_or,cls_et_cl_or, cls_vl_sq_bl,cls_vl_cl_bl,cls_vl_sq_or,cls_vl_cl_or,
-  cls_den_sq_bl,cls_den_cl_bl,cls_den_sq_or,cls_den_cl_or,
-  -c(run)) %>% 
-  group_by(
-    ID,density,majority,liberal_maj,liberal_min,beta_distribution,con_maj,con_min,lib_maj,lib_min,dominant,secondary,con_eth,lib_val,lib_eth,con_val,eth_con_maj,eth_con_min,eth_lib_maj,eth_lib_min,val_con_maj,val_con_min,val_lib_maj,val_lib_min,step) %>% 
- summarise_all(c("m"= mean,"sd"= sd)) 
-
-# dataset ethnic asymmetric condition (long format)
-
-df_asm_pc <- df_asm %>% gather(key = group_asm, value = Segra_asm, cls_et_sq_bl_m,cls_et_cl_bl_m,cls_et_sq_or_m,cls_et_cl_or_m,
+df_asm_pic <- df %>% gather(key = group_asm, value = Segra_asm, cls_et_sq_bl_m,cls_et_cl_bl_m,cls_et_sq_or_m,cls_et_cl_or_m,
                                cls_vl_sq_bl_m,cls_vl_cl_bl_m,cls_vl_sq_or_m,cls_vl_cl_or_m)%>%
   mutate(`outcome` = fct_relevel(fct_collapse(group_asm,
                                               "Ethnic" = c("cls_et_sq_bl_m","cls_et_cl_bl_m","cls_et_sq_or_m","cls_et_cl_or_m"),
@@ -140,55 +126,6 @@ df_asm_pc <- df_asm %>% gather(key = group_asm, value = Segra_asm, cls_et_sq_bl_
                                            "Liberal Minority" = c("cls_et_cl_or_m","cls_vl_cl_or_m")),"Conservative Majority" ))
 
 
-
-# Dataframe for secfdom abm: secondary preference function of dominant
-
-# df_secf1_lib1 <- read.csv("secfdom/secfdom_lib_10run.csv",sep = ",",skip = 6)
-# df_secf1_lib2 <- read.csv("secfdom/secfdom_lib_10_2run.csv",sep = ",",skip = 6)
-# 
-# df_secf_lib <- rbind(df_secf1_lib1,df_secf1_lib2)
-# df_secf_lib$ID <- "lib"
-# 
-# df_secf1_con1 <- read.csv("secfdom/secfdom_con_10run.csv",sep = ",",skip = 6)
-# df_secf1_con2 <- read.csv("secfdom/secfdom_con_10_2run.csv",sep = ",",skip = 6)
-# 
-# df_secf_con <- rbind(df_secf1_con1,df_secf1_con2)
-# df_secf_con$ID <- "con"
-# 
-# 
-# df_secf <- rbind(df_secf_lib,df_secf_con)
-# 
-# 
-# names(df_secf)[names(df_secf) == 'X.run.number.'] <- 'run'
-# 
-# names(df_secf)[names(df_secf) == 'X.majority'] <- 'majority'
-# names(df_secf)[names(df_secf) == 'X.liberal_maj'] <- 'liberal_maj'
-# names(df_secf)[names(df_secf) == 'X.liberal_min'] <- 'liberal_min'
-# names(df_secf)[names(df_secf) == 'X.step.'] <- 'step'
-# 
-# write.csv(df_secf,"df_secf.csv",row.names = F)
-
-
-
-
-
-df_secf <- read.csv("df_secf.csv",sep = ",") 
-
-df_secf <- rbind(df_secf,sec_etlib) # combined the two datasets
-
-
-df_secf <- df_secf %>% select(
-  ID,density,majority,liberal_maj,liberal_min,dominant_distribution,secondary_distribution,dominant,secondary,con_eth,con_val,lib_val,lib_eth,eth_con_maj,val_con_maj,eth_con_min,val_con_min,val_lib_maj,eth_lib_maj,val_lib_min,eth_lib_min,step,et_cl,et_sq,vl_cl,vl_sq,den_cl,den_sq) %>% group_by(ID, density,majority,liberal_maj,liberal_min,dominant_distribution,secondary_distribution,dominant,secondary,con_eth,con_val,lib_val,lib_eth,eth_con_maj,val_con_maj,eth_con_min,val_con_min,val_lib_maj,eth_lib_maj,val_lib_min,eth_lib_min,step )  %>% 
-  summarise_all(c("m"= mean,"sd"= sd)) 
-
-df_secf_pic <- df_secf %>% gather(key = group_bsl, value = Segra_bsl, et_cl_m,et_sq_m,vl_cl_m,vl_sq_m,den_sq_m,den_cl_m)  %>%
-  mutate(`outcome` = fct_relevel(fct_collapse(group_bsl,
-                                              "Ethnic" = c("et_sq_m","et_cl_m"),
-                                              "Density" = c("den_sq_m","den_cl_m"),
-                                              "Value" = c("vl_sq_m","vl_cl_m")),"Ethnic"),
-         `orientation` = fct_relevel(fct_collapse(group_bsl,
-                                                  "Conservative" = c("et_sq_m","vl_sq_m","den_sq_m"),
-                                                  "Liberal" = c("et_cl_m","vl_cl_m","den_cl_m")), "Conservative"))
 
 ```
 
@@ -645,12 +582,13 @@ htmp
 
 # Asymmetric Conditions
 
+<!-- redo: 
 The main focus is on scenario with secondary ß = 0 (Fig: \ref{fig:bsl_dom}), since it shows most interesting results as by-product. In this section we want to show how segregation scenarios that in the previous section depended on different homophily preferences can vary if agents hold similar preferences but distribution in population composition differ (e.g. majority influences more than minority, ceteris paribus). The main focus for simplicity is on preference of liberals majority vs liberals minority, since they enact mechanisms as by-product and represent new introduction to Schelling's model (see figures in details). So also for increase of secondary ß
 For simplicity of visualization and to focus on preferences of agents, $80\%$ ethnic ratio is considered in the experiments. For value orientation, as in the asymmetric condition, each ethnic group equally split into liberals and conservatives (i.e. 50% of population is liberal, and 50% conservative, but more chance of both conservative and liberal to belong to ethnic majority). Fig:\ref{fig:dislib_fig} and Fig: \ref{fig:dislib_ethnic} are to show how results would change in the full conditions due to joint distribution ethnic ratio and distribution of liberals which affect population composition. In particular distribution of liberals is of interest because it allows to break the ethnic unbalance between liberal majority and minority, how conservatives of both groups react to increase of liberals in the population, and how effective change in the minority population would be, if an ethnic critical mass is not reached. Basically in all conditions majority remains split 50% into liberals and conservatives, but both changes in minority population are more interesting to relate to change into the integration/segregation continuum.
 
 
 In ethnic asymmetric conditions, we use the spatial relocation index to measure whether segregation occurs from initial random distribution. Local exposure can be computed from it, but it is not intuitive to reader in my view. In the tables in appendix, the reader can see for each condition what local exposure matches spatial clustering of agents.  
-
+-->
 
 \begin{equation}
     E^c_i = \frac{(\sfrac{x^e_i}{X_i})}{(\sfrac{N^e_i}{N})}  \quad\text{        ;          }\quad  V^c_i = \frac{(\sfrac{x^v_i}{X_i})}{(\sfrac{N^v_i}{N})} 
@@ -665,197 +603,137 @@ $N^v_i$: number of agents in the population with same value of agent \textit{i} 
 $N$: total number of agents in the population  \par
 
 \par
-
+<!--
 Fig: \ref{fig:asm_dom} wants to inform the reader of what is the direct effect of different ethnic ratio and how spatial clustering relates to local exposure. It replicates Fig: \ref{fig:bsl_dom} comparing the condition of ethnic equal size ($50 \%$) vs majority/minority condition used in this section ($80\%$). Results show given the same ethnic preference, conservative minority have higher need to cluster to satisfy ethnic utility, resulting in higher spatial clustering, 5 times the initial random distribution, with increase of local ethnic exposure to 1 (0.2*5). While for conservative majority, similar full ethnic exposure is reached with lower spatial clustering, since there is more chance to find co-ethnics in the population. For both liberals majority and liberals minority full value segregation is reached with value spatial clustering equal 2, i.e. full local value exposure equal 1. Ethnic segregation does not occur in terms of spatial clustering from initial distribution for both liberals majority and liberals minority, meaning higher ethnic exposure of liberals majority to 80% and ethnic assimilation for liberals minority 20%
+-->
 
 
 
-```{r asm_dom,fig.align='center',fig.pos = "H", fig.cap="Baseline ethnic asymmetric condition. Each panel reports the segregation pattern of each group-type (ethnicityXvalue). X-axis: ß dominant (ethnic for conservative, value for liberals), Y-axis: dislocation index. Agents hold only dominant preference: ß secondary = 0. Linetype: comparison equal ethnic size (50 \\%) vs majority/minority condition (80\\%).", warning=FALSE}
+```{r asym_equal_orig,fig.align='center',fig.pos = "H", fig.cap=, warning=FALSE}
+# 
+# et_sq_or_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = et_sq_or_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","et_sq_or_m",".jpg"))
+# 
+# et_sq_bl_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = et_sq_bl_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","et_sq_bl_m",".jpg"))
+# 
+# vl_sq_or_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = vl_sq_or_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","vl_sq_or_m",".jpg"))
+# 
+# vl_sq_bl_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = vl_sq_bl_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","vl_sq_bl_m",".jpg"))
+# 
+# ##
+# 
+# et_cl_or_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = et_cl_or_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","et_cl_or_m",".jpg"))
+# 
+# et_cl_bl_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = et_cl_bl_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","et_cl_bl_m",".jpg"))
+# 
+# vl_cl_or_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = vl_cl_or_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","vl_cl_or_m",".jpg"))
+# 
+# vl_cl_bl_m <- df %>% filter(ID == "valuesize" ) %>% ggplot(aes(x = dominant, y = vl_cl_bl_m, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+#   labeller = label_both)
+# ggsave(paste0("images/","vl_cl_bl_m",".jpg"))
+# 
+# et_sq <- ggpubr::ggarrange(et_sq_or_m,et_sq_bl_m, common.legend = TRUE, legend = "bottom")
+# vl_sq <- ggpubr::ggarrange(vl_sq_or_m,vl_sq_bl_m, common.legend = TRUE, legend = "bottom")
+# or_sq <- ggpubr::ggarrange(et_sq_or_m,vl_sq_or_m, common.legend = TRUE, legend = "bottom")
+# bl_sq <- ggpubr::ggarrange(et_sq_bl_m,vl_sq_bl_m, common.legend = TRUE, legend = "bottom")
+# 
+# et_cl <- ggpubr::ggarrange(et_cl_or_m,et_cl_bl_m, common.legend = TRUE, legend = "bottom")
+# vl_cl <- ggpubr::ggarrange(vl_cl_or_m,vl_cl_bl_m, common.legend = TRUE, legend = "bottom")
+# or_cl <- ggpubr::ggarrange(et_cl_or_m,vl_cl_or_m, common.legend = TRUE, legend = "bottom")
+# bl_cl <- ggpubr::ggarrange(et_cl_bl_m,vl_cl_bl_m, common.legend = TRUE, legend = "bottom")
+# 
+# et_sq
+# vl_sq
+# et_cl
+# vl_cl
+# 
+# bl_sq
+# or_sq
+# or_cl
+# bl_cl
+# 
 
-# new variable only for managing the sequence in the plot
-df_asm_pc$new = factor(df_asm_pc$type, levels = c("Conservative Majority", "Conservative Minority", "Liberal Majority", "Liberal Minority"))
-
-asm_dom <- df_asm_pc  %>% filter(majority == 50 | majority == 80) %>% filter(ID == "asm_dom" ) %>% 
-  ggplot(aes(x=dominant,y=Segra_asm, color = outcome, shape = type, linetype = as.factor(majority))) + geom_point(size = 1.5 ) + geom_line() +
-  facet_wrap(~ new, scales = "free", nrow=2)  +
-  scale_color_manual(values = c("Ethnic"="purple","Value"="dark green"), guide = guide_legend(title = "Segregation", order = 1)) +
-  scale_shape_manual(values = c( "Conservative Majority" = "square", "Conservative Minority" = "square", "Liberal Majority" = "circle", "Liberal Minority" = "circle"), guide = guide_legend(title = "Orientation")) +
-  scale_linetype_manual(values = c("50" = "solid", "80" = "dashed"), guide = guide_legend(title = "% Majority")) +
+seg_vis <- function(rel_siz,db,var_seg,var_seg_y,var_seg_tit){
+ 
+pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
+  labeller = label_both) +
+ ylab(var_seg_y) +
+  xlab("ß dominant") +
+  scale_color_manual("% Liberal Blue / % Liberal Orange", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
+                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
+                     
+                     ) +
+  labs(title = rel_siz , subtitle = var_seg_tit) +
+  # ggtitle(var_seg_tit) +
+  # ggsubtitle(rel_siz) +
   theme_bw() +
-  theme(legend.position = "bottom") +
-  scale_x_continuous(breaks= seq(0,20,by=5), limits=c(0,20), "ß dominant") +  
-  # "ß dominant"
-  scale_y_continuous("Segregation") +
-  #  expand_limits(y=0.80) +
-  geom_hline(yintercept=1,color="red") +
-  guides(shape = "none")
+ 
+  theme(legend.position = "bottom")
 
 
-ggsave("asm_dom.jpg", asm_dom, path = "images",  width = 8, height = 6 , dpi = 300)
-
-asm_dom
-
-```
-
-```{r as_lib_functions, results='asis', warning=FALSE}
-
-# function for plot in asymmetric condition with liberals in x-axis and facet reciprocal liberals majority vs liberals minority. Used in next two chunks
-
-asm_pc <- function(df){
-  
-df %>%   ggplot(aes(
-    x = c(if(df$ID == "libmj"){val_lib_maj},if(df$ID == "libmn"){val_lib_min}),
-    y = Segra_asm, color = outcome, shape = type, 
-    linetype = as.factor( c(if(df$ID == "libmj"){val_lib_min},if(df$ID == "libmn"){val_lib_maj})) )) +
-    geom_point(size = 1.5) + geom_line() +
-    facet_wrap(~ type, scales = "free",nrow = 1) +
-    scale_color_manual(values = c("Ethnic"="purple","Value"="dark green"), guide = guide_legend(title = "Segregation", order = 1)) +
-    scale_shape_manual(values = c( "Conservative Majority" = "square", "Conservative Minority" = "square", "Liberal Majority" = "circle", "Liberal Minority" = "circle"), guide = guide_legend(title = "Orientation")) +
-    scale_linetype_manual(values = c("0" = "solid", "1" = "dotted", "15" = "dashed"), guide = guide_legend(title = 
-        c(if(df$ID == "libmj"){"ß liberal minority"}, if(df$ID == "libmn"){"ß liberal majority"} ))) +
-    geom_hline(yintercept=1,color="red") +
-    xlab(c(if(df$ID == "libmj"){"ß liberal majority"},if(df$ID == "libmn"){"ß liberal minority"})) +
-    ylab("Segregation")  +
-    theme_bw() +
-    guides(shape = "none") 
-  
+pic
 }
 
+et_sq_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_bl_m,"Ethnic Exposure", "Conservative Blue")
+vl_sq_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_bl_m,"Value Exposure", "Conservative Blue")
+et_cl_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_bl_m,"Ethnic Exposure", "Liberal Blue")
+vl_cl_bl_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_bl_m,"Value Exposure", "Liberal Blue")
+
+et_sq_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_or_m,"Ethnic Exposure", "Conservative Orange")
+vl_sq_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_or_m,"Value Exposure", "Conservative Orange")
+et_cl_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_or_m,"Ethnic Exposure", "Liberal Orange")
+vl_cl_or_m <- seg_vis("Equal ethnic size",df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_or_m,"Value Exposure", "Liberal Orange")
 
 ```
 
 
 
-```{r asm_lib_lib,fig.width= 5, fig.align='center',fig.pos = "H", out.width="100%",fig.cap="Ethnic asymmetric: effect dominant preference (ß value) liberals minority over liberals majority (top panel) vs effect liberals majority over liberals minority (bottom panel). For each panel, on x-axis increase ß value preference of group-type, linetype: ß value preference of out-group counterpart. Conservative agents hold to dominant ethnic preference ß = 15. Secondary preference for both conservative and liberals = 0", warning=FALSE}
-
-libmj_lib <- asm_pc(subset(df_asm_pc, ID == "libmj" & type == "Liberal Majority"))
-libmn_lib <- asm_pc(subset(df_asm_pc, ID == "libmn" & type == "Liberal Minority"))
-
-# combined pictures from different datasets
-
-asm_lib_lib <- ggpubr::ggarrange(libmj_lib,libmn_lib, nrow = 2, ncol=1)
-ggsave("asm_lib_lib.jpg",asm_lib_lib,path = "images", width = 7,  height = 7 ,dpi = 300)
-
-asm_lib_lib
-
-```
-
-Fig: \ref{fig:asm_lib_lib} first explores how liberals majority and minority influence each other, basically to explore whether ethnic integration at local exposure can be reached as due to different value preferences of either group, or ethnic assimilation  of  minority and value segregation of both in Fig: \ref{fig:asm_dom} would be affected.
-Each panel shows results of liberals majority (top) and liberals minority (bottom). For each graph, results show changes due to ethnic counterpart having no preference at all (ß = 0), low value determinism (ß = 1) or high value determinism (ß = 15). 
-In all conditions, conservatives of both ethnic groups hold ß ethnic = 15, so to have stable ethnic segregation pattern from their behavior. 
-
-Liberals majority are lower affected by value preference of liberals minority for what concerns ethnic segregation. Basically if the other group doesn't care about value homophily, the agents can relocate only close to liberal co-ethnics. For liberals majority not much change in spatial clustering occurs because of majority condition, while for liberal minority the same condition leads from ethnic assimilation to ethnic segregation, though ethnic preference is not involved. Even a small amount of determinism of liberals majority is enough to increase value segregation of liberals minority (see bttom panel with ß liberal minority equal 0). However, in top panel, higher value segregation is reached by liberals majority for higher determinism if liberal minority hold high ß value = 15
-
-I included ß = 0 of ethnic counterpart as theoretical baseline: what happens if there no preference at all in the ethnic counterpart. Methodologically is correct to include in my view, though difference with ß=1 is not that stricking. We could think of cutting off if the figure is too complicated.
 
 
 
 
-```{r asm_lib_con,fig.align='center',fig.pos = "H", out.width="100%",fig.cap="Ethnic asymmetric: effect of ß value liberals majority or liberals minority over conservatives majority and conservatives minority. Each panel reports pattens of conservative majority (left) or conservative minority (right). Top panel: effect of ß value liberals majority (on x-axis), linetype: changes due to different levels of ß value liberal minority. Bottom panel: effect of ß value liberlas minority (on x-axis), linetype: changes due to different levels of ß value liberal majority. Conservative agents hold to dominant ethnic preference ß = 15. Secondary preference for both conservative and liberals = 0", warning=FALSE}
-
-libmj_con <- asm_pc(subset(df_asm_pc, ID == "libmj" & type == "Conservative Majority" |ID == "libmj" & type == "Conservative Minority"))
-libmn_con <- asm_pc(subset(df_asm_pc, ID == "libmn" & type == "Conservative Majority" |ID == "libmn" & type == "Conservative Minority"))
-
-asm_lib_con <- ggpubr::ggarrange(libmj_con,libmn_con, nrow = 2, ncol=1)
-ggsave("asm_lib_con.jpg",asm_lib_con,path = "images", width = 8, height = 6 ,dpi = 300)
-
-asm_lib_con
-
-```
-
-Fig: \ref{fig:asm_lib_con} focuses on effect of liberals majority and liberals minority over conservatives. The idea is to observe how the effect of liberals can vary depending on the value preference of ethnic counterpart, and how conservatives can differently being affected due to ethnic asymmetry. Expected: liberals majority have more influence than liberals minority, conservative majority are less affected than conservative minority. 
-
-The picture shows influence of liberals majority on top panel, liberals minority on bottom panel. If too complicated, we could split. Also here, ß liberals ethnic counterpart as baseline, if too complex we could get it off.
-
-Value segregation of conservative majority show similar patterns whether value of liberals minority is swept or liberals majority. Ethnic segregation (spatial clustering) of conservative minority is already high due to ethnic minority as Fig: \ref{fig:asm_dom} has shown, but it increases as liberal majority increase ß value, as effect of rejection and limiting their space of relocation. This can be considered a by-product by ethnic asymmetry, compared to by-product by value in symmetric condition. Looking at bottom panel, for lower ß liberal majority, increase in ß liberal minority  seems to slightly decrease ethnic segregation of conservative minority. Likely liberals of both ethnic groups form dense, value homogeneous neighborhoods with few liberals majority who are not sensitive to conservatives because of lower determinism, while liberals minority because value utility maximization is preserved, since few conservative minority. So, conservative minority  can maximize ethnic utility at cost of living close to few liberals of majority group, which decreases the spatial clustering. As ß liberal majority = 15, increase in ß liberal minority is associated with higher ethnic clustering of conservative minority as in the top panel.
-
-
-```{r et_lib, fig.align='center',fig.pos = "H", out.width="100%",fig.cap="Ethnic asymmetric: effect of ß ethnic of liberals (secondary) equal to ß value liberals (dominant. x-axis: increase dominant preference for all agents (global parameter). Each panel reports segregation patterns of each group-type (ethnicXvalue). Linetype represents conditions compared: baseline: liberals of both ethnic groups hold  only to dominant preference (ß secondary = 0); ß liberal majority = liberals majority hold same ethnic and value preference (liberals minority hold only to value preference), ß liberal minority = liberals minorty hold same ethnic and value preference (liberals majority hold only to value preference)", warning=FALSE}
-
-
-df_asm_pc$new = factor(df_asm_pc$type, levels = c("Conservative Majority", "Conservative Minority", "Liberal Majority", "Liberal Minority"))
-
-etlib_pc <- df_asm_pc %>%   filter(ID == "etlib_bsl"|ID == "etlib_maj"|ID == "etlib_min")  %>%  ggplot(aes(
-  x = dominant,
-  y = Segra_asm, color = outcome, shape = type, 
-  linetype = as.factor(ID))) +
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ new, scales = "free",nrow = 2) +
-  scale_color_manual(values = c("Ethnic"="purple","Value"="dark green"), guide = guide_legend(title = "Segregation", order = 1)) +
-  scale_shape_manual(values = c( "Conservative Majority" = "square", "Conservative Minority" = "square", "Liberal Majority" = "circle", "Liberal Minority" = "circle"), guide = guide_legend(title = "Orientation")) +
-  geom_hline(yintercept=1,color="red") +
-  scale_linetype_manual(values = c("etlib_bsl" = "solid", "etlib_maj" = "dashed", "etlib_min" = "dotted"), labels = c("Baseline","ß liberal majority","ß liberal minority"), guide = guide_legend(title = "ß ethnic liberal" )) +
-  xlab("ß dominant") +
-  ylab("Segregation")  +
-  theme_bw() +
-  theme(legend.position = "right") +
-  guides(shape = "none")  
-
-
-ggsave("asm_etlib.jpg",etlib_pc,path = "images", width = 8, height = 6 ,dpi = 300)
-
-etlib_pc
-```
-
-Finally, Fig: \ref{fig:et_lib} shows effect of liberals majority or liberal minority holding both ethnic and value preference. Compared to Fig: \ref{fig:bsl_sec}, we observe how ethnic asymmetry interacts with degree of determinism. Each panel reports result for one group-type and compares a baseline where agents only subscribe to ß dominant (ß secondary = 0), to liberals majority subscribing also to ß ethnic or liberals minority doing so. 
-
-Generally to interpret deeper. Liberals majority holding also ethnic preference increases the value by-product for conservative majority for high determinism compared to baseline, lower for higher randomness. For conservative minority, liberals majority holding also ethnic preference increases ethnic segregation compared to baseline for higher randomness are, liberals minority holding also ethnic preference shows no difference from baseline. Differences between conditions disappear for high determinism. For value segregation of conservative minority, lower value segregation as by-product occurs if liberals minority hold also ethnic preference in higher randomness area, it increases for liberals majority holding also ethnic preference. For higher determinism, differences between liberals majority and liberals minority disappear, with baseline showing (very slight) higher value.
-
-For liberals majority, slight difference in value segregation occurs for high determinism, with higher value segregation of liberals majority if they hold also to ethnic preference, lower if liberals  minority hold also ethnic preference. Slightly decrease in ethnic segregation for higher randomness if liberals majority hold also to ethnic preference. For liberals minority differences are more evident: value segregation decreases compared to baseline equally if liberals majority or liberals minority increase hold also ethnic preference. If liberals majority hold ethnic preference, ethnic segregation of liberals minority increases as they increase ß value preference, since they can count only on liberals co-ethnics to maximize value utility. If also minority were to hold ethnic preference, ethnic segregation would be even higher, as direct effect of their preference, decreasing value segregation because they would accept more co-ethnic conservatives.
 
 
 
-```{r dislib_fig, fig.height=8, fig.align='center',fig.pos = "H", fig.cap="Comparison of lower determinism in liberals majority or liberals minority, effect of ethnic size and distribution of liberals. X-axis: pecentage of liberals of ethnic minority, column: ethnic ratio majority/minority. Each row reports the behavior of specific group-type. Linetype: conditions compared. Baseline: all agents hold dominant preference ß = 15,  secondary preference ß = 0; ß liberal majority = 1: liberals majority have minimum determinism (liberals minority hold to ß value = 15); ß liberal minority = 1: liberals minority have minimum determinism (liberals majority hold to ß value = 15). Conservatives of both ethnic groups hold to ß ethnic = 15 in all conditions", warning=FALSE}
-# facet_grid for crossing ethnic membership and distribution of liberals, facet linetype by conditions
-
-dislib_fig <- df_asm_pc %>% filter(ID == "dislib"|ID == "dislib_maj"|ID =="dislib_min") %>% ggplot(aes( x = liberal_min, y = Segra_asm, color = outcome, shape = type, linetype = as.factor(ID))) +
-    geom_point(size = 1.5) + geom_line() +
-    facet_grid(type ~ majority , scales = "free", labeller =  as_labeller(c("50" = "50% Majority","60" = "60% Majority","70" = "70% Majority", "80" = "80% Majority","90" = "90% Majority","Conservative Majority" = "Conservative \nMajority","Conservative Minority" = "Conservative \nMinority","Liberal Majority" = "Liberal \nMajoirty","Liberal Minority" = "Liberal \nMinority"))) +
-    scale_color_manual(values = c("Ethnic"="purple","Value"="dark green"), guide = guide_legend(title = "Segregation",ncol=1,byrow = TRUE)) +
-    scale_shape_manual(values = c( "Conservative Majority" = "square", "Conservative Minority" = "square", "Liberal Majority" = "circle", "Liberal Minority" = "circle"), guide = guide_legend(title = "Orientation")) +
-    scale_linetype_manual(values = c("dislib" = "solid", "dislib_maj" = "dashed","dislib_min" = "dotted"), labels = c("Baseline (ß = 15)","ß liberal majority = 1", "ß liberal minority = 1"), guide = guide_legend(title = "Dominant \nPreference", order =  1,ncol=1,byrow = TRUE)) +  geom_hline(yintercept=1,color="red") +
-    scale_x_continuous(breaks= c(10,50,90), limits=c(10,90), "% Liberal Minority") +  
-    ylab("Segregation")  +
-    theme_bw() +
-    theme(legend.position = "bottom") +
-    guides(shape = "none") 
-          
-ggsave("dislib_fig.jpg",dislib_fig,path = "images",dpi=300)
- 
-dislib_fig
-```
-
-Fig: \ref{fig:dislib_fig} compares baseline dominant ß = 15 to either lower value determinis (ß = 1) of either liberals minority and liberals majority, and highlights differences due to population composition due to ethnic asymmetry and distribution of liberals.
-
-I have to think about more. More interesting result is liberal majority falling into ethnic assimilation because of value preference, provided a critical mass is reached between ethnic ratio and distribution of liberals. Even if liberals minority increases, but their ethnic group is underrepresented, homophily based on value similarity will not make a difference. I think there are insights for the majority-minority paradigm and diverse societies here, with due limits. Anyway, I have to think of for the specific conditions.
-
-I include 90% conclusion for completeness. However, this creates an extreme condition where segregation/assimilation occurs mostly for ethnic asymmetry, it is too unbalanced and value to extreme compared to others. However, we can decide about later.
 
 
 
-```{r dislib_ethnic, fig.height=8, fig.align='center',fig.pos = "H", fig.cap="Comparison of liberals holding both ethnic and value preference, effect of ethnic size and distribution of liberals. Linetype: conditions compared. Conservatives of both ethnic groupd hold ß ethnic = 15 and ß secondary (value) = 0. Baseline: both liberals and  conservatives hold dominant preference ß = 15 and sercondary ß = 0; ß liberal majority = liberals majority hold both ethnic and value preference ß = 15 (liberals minority hold ß value = 15 and ß ethnic = 0); ß liberals minority = liberals minority hold both ethnic and value preference ß = 15 (liberals majority hold ß value = 15 and ß ethni = 0)", warning=FALSE}
 
-# facet_grid for crossing ethnic membership and distribution of liberals, facet linetype by conditions
 
-dislib_et <- df_asm_pc %>% filter(ID == "dislib"|ID == "dislibet_maj"|ID =="dislibet_min")  %>% ggplot(aes(x = liberal_min, y = Segra_asm, color = outcome, shape = type, linetype = as.factor(ID))) +
-    geom_point(size = 1.5) + geom_line() +
-     facet_grid(type ~ majority , scales = "free", labeller =  as_labeller(c("50" = "50% Majority","60" = "60% Majority","70" = "70% Majority", "80" = "80% Majority","90" = "90% Majority","Conservative Majority" = "Conservative \nMajority","Conservative Minority" = "Conservative \nMinority","Liberal Majority" = "Liberal \nMajoirty","Liberal Minority" = "Liberal \nMinority"))) +
-    scale_color_manual(values = c("Ethnic"="purple","Value"="dark green"), guide = guide_legend(title = "Segregation",ncol=1,byrow = TRUE)) +
-    scale_shape_manual(values = c( "Conservative Majority" = "square", "Conservative Minority" = "square", "Liberal Majority" = "circle", "Liberal Minority" = "circle"), guide = guide_legend(title = "Orientation")) +
-    scale_linetype_manual(values = c("dislib" = "solid",  "dislibet_maj" = "dashed", "dislibet_min" = "dotted"), labels = c("Baseline (ß ethnic 0)","ß liberal majority","ß liberal minority"), guide = guide_legend(title = "ß ethnic liberal", order =  1,ncol=1,byrow = TRUE)) +  geom_hline(yintercept=1,color="red") +
-    scale_x_continuous(breaks= c(10,50,90), limits=c(10,90), "% Liberal Minority") +  
-    ylab("Segregation")  +
-    theme_bw() +
-    theme(legend.position = "bottom") +
-    guides(shape = "none") 
 
-ggsave("dislib_et.jpg",dislib_et,path = "images",dpi=300)
 
-dislib_et
 
-```
 
-Fig: \ref{fig:dislib_ethnic}, same as Fig: \ref{fig:dislib_fig} for liberals holding also to ethnic preference, how segregation will differ from baseline ß = 15 and for combination ethnic size and distribution of liberals. Seems less changes, but it has to be thought about.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 # Discussion and Conclusions (working on)
