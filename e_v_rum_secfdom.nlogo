@@ -242,7 +242,7 @@ SLIDER
 %majority
 50
 100
-60.0
+50.0
 1
 1
 NIL
@@ -406,7 +406,7 @@ eth_lib_maj
 eth_lib_maj
 0
 1
-0.5
+0.0
 0.1
 1
 NIL
@@ -556,7 +556,7 @@ dominant
 dominant
 0
 20
-1.0
+10.0
 1
 1
 NIL
@@ -815,7 +815,7 @@ CHOOSER
 relative_size
 relative_size
 "ethnic" "value"
-0
+1
 
 MONITOR
 1005
