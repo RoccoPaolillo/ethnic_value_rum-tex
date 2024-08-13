@@ -6,6 +6,7 @@ output:
     keep_tex: yes
 ---
 
+
 ```{r setup, include=FALSE,warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.lp="fig:", warning=FALSE, message=FALSE)
 options(digits = 3)
@@ -159,7 +160,7 @@ ggplot(dfpic,aes(x = dominant, y = Segra_bsl, color = outcome_bsl, shape = orien
   scale_x_continuous(breaks= seq(0,20,by=1), limits=c(0,20)) +
   ylab("Outcome") + xlab("ß dominant") +
   theme_bw() 
-ggsave("images/fig1.jpg",width = 6,height = 5)
+ggsave("img_analysis/fig1.jpg",width = 6,height = 5)
 ```
 
 ```{r totsens, ,include = TRUE,  warning = FALSE}
@@ -189,7 +190,7 @@ ggsave("images/fig1.jpg",width = 6,height = 5)
 #   theme_bw()
 # 
 # ggpubr::ggarrange(libval,coneth,nrow = 2)
-# ggsave("images/totsens.jpg",width = 7,height = 7)
+# ggsave("img_analysis/totsens.jpg",width = 7,height = 7)
 
 ####
 
@@ -221,7 +222,7 @@ cone <- df_bsl_pic %>% filter(ID=="sens_con" & orientation_bsl == "Liberal") %>%
   theme_bw()
 
 ggpubr::ggarrange(libv,cone,nrow = 2, common.legend = TRUE, legend = "right")
-ggsave("images/totsens2.jpg",width = 7,height = 5)
+ggsave("img_analysis/totsens2.jpg",width = 7,height = 5)
 
 ```
 
@@ -240,7 +241,7 @@ scale_color_manual(values = brewer.pal(11, "Spectral"))+
   xlab("ß dominant") +
   theme_bw() +
   guides(color = guide_legend(title = "w ethnic\nliberal", order = 1), shape = FALSE)
- ggsave("images/libeth.jpg",width = 7, height = 4)
+ ggsave("img_analysis/libeth.jpg",width = 7, height = 4)
  
 ```
 
@@ -266,7 +267,7 @@ ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_li
    geom_hline(yintercept = 0.5,linetype = "dashed") +
   theme_bw() +
 guides(shape = guide_legend(title = "Exposure",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
- ggsave("images/asym_native.jpg",width = 6,height = 5)
+ ggsave("img_analysis/asym_native.jpg",width = 6,height = 5)
 
 
 
@@ -292,7 +293,7 @@ ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_li
     scale_y_continuous(breaks = c(0.2,0.4,0.5,0.6,0.8,1)) +
   theme_bw() +
 guides(shape = guide_legend(title = "Exposure",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
-ggsave("images/asym_migrant.jpg",width = 6,height = 5)
+ggsave("img_analysis/asym_migrant.jpg",width = 6,height = 5)
 
 
 ```
@@ -315,7 +316,7 @@ scale_color_manual(values = brewer.pal(11, "Spectral"))+
   xlab("ß dominant") +
   theme_bw() +
   guides(color = guide_legend(title = "w value\nconservative", order = 1), shape = FALSE)
-  ggsave("images/conval.jpg",width = 7, height = 4)
+  ggsave("img_analysis/conval.jpg",width = 7, height = 4)
 ```
 
 ```{r asym_native_density, include = TRUE}
@@ -338,7 +339,7 @@ ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_li
      geom_hline(yintercept = 0.5,linetype = "dashed") +
   theme_bw() +
 guides(shape = guide_legend(title = "Outcome",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
- ggsave("images/asym_nativedensity.jpg",width = 6,height = 5)
+ ggsave("img_analysis/asym_nativedensity.jpg",width = 6,height = 5)
 
 
 
@@ -364,10 +365,12 @@ ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_li
    geom_hline(yintercept = 0.5,linetype = "dashed") +
   theme_bw() +
 guides(shape = guide_legend(title = "Outcome",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
- ggsave("images/asym_migrantdensity.jpg",width = 6,height = 5)
+ ggsave("img_analysis/asym_migrantdensity.jpg",width = 6,height = 5)
 
 
 ```
+
+# References
 
 ```{r asym_value_annex, include = TRUE}
 
@@ -423,7 +426,7 @@ ggplot(aes(x = dominant, y = Segra_asm, color = as.factor(liberal_maj)
 
 pic <- annotate_figure(ggpubr::ggarrange(et,vl, common.legend = T, legend = "right",nrow = 2), 
                 top = text_grob(sbj, size = 12))
-ggsave(pic, file = paste0("images/",sbj,"_vlsz.jpg"), width = 6, height = 8)
+ggsave(pic, file = paste0("img_analysis/",sbj,"_vlsz.jpg"), width = 6, height = 8)
 }
 # ggpubr::ggarrange(et,vl, common.legend = T, legend = "bottom")
 
@@ -482,7 +485,7 @@ ggplot(aes(x = dominant, y = Segra_asm, color = as.factor(majority)
 
 picet <- annotate_figure(ggpubr::ggarrange(et,vl, common.legend = T, legend = "bottom",nrow = 2), 
                 top = text_grob(sbj, size = 12))
-ggsave(picet, file = paste("images/",sbj,"_etsz.jpg"), width = 6, height = 9)
+ggsave(picet, file = paste("img_analysis/",sbj,"_etsz.jpg"), width = 6, height = 9)
 # ggpubr::ggarrange(et,vl, common.legend = T, legend = "bottom")
 }
 
