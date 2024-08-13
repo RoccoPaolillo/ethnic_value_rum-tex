@@ -145,22 +145,22 @@ df_asm_bsl <- df %>% gather(key = group_asm, value = Segra_asm, et_sq_bl_m,et_cl
 
 ```
 
-```{r fig.1,include = TRUE,  warning = FALSE}
+```{r baseline,include = TRUE,  warning = FALSE}
 
 dfpic <- df_bsl_pic %>% filter(ID == "basic" ) %>% filter(con_val == 1 & lib_eth == 1 | con_val == 0 & lib_eth == 0)
-dfpic$fig1 <- ifelse(dfpic$con_val == 0 & dfpic$lib_eth == 0,"w[sec]==0", "w[sec]==1") %>% factor(levels = c("w[sec]==1","w[sec]==0"))
+dfpic$baseline <- ifelse(dfpic$con_val == 0 & dfpic$lib_eth == 0,"w[sec]==0", "w[sec]==1") %>% factor(levels = c("w[sec]==1","w[sec]==0"))
 
 
 ggplot(dfpic,aes(x = dominant, y = Segra_bsl, color = outcome_bsl, shape = orientation_bsl)) +
   geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ fig1, dir = "v", labeller = label_parsed) + # labeller(fig1 = fig1.labs))+
+  facet_wrap(~ baseline, dir = "v", labeller = label_parsed) + # labeller(baseline = baseline.labs))+
   scale_color_manual(values = c("Ethnic"="purple","Value"="dark green","Density" = "gray"), labels = c("Ethnic" = "Ethnic exposure","Value"="Value exposure","Density"="Density"),
                      guide = guide_legend(title = "Outcome", order = 1)) +
   scale_shape_manual(values = c("Conservative" = "square", "Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
   scale_x_continuous(breaks= seq(0,20,by=1), limits=c(0,20)) +
   ylab("Outcome") + xlab("ß dominant") +
   theme_bw() 
-ggsave("img_analysis/fig1.jpg",width = 6,height = 5)
+ggsave("img_analysis/baseline.jpg",width = 6,height = 5)
 ```
 
 ```{r totsens, ,include = TRUE,  warning = FALSE}
