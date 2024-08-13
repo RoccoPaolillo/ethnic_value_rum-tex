@@ -1,45 +1,16 @@
 ---
-output: 
+title: "Relocation choice for different homophily preferences: hybrid scenarios for Schelling Model"
+bibliography: "references.bib"
+output:
   pdf_document:
     keep_tex: yes
-    latex_engine: xelatex
-    citation_package: natbib
-toc: false
-fig_caption: yes
-title: "Relocation choice for different homophily preferences: hybrid scenarios for Schelling Model, testing beta secondary proportional"
-author: 
-    |  
-    | Rocco Paolillo
-    | Andreas Flache
-    | 
-    | **` HERE SOME NOTES TO BEAR IN MIND - test `**
-    | **` Annex A for ß secondary = ß dominant * w (df_secf.csv) and ideas `**
-    | **` `**
-    | **` `**
-    |  
-keywords: "super-diversity, discrete choice, spatial sorting, Schelling"
-date: "`r format(Sys.time(), '%d/%m/%y %H:%M')`"
-bibliography: "references"
-biblio-style: apalike
-
-header-includes: 
-- \usepackage{float}
-- \usepackage{multirow}
-- \usepackage{subcaption}
-- \usepackage[round]{natbib}
-- \usepackage{xfrac}  
 ---
-\newcommand{\rocco}[1]{{\textcolor{red}{Rocco: #1}}} <!-- # to add comments -->
-\newcommand{\andreas}[1]{\textcolor{blue}{{Andreas: }#1}} <!-- # to add comments -->
 
 ```{r setup, include=FALSE,warning=FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.lp="fig:", warning=FALSE, message=FALSE)
 options(digits = 3)
 #tinytex::reinstall_tinytex()
 # setwd("C:/Users/rocpa/OneDrive/Desktop/AF2/analysis")
-
-dir.create("images")  # it creates a folder for images and .tex file as separate file. They not matter for the text, they are already embedded.
-dir.create("latex")   # It overwrites files if folder already exists (if other files are in the folder, they remain)
 
 library(dplyr)
 library(ggplot2)
@@ -48,11 +19,12 @@ library(reshape)
 library(reshape2)
 library(tidyr)
 library(forcats)
-library(xlsx)
+#library(xlsx)
 library(xtable)
 library(gridExtra)
 library(kableExtra)
 library(RColorBrewer)
+library(ggpubr)
 
 # Dataset formation
 # basic1 <- read.csv("BACK/DATA/03_03_2022/basic.csv",sep =",",skip = 6)
@@ -92,14 +64,42 @@ library(RColorBrewer)
 # names(df)[names(df) == "X.liberal_min"] <- "liberal_min"
 # names(df)[names(df) == "X.step."] <- "step"
 # names(df)[names(df) == "X.majority"] <- "majority"
-# df$liberal_min <- 50
+# df$liberal_min <- 50 # no manipulated, % liberals ethnic depends on liberal maj
 # write.csv(df,file = "dataset.csv", row.names = FALSE)
+
+# df_basic_libeth and df_basic_conval added later to df
+# df <- read.csv("dataset.csv") 
+# df_basic_libeth1 <- read.csv("BACK/DATA/03_03_2022/basic_libeth_1.csv",sep =",",skip = 6)
+# df_basic_libeth2 <- read.csv("BACK/DATA/03_03_2022/basic_libeth_2.csv",sep =",",skip = 6)
+# df_basic_libeth <- rbind(df_basic_libeth1,df_basic_libeth2)
+# names(df_basic_libeth)[names(df_basic_libeth) == "X.run.number."] <- "run"
+# names(df_basic_libeth)[names(df_basic_libeth) == "X.liberal_maj"] <- "liberal_maj"
+# names(df_basic_libeth)[names(df_basic_libeth) == "X.liberal_min"] <- "liberal_min"
+# names(df_basic_libeth)[names(df_basic_libeth) == "X.step."] <- "step"
+# names(df_basic_libeth)[names(df_basic_libeth) == "X.majority"] <- "majority"
+# df_basic_libeth$ID <- "bsc_libeth"
+# df_basic_libeth <- relocate(df_basic_libeth,ID,.before = run)
+# 
+# df_basic_conval1 <- read.csv("BACK/DATA/03_03_2022/basic_conval_1.csv",sep =",",skip = 6)
+# df_basic_conval2 <- read.csv("BACK/DATA/03_03_2022/basic_conval_2.csv",sep =",",skip = 6)
+# df_basic_conval <- rbind(df_basic_conval1,df_basic_conval2)
+# names(df_basic_conval)[names(df_basic_conval) == "X.run.number."] <- "run"
+# names(df_basic_conval)[names(df_basic_conval) == "X.liberal_maj"] <- "liberal_maj"
+# names(df_basic_conval)[names(df_basic_conval) == "X.liberal_min"] <- "liberal_min"
+# names(df_basic_conval)[names(df_basic_conval) == "X.step."] <- "step"
+# names(df_basic_conval)[names(df_basic_conval) == "X.majority"] <- "majority"
+# df_basic_conval$ID <- "bsc_conval"
+# df_basic_conval <- relocate(df_basic_conval,ID,.before = run)
+# 
+# df <- rbind(df,df_basic_libeth,df_basic_conval)
+# df <- relocate(df,ID,.before=run)
+# write.csv(df,file="dataset.csv",row.names = F)
 
 df <- read.csv("dataset.csv") %>% select(-c(run,density,step,visualize)) %>%
   group_by(ID,relative_size,dominant_distribution,secondary_distribution,
     majority,liberal_maj,liberal_min,dominant, secondary,con_eth,lib_val,con_val,lib_eth,eth_con_maj,
     eth_con_min, val_con_maj,val_con_min,val_lib_maj,val_lib_min,eth_lib_maj,eth_lib_min) %>% 
-  summarise_all(c("m"= mean,"sd"= sd))
+  summarise_all(c("m"= mean,"sd"= sd)) 
 
 # dataset baseline (ethnic symmetric) condition (long format for pictures)
 
@@ -110,7 +110,8 @@ df_bsl_pic <- df %>% gather(key = group_bsl, value = Segra_bsl, et_cl_m,et_sq_m,
                                               "Value" = c("vl_sq_m","vl_cl_m")),"Ethnic"),
          `orientation_bsl` = fct_relevel(fct_collapse(group_bsl,
                                                   "Conservative" = c("et_sq_m","vl_sq_m","den_sq_m"),
-                                                  "Liberal" = c("et_cl_m","vl_cl_m","den_cl_m")), "Conservative")
+                                                  "Liberal" = c("et_cl_m","vl_cl_m","den_cl_m")), "Conservative"),
+         
          )
 
 
@@ -120,1520 +121,372 @@ df_asm_pic <- df %>% gather(key = group_asm, value = Segra_asm, cls_et_sq_bl_m,c
                                               "Ethnic" = c("cls_et_sq_bl_m","cls_et_cl_bl_m","cls_et_sq_or_m","cls_et_cl_or_m"),
                                               "Value" = c( "cls_vl_sq_bl_m","cls_vl_cl_bl_m","cls_vl_sq_or_m","cls_vl_cl_or_m")), "Ethnic"),
          `type` = fct_relevel(fct_collapse(group_asm,
-                                           "Conservative Majority" = c("cls_et_sq_bl_m","cls_vl_sq_bl_m"),
-                                           "Liberal Majority" = c("cls_et_cl_bl_m","cls_vl_cl_bl_m"),
-                                           "Conservative Minority" = c("cls_et_sq_or_m","cls_vl_sq_or_m"),
-                                           "Liberal Minority" = c("cls_et_cl_or_m","cls_vl_cl_or_m")),"Conservative Majority" ))
+                                           "Conservative Native" = c("cls_et_sq_bl_m","cls_vl_sq_bl_m"),
+                                           "Liberal Native" = c("cls_et_cl_bl_m","cls_vl_cl_bl_m"),
+                                           "Conservative Migrant" = c("cls_et_sq_or_m","cls_vl_sq_or_m"),
+                                           "Liberal Migrant" = c("cls_et_cl_or_m","cls_vl_cl_or_m")),"Conservative Native" ))
 
 
+df_asm_bsl <- df %>% gather(key = group_asm, value = Segra_asm, et_sq_bl_m,et_cl_bl_m,et_sq_or_m,et_cl_or_m,
+                              vl_sq_bl_m,vl_cl_bl_m,vl_sq_or_m,vl_cl_or_m,
+                            den_cl_bl_m,den_sq_bl_m,den_cl_or_m,den_sq_or_m)%>%
+  mutate(`outcome` = fct_relevel(fct_collapse(group_asm,
+                                              "Ethnic" = c("et_sq_bl_m","et_cl_bl_m","et_sq_or_m","et_cl_or_m"),
+                                              "Value" = c( "vl_sq_bl_m","vl_cl_bl_m","vl_sq_or_m","vl_cl_or_m"),
+                                              "Density" = c(
+"den_sq_or_m","den_cl_or_m","den_sq_bl_m","den_cl_bl_m")), "Ethnic"),
+         `type` = fct_relevel(fct_collapse(group_asm,
+                         "Conservative Native" = c("et_sq_bl_m","vl_sq_bl_m","den_sq_bl_m"),
+                         "Liberal Native" = c("et_cl_bl_m","vl_cl_bl_m","den_cl_bl_m"),
+                         "Conservative Migrant" = c("et_sq_or_m","vl_sq_or_m","den_sq_or_m"),
+                         "Liberal Migrant" = c("et_cl_or_m","vl_cl_or_m","den_cl_or_m")),
+                              "Conservative Native" ))
 
 ```
 
-<!--
-Flache: What is important to retain in my view is the logical sequence of arguments. 1) Schelling-type models imply that ethnic segregation is a very robust and strong phenomenon. 2) If combined with empirically realistic assumptions about ethnic preferences, this seems to be even more the case (Clark & Fosset). 3) However, empirical evidence suggests ethnic segregation is actually getting weaker, and there is more heterogeneity between neighborhoods in segregation patterns (some mixed, some segregated). This can not be reconciled easily with the standard Schelling-type framework-> we need sth. else
+```{r fig.1,include = TRUE,  warning = FALSE}
 
- \rocco{I suggest}
+dfpic <- df_bsl_pic %>% filter(ID == "basic" ) %>% filter(con_val == 1 & lib_eth == 1 | con_val == 0 & lib_eth == 0)
+dfpic$fig1 <- ifelse(dfpic$con_val == 0 & dfpic$lib_eth == 0,"w[sec]==0", "w[sec]==1") %>% factor(levels = c("w[sec]==1","w[sec]==0"))
 
-@paolillo2018 
-jjj
-[@troitzsch2017axiomatic;@fossett2011generative]
 
-\citep{schelling1969}
-
-the result is $`r df_bsl %>% filter(ID == "bsl" & dominant==20) %>% pull(den_sq_m) `$. that's all
--->
-
-\abstract{\rocco{200 words, 3-5 keywords} Schelling model of residential segregation famously showed how high levels of residential segregation can emerge as unintended outcome of the interplay of individual relocations of actors who hold relatively mild ethnic preferences.
-Most of the work building on this model neglected two forms of heterogeneity which seem to become increasingly important empirically in contemporary societies. 
-First, there is considerable heterogeneity of residential preferences not only between but also within ethnic groups, with especially younger, higher educated and more wealthy individuals having less strong preferences for ethnic homophily.
-Second, most of the research following Schelling focuses on ethnic similarity as relevant to residential preferences. However, recent theoretical and empirical research on spatial sorting emphasizes multidimensionality, as individuals prefer similar others not only regarding ethnicity, but also for social distinctions as shared values or shared status. Extending recent work (Paolillo et Lorenz, 2018), we explore the interplay of heterogeneity in both forms of homophily preferences for ethnicity and shared values.
-Using a discrete choice version of Schelling model, in which agents differ in their relative weights for ethnic and value similarity in relocation moves, we explore the consequences of different preferences of agents and their strengths, in addition to structural conditions of relative group sizes of ethnic and value groups. We find in particular that hybrid segregation patterns can emerge in which ethnically mixed but value homogeneous neighborhoods arise alongside ethnically segregated neighborhoods populated by agents driven more by ethnic homophily. 
-Importantly and contrary to Schelling’s model, we show how partial ethnic mixing can arise even if everyone has a preference for more co-ethnics in her neighborhood, all other things being equal.}
-
-```{r baseline_functions, warning=FALSE }
-
-# Both for table and pictures, to automatic edit: function written and then applied to various conditions. Were not possible, a different function was written
-
-# Function for pictures. df is the dataset, it save the picture as .jpg in "images" folder with ID of dataset as name (specified otherwise)
-
-bsl_p <- function(df){
-  
-pl <- df   %>% ggplot(aes(x=dominant,y=Segra_bsl, color = outcome, shape = orientation)) + geom_point(size = 1.5) + geom_line() +
-  #  facet_wrap(~ ID, dir = "v") +
-  scale_color_manual(values = c("Ethnic"="purple","Value"="dark green","Density" = "gray"), guide = guide_legend(title = "Segregation", order = 1)) +
+ggplot(dfpic,aes(x = dominant, y = Segra_bsl, color = outcome_bsl, shape = orientation_bsl)) +
+  geom_point(size = 1.5) + geom_line() +
+  facet_wrap(~ fig1, dir = "v", labeller = label_parsed) + # labeller(fig1 = fig1.labs))+
+  scale_color_manual(values = c("Ethnic"="purple","Value"="dark green","Density" = "gray"), labels = c("Ethnic" = "Ethnic exposure","Value"="Value exposure","Density"="Density"),
+                     guide = guide_legend(title = "Outcome", order = 1)) +
   scale_shape_manual(values = c("Conservative" = "square", "Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
   scale_x_continuous(breaks= seq(0,20,by=1), limits=c(0,20)) +
-  xlab(
-    c(if(df$ID == "bsl"){"ß Dominant"},
-      if(df$ID == "bsl_dom"){"ß Dominant"},
-      if(df$ID == "bsl_sec_cl"){"ß dominant \nß value liberal = ethnic"},
-      if(df$ID == "bsl_sec_sq"){"ß dominant \nß ethnic conservative = value"}
-    )
-  )  +
-  scale_y_continuous("Outcome") +
+  ylab("Outcome") + xlab("ß dominant") +
   theme_bw() 
-
-ggsave(paste0(as.name(df$ID),".jpg"), pl, path = "images",width = 6, height = 3, dpi = 300) 
-
-pl
-
-}
-
-
+ggsave("images/fig1.jpg",width = 6,height = 5)
 ```
 
-# Introduction
-
-Ethnic or racial residential segregation appears still a critical topic of multi-ethnic cities all over the world \citep{charles2003dynamics}.
-Many possible and interconnected explanations for segregation have been proposed, such as discrimination by landlords \citep{ahmed2008discrimination}, the sorting mechanisms built into housing markets \citep{bailey2012spatial}, or income inequality in combination with features of urban geography \citep{pais2017intergenerational}. 
-Prominently, \cite{schelling1969models,schelling1971dynamic}'s contribution was to demonstrate with a formal computational model that segregation can be a self-organizing phenomenon that emerges from the interaction of people satisfying their "discriminatory individual choice" \citep[p. 488]{schelling1969models} within spatial limited constraints\footnote{Essentially the same mechanism proposed by Schelling was independently developed and formalized earlier by \cite{sakoda1971checkerboard}, see \cite{hegselmann2017thomas}}. 
-Essential to Schelling's model, and focus of this paper, is the concept of "preference dynamics" \citep{clark2008understanding}, i.e. the empirically plausible assumption that people typically want at least a certain minimal fraction of co-ethnics nearby, even if they are content with living in a mixed neighborhood.
-One key insight from a large number of formal modelling studies is the robustness of the main results of the model \citep{flache2020analytical}, also if people hold "integrationist" preferences \citep{zhang2004} or randomness is included in residential choices of agents \citep{bruch2006neighborhood,van2009neighborhood,bruch2009preferences}. 
-The robustness of segregation due to individual preferences persists also when additional parameters are taken into account such as relocation costs and income differences \citep{fossett2006ethnic}, relative group sizes \citep{bruch2014population} or empirically realistic spatial structures of real cities \citep{benenson2009schelling}.
-
-Yet, despite the strong theoretical and empirical evidence that preference dynamics might suffice to generate robust and high levels of ethnic segregation, recent trends in residential segregation suggest a somewhat different and more complex picture from the one that can be derived by the results of Schelling model.
-For what concerns ethnic segregation, not only do U.S. studies point to declining levels in recent decades (e.g. \cite{glaeser2012end}), compared to the 60’s/70’s urban landscape \citep{clark2015residential} Schelling referred to \citep{schelling1969models}, but also mixed neighborhoods increasingly start to arise in multi-ethnic cities \citep{clark2015residential, lee2012racial}. 
-This pattern is also reflected in studies from Europe \citep{blokland2010people}. 
-This scenario can be due to two reasons. Firstly, urban societies are nowadays more racially diverse compared to decades ago \citep{lee2012racial}. Second, it has been suggested that this pattern can be attributed to changes in residential preferences and how they vary within the population.
-Goldman (2012)\rocco{never found this ref, can you pass?}, for example, finds evidence of reduced racial prejudice in the society as a whole, a trend that seems to extend to residential ethnic preferences \citep{xie2012modeling}.
-Furthermore, residential preferences can vary depending on socio-demographic characteristics of individuals. 
-On the whole, it appears that younger \citep{clark2018can, clark2009changing}, more highly educated and higher income citizens have increasingly more tolerant ethnic preferences \citep{clark2019neighborhood,crowder2012neighborhood,clark2009changing,xie2012modeling} when it comes to residential choice. 
-A common trait of modern societies is that these socio-demographic characteristics and the social preference associated might vary not only between members of different ethnic groups \citep{clark2009changing,crowder2012neighborhood}, but also between members of the same ethnic group \citep{clark2002residential,crul2017upcoming}. 
-Thus, differently from Schelling, it becomes a both theoretically and empirically plausible scenario that the members of the same ethnic group experience a different degree of integration or segregation along diverse dimensions in addition to ethnicity \andreas{not correct if you consider the bounded neighborhood model}. 
-In this paper, we are interested in this aspect we refer to as "hybrid segregation" and we propose possible scenarios of how it can come to be.
-
-Formal models of Schelling-type dynamics have recently started to incorporate the insight that individuals differ in the degree of tolerance to local ethnic diversity. 
-These models imposed heterogeneity in the desired neighborhood proportion of co-ethnics \citep{xie2012modeling, hatna2014combining}. Interestingly, these studies found that - similar to empirical patterns observed in modern multi-ethnic cities - preference dynamics could give rise to a division between ethnically mixed and segregated neighborhoods co-existing in the same city, together with a selection of more tolerant agents into the mixed neighborhoods. 
-However, there is another important form of preference heterogeneity these models have not taken into account and which could profoundly affect dynamics of segregation. 
-Shared values, defined as common beliefs, preferences or expectations on acceptable behavior induce perceptions of similarity across the boundaries of ethnicity \citep{wimmer2013ethnic,bail2008configuration}.
-In modern societies where individuals differ along many and different social distinctions \citep{vertovec2007super}, shared values can become even more important than ethnicity itself. 
-Recent empirical studies, indeed, suggest that a preference for value-similar neighbors may sometimes even dominate preferences for ethnic similarity. 
-For instance,\cite{van2019sociocultural} find how similarity with neighbors in terms of sociocultural dispositions (in their case traditional or modern arrangemens of gender contribution to household income, plus education) is a better predictor of the intention to remain in the neighborhood, compared to ethnic membership and income similarity. 
-In a similar vein, research on homophily in social networks recently has moved forward to recognize the importance of multidimensional similarity for the formation of social relationships \citep{block2014multidimensional,hooijsma2020multidimensional}. 
-This research shows that dissimilarity in ethnicity might not negatively affect the formation of relationships when compensated for by salient similarities individuals perceive in other categories. 
-
-While recent empirical studies seem to adopt the interplay of ethnicity with other social distinctions to explain hybrid segregation in diverse societies, this seems rarely the case in modeling literature drawing on Schelling’s framework. 
-Yet, we argue that this work points to an intriguing new possibility for residential segregation dynamics and hybrid segregation scenarios. 
-The seemingly unstoppable march towards segregation that Schelling-type preference dynamics induce may not only be stopped by higher levels of ethnic tolerance, as suggested by \cite{xie2012modeling} or \cite{hatna2014combining}. 
-It may also be stopped in a world where individuals still prefer being among co-ethnics, but at the same time hold an even stronger preference for having neighbors with similar values who also happen to be members of other ethnic groups.
-Given that stronger preference for shared social distinctions in residential preferences rather than ethnicity appears to some extent to be correlated with socio-characteristics as education, income or age, this possibility would offer a new explanation in the framework of Schelling-type dynamics for nowadays residential trends. \rocco{just to break the sentence too long} An example is why well-off younger generations appear to increasingly move to more affluent and more ethnically mixed neighborhoods \citep{clark2018can,clark2002residential}. 
-It would also help to understand why low-income strata seem to become increasingly segregated through generations, meaning that their neighborhoods become progressively both ethnically and economically segregated \citep{clark2002residential}. 
-
-In this paper, we propose a formal computational model of Schelling-type preference dynamics that incorporates the interplay of both ethnic and value similarity for neighborhood composition. 
-Our study builds on and advances recent modelling work of \cite{paolillo2018} which, to best of our knowledge, first introduced value similarity within a Schelling-type threshold model. 
-In their model, two ethnic groups relocated in a lattice, each ethnic group being equally divided into intolerant ethnicity-oriented agents and tolerant value-oriented agents.
-While intolerant agents subscribed to the original Schelling model considering ethnic similarity  and ignoring value similarity, tolerant agents only considered value similarity, indifferent to the ethnicity of other agents. 
-The authors explored the consequences of different desired concentrations of agents considered as similar and for conditions of different relative ethnic sizes. 
-Their results showed a general decrease in ethnic segregation compared to a world populated only by agents with ethnic preference. 
-But they also showed more complex patterns, especially a by-product effect for ethnicity-oriented agents belonging to minority group who found attractive ethnically mixed neighborhoods formed by value-oriented agents, due to higher chance to find co-ethnics. In-flows of intolerant minority caused such neighborhoods to decrease in value segregation and increase ethnic homogeneity. 
-The authors observed until when tolerant agents would not tolerate the increasing concentration of conservatives, so to leave the neighborhood, which would become eventually ethnically concentrated, due to presence of conservative minority. \andreas{generally a bit lengthy here, could be moved to separate theory section.} \rocco{now shortened and rephrase, checking for theory section/better description}
-
-
-We want to build on the contribution of \cite{paolillo2018} to reproduce hybrid segregation patterns through multidimensional homophily.
-To this aim, we ameliorate some unrealistic assumptions of their model and extend other features.\andreas{highlight more the contribution of this paper, we make the model more amenable to empirical research, relax unrealistic assumptions and also highlight a new insight: residential mixing is possible despite ethnic preferences favoring higher proportions ingroup, cet par}
-First, we relax the assumption that agents can only hold preference for value or ethnic homogeneity: we rather allow residential choice to be driven by a mix of both and focus on the heterogeneity of agents' preferences for the two types of similarity \rocco{redefine "heterogeneity": it is not referred to distribution of preference within population (e.g. Xie), rather that subgroups of same ethnicity hold different preferences in terms of weight}. 
-Second, we implement a random utility model for discrete choice, following recent advances in agent-based modelling of residential mobility \citep{bruch2006neighborhood,bruch2012methodological}, substituting threshold behavior with a linear utility function. 
-This approach let us better model the decisional process of agents. A linear utility function lets as model the sensitivity to change in neighborhood composition \citep{van2009neighborhood}  compared to a threshold behavior \rocco{review: you can have a decisional process with threshold function: what is the usefulness of linear function over threshold function}
-We systematically explore how the interaction of the two types of preference can generate hybrid segregation patterns, combining ethnically homogeneous and ethnically heterogeneous neighborhoods with segregation or integration for value similarity. 
-Moreover, we explore how segregation patterns would change when not only ethnic relative size are taken into consideration as in \cite{paolillo2018}, but also different distributions of value types within agents' population.
-
-\rocco{add: discrete choice and linear utility function to observe scenarios not possible in threshold and deterministic behavior, because agents would be not happy and some conditions not stand, e.g. threshold = 100 was not possible in \cite{paolillo2018} } \andreas{dont think we need this is intro. it s already on the long end, consider splitting into intro proper and some sort of theory section or merge parts with section that follows.}
-
-<!--
-# Modeling relocation choice with random utility models 
-
-\rocco{this in general will disappear/be rewritten (see AF and RP comments)}
-\rocco{divide: why rum and utility within Introduction: contribution of the paper, formalization with logistic function in the model description} 
-\andreas{it this a theory or a model section? bit unclear. I  would propose to turn it into a „theory“ section (moving some parts from the intro here) and fold the „modelling“ parts into the modelling section.}
-
-Random utility models for discrete choice have a long history in housing research \citep{frankhauser2016deciding} and in recent years they have been applied in the agent-based modeling framework \citep{bruch2006neighborhood,bruch2012methodological}.
-Stemming from the utility maximization paradigm, these models assume that the decision process underlying the choice of economic actors is unknown, and it can be deduced by observed choice, i.e. how selection of respondents differ for attributes of the options available \citep{hess2018revisiting}, e.g. different neighborhood composition. 
-Utility in this context is defined as the attractiveness for each characteristic the options differ for and its formalization is based on the response curve of the respondent \citep{bruch2015agent,train2009discrete}.
-Random utility models divide between a systematic component of utility, i.e. observable differences between options based on their utility, and a random term, representing all unknown factors associated with selection of that options, might they depend on other characteristics of the option, characteristics of the selector or an interaction of both. 
-In our model, random utility for a generic neighborhood is:
-
-
-\begin{equation}
-    U = \beta_e U_e + \beta_v U_v + \epsilon
-\end{equation}
-
-where: \par
-$\beta_e$ = weight parameter for ethnic similarity, with $\beta_e [0, \infty)$ \par
-$U_e$ = ethnic utility of neighborhood \par
-$\beta_v$ = weight parameter for value similarity, with $\beta_v [0, \infty)$  \par
-$U_v$ = value utility of neighborhood  \par
-$\epsilon$ = random term \par
-
-While parameters $\beta_e$ and $\beta_v$ can be estimated  through regression models, the random term $\epsilon$ remains unknown. The conditional logit model introduced by  \cite{mcfadden1973conditional} is a specific type of discrete choice model that allow to quantify the effect of systematic utility over random component, though remaining the latter unknown. Assuming the random term $\epsilon$ follows a type I extreme value distribution, e.g. Gumbel distribution, the probability to select neighborhood \textit{j} out of options \textit{k} in choice set \textit{C} is: \andreas{lenghty, reads more like dissertation. Shorten.}\rocco{added a note, not sure how in computation, but to take back in the end, if it remains}
-
-
-\begin{equation}
-P_{j} = \frac{exp(\beta_e U^e_j + \beta_v U^v_j)}{\sum\limits_{{k\in{C}}}exp(\beta_e U^e_k + \beta_v U^v_k)}
-\label{eq:cndtnl}
-\end{equation}
-
-where \textit{j} and \textit{k} are two options available in the choice set \textit{C}.\par
-\par
-
-In this computation of probability, parameters $\beta_e$ and $\beta_v$ represent the weight of how much the systematic component of utility for that dimension matters in the selection of the option compared to the random component represented  by the unknown random term. 
-The higher $\beta_e$ or $\beta_v$, the higher the likelihood that the option with highest utility for that dimension will be selected, the lower $\beta_e$ or $\beta_v$, the higher the chance that the choice among options will occur randomly.
-With both $\beta_e$ and $\beta_v$ equal 0, all options have equal probability to be selected, since the choice is totally stochastic, i.e. dependent on the random term.
-
-
-Implementation of discrete choice in agent-based modelling has some peculiarities compared to empirical regression models.
-First and above all, estimated preferences in regression models depend on a the comparison of a limited set of observed cases that can profoundly affect results. \andreas{generally this section can be shortened a lot. jms readers can be expected to know most of this and for much of the information lit references suffice.}
-Moreover, utility remains a random variable estimated through parameters $\beta$ and computation of probability to select one option.
-Probability to select one option over the others as behavioral response to change in their attributes is the equivalent to utility. 
-As \cite{bruch2009preferences} stress out, agent-based modeling is deeply different in this aspect, allowing to model independently and quantify the elements of the conditional logit based on a theoretical model. 
-Researchers can impose different combinations of utility function for all ranges of neighborhood characteristics and parameters $\beta$ in the relocation decisions of agents to observe their aggregated results.
-<!-- Additionally, modellers can include other elements that contribute to the dynamics of emerging spatial segregation, such as diverse heterogeneous distributions of preferences (see \citep{xie2012modeling}) or population structures that can influence neighborhood composition \citep{bruch2014population}. \andreas{not different from schelling} -->
-
-<!-- Also agent-based modelling can benefit from the implementation of discrete choice models, not only for the formalization of the decisional process of agents and calibration with parameters $\beta$ estimated \citep{bruch2006neighborhood}, but also for the inclusion of the stochastic random term. 
-Randomness is useful to both test robustness of observed phenomena in complex systems and increase their realism through inclusion of random fluctuations against deterministic behavior.
-A traditional way to include randomness in the dynamics of an agent-based model is as an external noise, for  instance in Schelling's model, with a percentage of agents, or additional agents, forced to randomly relocate by the researcher. 
-Implementation of discrete choice allows to include randomness as an endogenous component in the relocation decision of individual agents through the random term compared to parameters of determinism. 
-Useful to our interest in the interplay of value and ethnic preferences, the parameter $\beta$ can be attributed based on characteristics of agents that simulate their socio-demographics. We build on this aspect of random utility models to investigate how strength of preferences for either value orientation or ethnicity, or a combination of both, along structural composition of the population can contribute to the emergence of stable equilibria of hybrid segregation. 
-We can moreover explore the interdependence between different types of agents and how determinism of agents would react to different distributions of the two characteristics of ethnicity and value orientation in the population.
-In the next section we describe our model and how we implemented random utility discrete choice.
--->
-
-# Model Description
-
-
-We developed our model in NetLogo 6.1.1 \citep{wilenskynl} extending \cite{paolillo2018}.\footnote{Model available at \url{https://github.com/RoccoPaolillo/ethnic_value_rum.git}} The model and its parameters are shortly described in Tab: \ref{tab:parameters}. 
-Agents represent households who relocate in a regular square grid of dimension 51 times 51 with periodic boundary conditions, i.e. a tours world.
-As in \cite{paolillo2018}, each agent is described by two state variables: ethnicity modeled through a color tag and value orientation modeled through a shape tag (see fig: \ref{fig:model}). 
-Given two levels for each dimension, 4 group-type of agents interacts. 
-For sake of illustration we label them as conservative majority (blue square), liberal majority (blue circle), conservative minority (orange square), liberal minority (orange circle). Value orientation of agents represent shared beliefs or opinions that people can share independently of their ethnic membership and that can rather correlate with other social distinctions, such as education, social class or political views. 
-
-
-```{r model, fig.width= 5, fig.height=5,fig.align='center',fig.pos = "h", out.width="70%",fig.cap="Group-type of agents", warning=FALSE}
-
-knitr::include_graphics("model.jpg")
-
-```
-
-
-In our model value orientation of agents is relevant for two reasons. 
-First, it determines an additional dimension of similarity which is independent of ethnicity: liberals can recognize as similar value-oriented also liberals of the other ethnic group, so as to recognize of different value orientation conservatives of both ethnic groups\footnote{Equally, also conservatives recognize similar value-oriented conservatives of both ethnic groups}. 
-Additionally, value orientation matters in defining the strength of ethnic or value similarity in the relocation decision of agents.
-In \cite{paolillo2018} agents randomly relocated to an empty cell according to a threshold function, based on ethnic composition for ethnicity-oriented agents and value composition for value-oriented agents.
-We substitute this behavior with a binary random utility discrete choice model. 
-At each time step, a random agent selects a random empty cell and compares its neighborhood composition to that of its current cell. 
-By neighborhood we refer to the Moore distance with radius 1 of the cell, i.e. 8 surrounding nodes.
-Ethnic utility and value utility for the neighborhood composition is modeled through a linear function:
-<!-- We substitute the threshold function in \cite{paolillo2018} with a continuous linear function for both ethnic and value neighborhood composition: \andreas{the info is ok, but make it sound less like „we add a little new piece to pl18, otherwise everything remains the same. editors and reviewers do not like this, it must become clear that a a paper has a significant new contribution to make.} \rocco{changed} -->
-
-\begin{equation}
-   U^e_j = \frac{x^e_j}{X_j}\quad\text{   ;    }\quad  U^v_j = \frac{x^v_j}{X_j}
-\end{equation}
-
-where: \par
-$U^e_j$: ethnic utility of neighborhood \textit{j} \par
-$x^e_j$: number of agents in neighborhood  \textit{j} with same ethnicity \par
-$X_j$: total number agents in neighborhood  \textit{j} \par
-$U^v_j$: value utility of neighborhood  \textit{j} \par
-$x^v_j$: number of agents in neighborhood  \textit{j} with same value \par
-$X_j$: total number agents in neighborhood  \textit{j} \par
-
-Both utilities can range [0,1]. Utility of a neighborhood is set to 0 if $X_j = 0$, i.e. not agents are in the neighborhood. The probability for an agent to choose the alternative neighborhood over the current one is modeled with a logistic function as:
-
-\begin{equation}
-    P_{al} = \frac{exp(\beta_e U^e_{al} + \beta_v U^v_{al})}{1 + exp((\beta_e U^e_{cr} + \beta_v U^v_{cr}) - (\beta_e U^e_{al} + \beta_v U^v_{al}))}
-    \label{eq:lgst}
-\end{equation}
-
-
-where: \par
-$\beta_e$: weight for ethnic preference \par
-$\beta_v$: weight for value preference \par
-$U^e_{al}$: ethnic utility of alternative neighborhood \par
-$U^e_{cr}$: ethnic utility of current neighborhood \par
-$U^v_{al}$: value utility of alternative neighborhood \par
-$U^v_{cr}$: value utility of current neighborhood \par
-<!-- \andreas{this can be integrated more with equation 2 and text around it.} -->
-
-The higher $\beta_e$ or $\beta_v$, the higher the option with higher ethnic or value utility is likely to be selected, the lower $\beta_e$ or $\beta_v$, the higher the chance that selection is random for that dimension. With both $\beta_e = 0$ and $\beta_v = 0$, the choice is totally random and $P_{al} = P_{cr} = 0.5$. \footnote{The logistic function is equivalent to the conditional logit formula $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$ for two options. The equivalence is valid since the difference between two random terms that are assumed to have a Gumbel distribution, as in the conditional logit, has a logistic distribution. See \cite[p.39]{train2009discrete} for details on transformation from conditional logit formula to logistic function as implemented in our model}
-
-
-
-<!-- to delete: The equivalence between logistic function  and conditional logit for two options is valid since the difference between random terms that are assumed to have a Gumbel distributions has a logistic distribution.
-The logistic function in Eq: \ref{eq:lgst} is transformation of Eq: \ref{eq:cndtnl} written as $P_{al} = \frac{exp(U_{al})}{exp(U_{al}-U_{cr})}$, resulting from division of numerator and denominator by numerator $exp(U_{al})$, with $exp(U_{cr})/exp(U_{al}) = exp(U_{cr}) - exp(U_{al})$ (see \cite[p.39]{train2009discrete} for details)}.\andreas{shorten this} -->
-
-<!--Probability computed is compared to a random number ranging between 0 and 1. 
-If probability is higher than random number, then the agent moves to the alternative neighborhood, leaving its cell empty. 
-So,  the logistic  function serves as a simplified version of the roulette wheel selection \footnote{see \cite{bruch2012methodological} for an example of roulette wheel selection}. \andreas{implementation details like these can go to online appendix, online repository containing model code (open abm)} -->
-
-<!-- As tested, due to continuous iterations of the relocation choice, emerging results would not differ if more than two options are taken into consideration. We opted for a continuous linear function because default assumption in utility maximization and sensitive to changes in neighborhood compositions, which is strategic to our aim \citep{van2009neighborhood}.
-Moreover, it lets behavior of agents differ only for parameters of determinism $\beta_e$ and $\beta_v$, so to allow us to disentangle the effect of either ethnic or value similarity preferences on emerging segregation. \rocco{next paragraph: I mean that potentially one can span the parameters so to have ethnic liberal > ethnic conservative. 
-We impose preferences as I describe because of theoretical consistency with our research goal}-->
-
-\andreas{here (next paragraph rp) we say what we do, but not really why we do it. this has also not been said very clearly further above, i suggest to add a few sentences on that further above.} We vary $\beta_e$ and $\beta_v$ depending on the value orientation of agents and in our experiments impose differences in heterogeneous preferences between the two types of agents. Liberal agents, considered as more  prone to ethnic tolerance, hold higher value preferences: weight for ethnic similarity cannot exceed their weight for value similarity ($\beta^{L}_v \geq \beta^{L}_e$). 
-Conservative agents hold higher ethnic preferences: weight for value similarity cannot exceed their weight for  ethnic similarity ($\beta^{C}_e \geq \beta^{C}_v$). 
-Moreover, the heterogeneity between conservative and liberal agents exists so that ethnic preferences of liberals do not exceed those of conservatives ($\beta^{C}_e \geq \beta^{L}_e$), and value preferences of conservatives do not exceed those of liberals ($\beta^{L}_v \geq \beta^{C}_v$). 
-
-<!-- As outcome of the model, we report the index of exposure for both ethnic and value segregation of agents who have at least one neighbor. This is the classic measure of segregation in Schelling and is equivalent to the fraction of agents of same ethnicity or value orientation in the neighborhood, indifferent to the actual number of neighbors.
-Nevertheless, we consider this a best fit to our interest in hybrid segregation scenarios. 
-An index equal to 0.5 means that the agent is perfectly integrated for that dimension, being exposed to agents of different ethnicity or value orientation. 
-An index equal 1 means total segregation, i.e. exposure only to similar agents for that dimension. -->
-<!-- Thus, computing the exposure index for the two dimensions provides information whether segregation or integration occurs for both of them, or agents are integrated for one dimension and segregated for the other. -->
-
-\begin{table}[H]
-
-\begin{tabular}{lll}
- \hline
-\textbf{Agent definition}  & \textbf{Tag}    \\ 
- \hline
- Ethnicity  (\textit{color})         & Blue (majority), Orange (minority)  \\
- Value orientation (\textit{shape}) & Square (conservative \textit{C}), Circle (liberal \textit{L}) \\
-  \hline
-  \textbf{Group-type level Parameters}  & \textbf{Range}    \\ 
-  \hline
- Determinism ethnic utility ($\beta_e$) & $[0,\inf)$ 
- $\beta^{C}_e \geq \beta^{C}_v$
- $\quad\text{   ;    }\quad \beta^{C}_e \geq \beta^{L}_e$
- \\
- Determinism value utility ($\beta_v$) & $[0,\inf)$ $\beta^{L}_v \geq \beta^{L}_e$
- $\quad\text{   ;    }\quad \beta^{L}_v \geq \beta^{C}_v$\\
- \hline
-\textbf{Global Parameters}  & \textbf{Range} \\ 
-\hline 
- Population density      & $[0,0.99]$ \\
- Ethnic ratio majority/minority &  $[0,1]$ \\
- Value ratio conservative/liberal majority & $[0,1]$ \\
- Value ratio conservative/liberal minority  & $[0,1]$ \\
- \hline
- \textbf{Output measure}  & \textbf{Range} \\ 
-\hline 
- Ethnic neighborhood exposure      & $[0,1]$ \\
- Value neighborhood exposure       & $[0,1]$ \\
- \hline
-\end{tabular}
- \caption{Model parameters} 
- \label{tab:parameters}
-\end{table}
-
-
-
-
-# Results
-
-# Baseline Conditions
-
-We run our simulations for 1000 discrete time steps and repeated each condition 20 times. We collected data for the last time step as interested in the emerged equilibria resulting from relocation preferences, population composition and degree of determinism. 
-In this first section, we report results for symmetric conditions, where agents are equally distributed in each group-type.
-This is the simplest scenario to investigate mechanisms of the model deriving from changes in the strength of ethnic and value preferences. 
-At initialization, each agent has $50\%$ probability to be assigned to either majority or minority ethnic group (equal ethnic size) and within each ethnic group, $50\%$ probability to be assigned to either conservative or liberal value orientation. 
-In short, each group-type represents $25\%$ of the population. 
-Density of the population, i.e. the percentage of cells on the grid occupied by agents is kept at $70\%$ with initial random distribution. 
-Fig. \ref{fig:model_space} shows the parameter space we explore in this baseline scenario generated by the two parameters of determinism of dominant and secondary preference of agents, with figures associated \rocco{figures-experiment match to be updated in the end}.
-Dominant preference of conservative agents is ethnic similarity, while secondary preference is value similarity.
-Dominant preference of liberal agents is value similarity, while secondary preference is ethnic similarity.
-The aim of the figure is also to show visually the segregation scenarios that emerge within the parameter space and that we plot in each figure.
-We describe later each picture and motivation in details. <!--\rocco{including more description of space model Fig. \ref{fig:model_space}, for matching figures, in the end}-->
-The origin of the axes equals to all agents holding $\beta = 0$, i.e. extreme randomness, for both dominant and secondary preference in their relocation decision, so to relocate randomly from the initial distribution and generate no segregation.
-Moving along the diagonal, dominant preference of agents is equal to secondary preference (Fig.\ref{fig:bsl}), showing clustering between the 4 group-type as determinism increases. 
-Fig. \ref{fig:bsl_sec} occurs along the diagonal as well, but with either liberals or conservatives in each condition holding $\beta \ dominant$ equal to $\beta \ secondary$. 
-Moving along the vertical axis ($\beta \ dominant$), all agents hold only dominant preference in their relocation decision, not taking into account their secondary preference ($\beta \ secondary = 0$) \rocco{by-product} (Fig. \ref{fig:bsl_dom}).
-The result is the division of society in three clusters: liberals ethnically integrated and value segregated, and two clusters each formed by conservatives of one ethnic group. 
-In the same region Fig. \ref{fig:bsl_fct} occurs, but with liberals and conservatives holding different levels of $\beta \ dominant$
-Finally, moving along the horizontal axis, all agents hold constant level of $\beta \ dominant$ and increase secondary preference.
-Fig. \ref{fig:htmp} explores this region, though under the assumption of $\beta \ dominant \leq \beta \ secondary$
-
-As measure of segregation, for both ethnic and value similarity, we compute an index of exposure in the Moore neighborhood of agents who have at least one neighbor. 
-The index reports on average the fraction of other agents of same ethnicity or same value orientation in the local neighborhood of each agent.
-It ranges between $0$, i.e. exposure to out-groups to $1$, i.e. full segregation, with $0.5$ equal to integration between the two groups. We report the index for ethnic exposure ($E_i$) and value exposure ($V_i$) for each group-type:
-
-\begin{equation}
-   E_i = \frac{x^e_i}{X_i}\quad\text{   ;    }\quad  V_i = \frac{x^v_i}{X_i}
-\end{equation}
-
-where:\par
-$x^v_i$: number of other co-value  agents in the Moore neighborhood of agent \textit{i} \par
-$x^e_i$: number of other co-ethnic agents in the Moore neighborhood of agent \text{i} \par
-$X_i$: total number agents in neighborhood of agent \textit{i} \par
-\par
-We report additionally the average density of the neighborhood agents form, calculated as the fraction of inhabited grid cells in the Moore neighborhood of agents. We are interested in density as indicator of clustering of agents and how it relates to segregation patterns.
-
-
-```{r model_space, fig.width= 6, fig.height=6,fig.align='center',fig.pos = "H", out.width="70%", fig.cap="Preference model space parameter and figure associated. Figure reference label: black color means liberals and conservatives hold same level of ß parameter (though with different definition of similarity). Red color means they hold different level of either dominant or secondary preference.Match figure-label to check/change in the end", warning=FALSE}
-
-knitr::include_graphics("model_space.jpg")
-
-```
-
-
-Fig. \ref{fig:bsl} represents the baseline condition we compare results to. Agents hold same preference for both ethnic and value segregation, i.e. they want to live close to agents of the same group-type. 
-On the x-axis, agents of both value-orientation increase their determinism (parameter $\beta$). The graph shows how ethnic and value segregation follow the same curve. 
-Segregation increases monotonically from $\beta = 0$ until $\beta = 7$ where full segregation is reached. Density of neighborhoods remains basically unaltered from initial random distribution, though slight increase when full segregation emerges at $\beta = 7$. 
-Results mean that the size of neighborhoods of agents is unaffected by increase of determinism, while their composition changes.
-
-```{r bsl, fig.width= 6, fig.height=3,fig.align='center',fig.pos = "H", out.width="80%", fig.cap="Baseline condition. Each group-type represents 25\\% of population. ß dominant = ß secondary", warning=FALSE}
-bsl_p( subset(df_bsl_pic,ID == "bsl"))
-```
-
-In Fig. \ref{fig:bsl_dom}, we investigate the scenario where agents hold only to their dominant preference. Differently from previous condition where agents would prefer someone with own identical characteristics, liberals would relocate close to other liberals of different ethnic group, as well as conserative try to maximize on ethnic utility with liberal co-ethnics. This is ideal to investigate effects of different preferences.
-For each type of agent, $\beta\ dominant$ increases on the x-axis, while $\beta\ secondary = 0$
-The figure shows how liberal agents remain ethnically integrated, which is coherent with their random relocation for ethnic dimension of neighborhoods (secondary preference $\beta_e = 0$) with almost full value segregation. 
-For conservative agents, ethnic segregation is higher than value segregation of their value counterpart, with full ethnic segregation reached with highest determinism. 
-What is unexpected is that also value segregation emerges with increase in determinism, while their value preference is imposed to $\beta_v = 0$.
-
-
-
-
-
-
-```{r bsl_dom, fig.width= 6, fig.height=3,fig.align='center', out.width="80%",  fig.pos = "H", fig.cap="Baseline condition, ß dominant preference (ethnic for conservative, value for liberals on the x-axis), ß secondary preference (value conservative, ethnic liberal) equal to 0", warning=FALSE}
-bsl_p( subset(df_bsl_pic,ID == "bsl_dom"))
-
-```
-
-Value segregation of conservatives occurs as a by-product effect of value preference of liberals, due to the different definition of similarity in spatial sorting. Due to symmetric condition, both conservatives and liberals could potentially consider half of the population as similar to maximize homophily preferences (population equally split into two ethnic groups and two value orientations). 
-However, though conservatives would relocate close to liberal co-ethnics, they would be rejected by the latter who would prefer a neighborhood with other liberals, while both conservatives and liberals of the other ethnic group would be rejected based on the own ethnic preference.
-In short, conservatives of each ethnic group can only count on other conservatives of their own ethnicity to form stable neighborhood, equal to $25\%$ of the population.
-On the other side, liberals would relocate close to co-values of both their own and the other ethnic group, so to count on $50\%$ of the population to maximize value utility, i.e. the double of percentage available to conservatives.
-The result is that liberals form denser neighborhoods compared to conservatives, because they have more similar agents to relocate close to.
-Looking at  Fig. \ref{fig:bsl_dom}, as determinism increases, density of neighborhood of liberals increases from the initial distribution, while conservatives' falls below it. By-product occurs because liberals, avoiding conservatives of both ethnic groups and forming denser neighborhood, reduces the space available on the grid where conservatives of both groups can relocate, so to break also their neighborhoods. 
-Additionally, conservatives would sort with conservatives of their own ethnic group.
-
-
-
-
-```{r bsl_fct,fig.width= 6, fig.height=6,fig.align='center',fig.pos = "H", out.width="70%", fig.cap ="Baseline condition, for each value-orientation type, how its patterns are influenced by determinism of the other group. Secondary preference in each condition is equal to 0. Top panel liberals: ß value liberals on x-axis, linetype: ß ethnic conservative equal 0 or 20; Bottom panel: ß ethnic conservative on x-axis, linetype: ß value liberal.", warning=FALSE}
-
-fct_dom <- function(df){ 
-  
-  
-  df   %>%                                          # bsl_lib_con refers to liberals on x-axis, faceted by conservative, bsl_con_lib vice versa
-    filter(c(if (ID == "bsl_lib_con"){con_eth != 1},if(ID == "bsl_con_lib"){lib_val != 1})) %>%  # != 1 to select out one condition not used
-    
-    filter(c(if (ID == "bsl_lib_con"){`orientation` == "Liberal"},  # here the outcome for each plot on y-axis is selected
-             if(ID == "bsl_con_lib"){`orientation` == "Conservative"})) %>% 
-    ggplot(aes(x=c(if (ID == "bsl_lib_con"){lib_val},if(ID == "bsl_con_lib"){con_eth})
-               
-               ,
-               y=Segra_bsl, color = outcome, linetype = as.factor(
-                 c(if (ID == "bsl_lib_con"){con_eth},if(ID == "bsl_con_lib"){lib_val})
-                 
-               ))) + 
-    geom_point(size = 1.5, shape = c(if(df$ID == "bsl_lib_con"){"circle"},if(df$ID == "bsl_con_lib"){"square"})
-               
-               
-    ) + geom_line() +
-    scale_color_manual(values = c("Ethnic"="purple","Value"="dark green","Density" = "gray"), guide = guide_legend(title = "Segregation", order = 1)) +
-    scale_linetype_manual(values = c("0" = "solid", "20" = "dashed"), guide = guide_legend(
-      c(if(df$ID == "bsl_lib_con"){"ß conservative"},if(df$ID == "bsl_con_lib"){"ß liberal"})
-      )
-    ) +
-    scale_x_continuous(breaks= seq(0,20,by=5), limits=c(0,20),
-                       c(if(df$ID == "bsl_lib_con"){"ß liberal"},if(df$ID == "bsl_con_lib"){"ß conservative"})  ) +
-    scale_y_continuous("Outcome") +
-    theme_bw() +
-    ggtitle(c(if(df$ID == "bsl_lib_con"){"Liberals"},if(df$ID == "bsl_con_lib"){"Conservatives"}))
-  
-}
-
-# two specular conditions are merged in one pic
-
-bsl_fct <- ggpubr::ggarrange(fct_dom(subset(df_bsl_pic,ID == "bsl_lib_con")),fct_dom(subset(df_bsl_pic,ID == "bsl_con_lib")),ncol = 1, nrow=2, common.legend = FALSE, legend = "right")
-
-ggsave("bsl_fct.jpg",bsl_fct,path="images",width = 6, height = 7,dpi=300)
-
-
-bsl_fct
-
-```
-Fig. \ref{fig:bsl_fct} clarifies how the segregation patterns of each group-type liberals and conservative depends on their dominant preference or it is influenced by preferences of other group-type as by-product. On top panel, results for liberals are reported. On x-axis, liberals increase determinism ß value in their relocations, linetype shows the conditions due to behavior of conservatives: total random relocation ß = 0, or extreme determinism ß =  20. The picture shows how the density of neighborhoods liberals form increases with increase of ß value, though i shows lower levels when conservatives hold max ß ethnic, compared to Fig. \ref{fig:bsl_dom}. While ethnic integration is unaltered by ethnic preference of conservatives, as no difference is evident. On the contrary, value segreation seems higher when conservative cluster together until ß conservative = 20. Likely with ß = 0 they would randomnly relocate into neighborhoods of liberals, thus to decrease their value utility. The difference is higher for lower determinism area. The bottom panel repeats for conservative agents influenced by behavior of liberals. With ß liberal = 0, a slight increase emerges for higher determinism of conservatives, i.e. they can cluster only with other conservatives of their ethnic group, and taking adavantage of liberal co-ethnics who randomly relocate. With ß value liberals = 20, the by-product is evident and strong: value segregation basically does not increase for all levels of ß ethnic conservative and remains high. In short, the value segregation of conservatives is very minimally due to clustering due to  ethnic preference. Neighborhood density remains equal to initial distribution with ß value liberal = 0, meaning conservatives do not form denser neighborhoods as liberals, which can be related to have lower ethnic segregation compared to value segregation of liberals when conservative hold ß ethnic = 0. Neighborhood density decreases and remains constant when ß value liberals = 20, being their space in the grid limited by neighborhoods formed by liberals and forming conservatives less dense neighborhoods. However, though neighborhoods are less dense, the ethnic exposure for conservatives reaches full segregation.
-
-```{r bsl_sec,fig.width= 8, fig.height=4,fig.align='center',fig.pos = "H", out.width="100%",fig.cap="Baseline condition, Effect of agents holding ß dominant = ß secondary, comparison of different preferences. On the x-axis, increase ß dominant for all agent. Left panel: liberals hold value preference (dominant) equal to ethnic preference (secondary); left panel: conservatives subscribe only to ethnic preference. Right panel: liberals hold ethnic preference (dominant) equal to value preference (secondary)", warning=FALSE}
-
-bsl_sec <- ggpubr::ggarrange(bsl_p( subset(df_bsl_pic,ID == "bsl_sec_cl")),bsl_p( subset(df_bsl_pic,ID == "bsl_sec_sq")),common.legend = TRUE,ncol = 2, nrow = 1,legend = "bottom")
-
-ggsave("bsl_sec.jpg",bsl_sec,path = "images",width = 9, height = 4,dpi=300)
-
-bsl_sec
-
-```
-
-Fig. \ref{fig:bsl_sec} repeats Fig. \ref{fig:bsl_dom} but with the difference that conservatives and liberals hold secondary preference equal to dominant preference. The aim is to compare with Fig. \ref{fig:bsl} and Fig. \ref{fig:bsl_dom}: how they would change if also  secondary preferences are taken into consideration, and allow to observe how degree of determinism influences the process. This was the best solution to include all into feasible picture so far. Lower value segregation of conservatives as by-product, as they are more accepted by liberals and shift in density neighborhood of conservatives. To think about.
-
-Heatmap in Fig. \ref{fig:htmp} shows instead other combinations that would not be included in Fig. \ref{fig:bsl_sec}: e.g. fix one level of determinism ß value and increase ß ethnic of liberals. However, all agents hold same degree of determinism, which obscures whether agents cluster because of increase in secondary preference, or because of by-product e.g. for areas of high determinism.
-
-
-
-
-
-
-```{r htmp, fig.height=6,fig.align='center',fig.pos = "H",  fig.cap="Basic condition. Heatmap generated by ß dominant preference (ethnic for conservative, value for liberals) and secondary preference (value for conservatives, ethnic for liberals). Liberals and conservatives hold same level of ß dominant and ß secondary in each condition (global parameter)", fig.align='center', warning=FALSE, include=TRUE}
-
-htmp <- df_bsl_pic %>% filter(ID == "hmp"  & `outcome` != "Density" & dominant >= secondary) %>%
-  ggplot(aes(x = secondary,y= dominant,fill = Segra_bsl)) + geom_tile() + facet_grid( `orientation` ~ `outcome`, labeller = labeller( `outcome` = c("Ethnic" = "Ethnic Segregation", "Value" = "Value Segregation")) ) +
-  scale_fill_gradient(low = "grey", high = "brown", "Segregation") +
-  theme_bw() +
-  xlab("ß secondary") +
-  ylab("ß dominant") +
-  theme(legend.position = "bottom",legend.key.width  = unit(0.5, "inch"), legend.key.height  = unit(0.2, "inch"))
-
-ggsave("htmp.jpg",htmp,path = "images", width =8,height = 8,dpi= 300)
-
-
-htmp
-```
-
-# Asymmetric Conditions
-
-<!-- redo: 
-The main focus is on scenario with secondary ß = 0 (Fig: \ref{fig:bsl_dom}), since it shows most interesting results as by-product. In this section we want to show how segregation scenarios that in the previous section depended on different homophily preferences can vary if agents hold similar preferences but distribution in population composition differ (e.g. majority influences more than minority, ceteris paribus). The main focus for simplicity is on preference of liberals majority vs liberals minority, since they enact mechanisms as by-product and represent new introduction to Schelling's model (see figures in details). So also for increase of secondary ß
-For simplicity of visualization and to focus on preferences of agents, $80\%$ ethnic ratio is considered in the experiments. For value orientation, as in the asymmetric condition, each ethnic group equally split into liberals and conservatives (i.e. 50% of population is liberal, and 50% conservative, but more chance of both conservative and liberal to belong to ethnic majority). Fig:\ref{fig:dislib_fig} and Fig: \ref{fig:dislib_ethnic} are to show how results would change in the full conditions due to joint distribution ethnic ratio and distribution of liberals which affect population composition. In particular distribution of liberals is of interest because it allows to break the ethnic unbalance between liberal majority and minority, how conservatives of both groups react to increase of liberals in the population, and how effective change in the minority population would be, if an ethnic critical mass is not reached. Basically in all conditions majority remains split 50% into liberals and conservatives, but both changes in minority population are more interesting to relate to change into the integration/segregation continuum.
-
-
-In ethnic asymmetric conditions, we use the spatial relocation index to measure whether segregation occurs from initial random distribution. Local exposure can be computed from it, but it is not intuitive to reader in my view. In the tables in appendix, the reader can see for each condition what local exposure matches spatial clustering of agents.  
--->
-
-\begin{equation}
-    E^c_i = \frac{(\sfrac{x^e_i}{X_i})}{(\sfrac{N^e_i}{N})}  \quad\text{        ;          }\quad  V^c_i = \frac{(\sfrac{x^v_i}{X_i})}{(\sfrac{N^v_i}{N})} 
-\end{equation}
-
-where: \par
-$x^e_i$: number of co-ethnics neighbors of agent \textit{i} \par
-$x^v_i$: number of co-values neighbors of agent \textit{i}  \par
-$X_i$: number of neighbors of agent \textit{i}  \par
-$N^e_i$: number of agents in the population with same ethnicity of agent \textit{i}  \par
-$N^v_i$: number of agents in the population with same value of agent \textit{i}  \par
-$N$: total number of agents in the population  \par
-
-\par
-<!--
-Fig: \ref{fig:asm_dom} wants to inform the reader of what is the direct effect of different ethnic ratio and how spatial clustering relates to local exposure. It replicates Fig: \ref{fig:bsl_dom} comparing the condition of ethnic equal size ($50 \%$) vs majority/minority condition used in this section ($80\%$). Results show given the same ethnic preference, conservative minority have higher need to cluster to satisfy ethnic utility, resulting in higher spatial clustering, 5 times the initial random distribution, with increase of local ethnic exposure to 1 (0.2*5). While for conservative majority, similar full ethnic exposure is reached with lower spatial clustering, since there is more chance to find co-ethnics in the population. For both liberals majority and liberals minority full value segregation is reached with value spatial clustering equal 2, i.e. full local value exposure equal 1. Ethnic segregation does not occur in terms of spatial clustering from initial distribution for both liberals majority and liberals minority, meaning higher ethnic exposure of liberals majority to 80% and ethnic assimilation for liberals minority 20%
--->
-
-
-
-```{r asym_equal_orig,fig.align='center',fig.pos = "H", fig.cap=, warning=FALSE}
+```{r totsens, ,include = TRUE,  warning = FALSE}
+# libval <- df_bsl_pic %>% filter(ID=="sens_lib" & orientation_bsl == "Conservative") %>%
+#   ggplot(aes(x=con_eth,y=Segra_bsl,color=outcome_bsl,linetype=factor(lib_val, levels = c("20","0")))) +
+#   geom_point(size=1.5, shape = "square") + geom_line() +
+#    scale_linetype_manual(name = "ß value liberal", values= c("0" = "dotted","20" = "solid")) +
+#   scale_color_manual(name = "Outcome\nConservatives",
+#                      values = c("Ethnic" = "purple","Value" = "darkgreen", "Density" = "gray"),
+#                      labels = c("Ethnic" = "Ethnic segregation", "Value" = "Value segregation","Density" = "Density")) +
+#   ylab("Outcome conservative") +
+#   xlab("ß ethnic conservative") +
+#  # ggtitle("Effect liberal value preferences over conservative agents") +
+#   theme_bw()
+#       # labels = c("0" = "ß value liberal = 0", "20" = "ß value liberal = 20")
+#     
+# coneth <- df_bsl_pic %>% filter(ID=="sens_con" & orientation_bsl == "Liberal") %>%
+#   ggplot(aes(x=lib_val,y=Segra_bsl,color=outcome_bsl,linetype=factor(con_eth, levels = c("20","0")))) +
+#   geom_point(size=1.5, shape = "circle") + geom_line() +
+#    scale_linetype_manual(name = "ß ethnic conservative", values= c("0" = "dotted","20" = "solid")) +
+#   scale_color_manual(name = "Outcome\nLiberals",
+#                      values = c("Ethnic" = "purple","Value" = "darkgreen", "Density" = "gray"),
+#                      labels = c("Ethnic" = "Ethnic exposure", "Value" = "Value exposure","Density" = "Density")) +
+#   ylab("Outcome liberal") +
+#   xlab("ß value liberal") +
+# #  ggtitle("Effect conservative ethnic preferences over liberal agents") +
+#   theme_bw()
 # 
-
-## equal ethnic size
-
-seg_vis <- function(db,var_seg,var_seg_y,var_seg_tit,sv_tit){
-  
-ethlibmaj.labs <- c("w_e lib maj = 0", "w_e lib maj = 0.5", "w_e lib maj = 1")
-names(ethlibmaj.labs) <- c("0", "0.5", "1")
-
-ethlibmin.labs <- c("w_e lib min = 0", "w_e lib min = 0.5", "w_e lib min = 1")
-names(ethlibmin.labs) <- c("0", "0.5", "1")
- 
-pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(liberal_maj ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
-  labeller = labeller(eth_lib_maj = ethlibmaj.labs, eth_lib_min = ethlibmin.labs)) +
- ylab(var_seg_y) +
-  xlab("ß dominant") +
-  scale_color_manual("% Liberal Blue / % Liberal Orange", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
-                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
-                     
-                     ) +
-  labs(title = "Equal ethnic size" , subtitle = var_seg_tit) +
-  geom_hline(yintercept = 0.5 , linetype = "dashed") + 
-  # ggtitle(var_seg_tit) +
-  # ggsubtitle(rel_siz) +
-  theme_bw() +
-  theme(legend.position = "bottom")
-
-  ggsave(paste0("images/",sv_tit,".jpg"),pic)
-
-pic
-}
-
-et_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_bl_m,"Ethnic Exposure", "Conservative Native","et_sq_bl_m")
-vl_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_bl_m,"Value Exposure", "Conservative Native","vl_sq_bl_m")
-et_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_bl_m,"Ethnic Exposure", "Liberal Native","et_cl_bl_m")
-vl_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_bl_m,"Value Exposure", "Liberal Native","vl_cl_bl_m")
-
-et_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_sq_or_m,"Ethnic Exposure", "Conservative Migrant", "et_sq_or_m")
-vl_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_sq_or_m,"Value Exposure", "Conservative Migrant","vl_sq_or_m")
-et_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$et_cl_or_m,"Ethnic Exposure", "Liberal Migrant","et_cl_or_m")
-vl_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$vl_cl_or_m,"Value Exposure", "Liberal Migrant","vl_cl_or_m")
-
-cls_et_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_sq_bl_m,"Ethnic Cluster", "Conservative Native","cls_et_sq_bl_m")
-cls_vl_sq_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_sq_bl_m,"Value Cluster", "Conservative Native","cls_vl_sq_bl_m")
-cls_et_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_cl_bl_m,"Ethnic Cluster", "Liberal Native","cls_et_cl_bl_m")
-cls_vl_cl_bl_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_cl_bl_m,"Value Cluster", "Liberal Native","cls_vl_cl_bl_m")
-
-cls_et_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_sq_or_m,"Ethnic Cluster", "Conservative Migrant","cls_et_sq_or_m")
-cls_vl_sq_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_sq_or_m,"Value Cluster", "Conservative Migrant","cls_vl_sq_or_m")
-cls_et_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_et_cl_or_m,"Ethnic Cluster", "Liberal Migrant","cls_et_cl_or_m")
-cls_vl_cl_or_m <- seg_vis(df[df$ID == "valuesize",],df[df$ID == "valuesize",]$cls_vl_cl_or_m,"Value Cluster", "Liberal Migrant","cls_vl_cl_or_m")
-
-
-## majority/minority condition
-
-
-seg_vis_mj <- function(db,var_seg,var_seg_y,var_seg_tit,sv_tit){
- 
-  ethlibmaj.labs <- c("w_e lib maj = 0", "w_e lib maj = 0.5", "w_e lib maj = 1")
-names(ethlibmaj.labs) <- c("0", "0.5", "1")
-
-ethlibmin.labs <- c("w_e lib min = 0", "w_e lib min = 0.5", "w_e lib min = 1")
-names(ethlibmin.labs) <- c("0", "0.5", "1")
-  
-  
-pic <-  db %>% ggplot(aes(x = dominant, y = var_seg, color = as.factor(majority ))) + geom_point() + geom_line() + facet_grid( eth_lib_min ~ eth_lib_maj, scales = "free_y", 
-  labeller = labeller(eth_lib_maj = ethlibmaj.labs, eth_lib_min = ethlibmin.labs)) +
- ylab(var_seg_y) +
-  xlab("ß dominant") +
-  scale_color_manual("% Ethnic majority / % Ethnic minority", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
-                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
-                     
-                     ) +
-  labs(title = "Majority (blue)/Minority (orange)" , subtitle = var_seg_tit) +
-   geom_hline(yintercept = 1 , linetype = "dashed") + 
-  # ggtitle(var_seg_tit) +
-  # ggsubtitle(rel_siz) +
-  theme_bw() +
- 
-  theme(legend.position = "bottom")
-
-  ggsave(paste0("images/",sv_tit,".jpg"),pic)
-
-pic
-}
-
-mj_et_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_sq_bl_m,"Ethnic Exposure", "Conservative Majority","mj_et_sq_bl_m")
-mj_vl_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_sq_bl_m,"Value Exposure", "Conservative Majority","mj_vl_sq_bl_m")
-mj_et_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_cl_bl_m,"Ethnic Exposure", "Liberal Majority","mj_et_cl_bl_m")
-mj_vl_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_cl_bl_m,"Value Exposure", "Liberal Majority","mj_vl_cl_bl_m")
-
-mj_et_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_sq_or_m,"Ethnic Exposure", "Conservative Minority","mj_et_sq_or_m")
-mj_vl_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_sq_or_m,"Value Exposure", "Conservative Minority","mj_vl_sq_or_m")
-mj_et_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$et_cl_or_m,"Ethnic Exposure", "Liberal Minority","mj_et_cl_or_m")
-mj_vl_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$vl_cl_or_m,"Value Exposure", "Liberal Minority","mj_vl_cl_or_m")
-
-mj_cls_et_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_sq_bl_m,"Ethnic Cluster", "Conservative Majority","mj_cls_et_sq_bl_m")
-mj_cls_vl_sq_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_sq_bl_m,"Value Cluster", "Conservative Majority","mj_cls_vl_sq_bl_m")
-mj_cls_et_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_cl_bl_m,"Ethnic Cluster", "Liberal Majority","mj_cls_et_cl_bl_m")
-mj_cls_vl_cl_bl_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_cl_bl_m,"Value Cluster", "Liberal Majority","mj_cls_vl_cl_bl_m")
-
-mj_cls_et_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_sq_or_m,"Ethnic Cluster", "Conservative Minority","mj_cls_et_sq_or_m")
-mj_cls_vl_sq_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_sq_or_m,"Value Cluster", "Conservative Minority","mj_cls_vl_sq_or_m")
-mj_cls_et_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_et_cl_or_m,"Ethnic Cluster", "Liberal Minority","mj_cls_et_cl_or_m")
-mj_cls_vl_cl_or_m <- seg_vis_mj(df[df$ID == "ethnicsize",],df[df$ID == "ethnicsize",]$cls_vl_cl_or_m,"Value Cluster", "Liberal Minority","mj_cls_vl_cl_or_m")
-
-
-##
-
-ggpubr::ggarrange(et_sq_bl_m,vl_sq_bl_m, common.legend = TRUE, legend = "bottom")
-
-
-```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# Discussion and Conclusions (working on)
-
-
-\rocco{more to the point: societies show lower ethnic segregation, increasing other dimensions (e.g. ses), and literature shows other characteristics matter $>$ acs2018 $>$ now discrete choice and other extension, in medias res; results similar to \cite{paolillo2018}}
-Schelling's model is often cited to describe how high levels of spatial ethnic segregation can persist in society even if people hold slight preference to live close to co-ethnics. However, the high complexity of current society challenge some assumption of  the model. In particular, people belong to different categories, both within and between ethnic groups, and literature suggesting ethnicity could be less relevant than other categories to define similarity preferences in relocation choice. In this paper we wanted to extend Schelling to these scenario. We built on \cite{paolillo2018} extension of Schelling to the scenario of members of the same ethnic group sharing common attributes with out-groups and holding higher preference for either ethnic membership or secondary characteristics. We extend the model to discrete choice random utility models, testing on effect of different weights (level of randomness) of agents and letting agents hold both ethnic and value preference. Our results confirm some peculiarities of value similarity based on shared attributes across ethnic membership despite our change to the decisional process of agents.
-First, value similarity can induce a by-product segregation of conservatives who do not care about secondary attributes. Second, value similarity form denser neighborhoods due to inclusion of co-values from both ethnic groups; neighborhoods become more resilient to fluctuations in neighborhood composition. As already observed in \cite{paolillo2018} the tendency is to form robust neighborhood value homogeneous but ethnically integrated. 
-
-<!-- However, our results show who the definition of similarity based on shared characteristics might be not sufficient to guarantee spatial integration between groups. Even if people care about value similarity, provided they hold same preference (weight) for ethnic membership, segregation would still emerge and cause double segregation also within ethnic or social groups. -->
-
-Most results are similar to \cite{paolillo2018} because a thereshold = 0 equals to randomness $\beta = 0$ in terms of relocation decision of agents and aggregated results. However, inclusion of randomness, along with preference for both ethnic and value similarity, and senstivity to different group size, show different highlights on the segregation process.
-
-Our results show who the definition of similarity based on shared characteristics might be not sufficient to guarantee spatial integration between groups. If people care about both ethnic and value similarity, full segregation for both dimension would lead to division of society in four group-types. However, lower determinism in the relocation choice can decrease segregation. If liberals become more ethnically conservatives, they would need higher preference to reach full ethnic segregation, as long as conservatives not care about secondary preference. On the contrary, value segregation of conservatives would not increase if they were to increase value preference, as long as liberals are enough to enact by-product value-segregation. This could explain why segregation by ses seems stronger than ethnic segregation \rocco{costs to be considered} and ethnic homogeneous neighborhoods are often also ses and educational homogeneous \rocco{link to double segregation in Fossett, not because of affordability, but because of by-product of other classes wanting to segregate}. Sensitivity analysis shows the role of relative sizes. First, effects due to majority are higher, this is evident from liberals majority who can cause more changes in the model. Even if liberals minority could cause the same mechanism, they don't reach a critical mass to do so. Relative size show how same preference in terms of weights can have different effect: for majority remaining in high ethnic exposure though not spatially segregating, while for minority higher spatial clustering emerges to satisfy even low preference. Segregation patterns of liberals: even if liberals of two ethnic groups recognize each other as similar, this would not translate into integrated neighborhoods because of relative sizes. The result shows ethnic assimilation of liberals minority separated from their co-ethnics with different secondary attributes. Only if distribution of liberals increases to a certain critical mass, the ethnic exposure of majority as effect of value similarity would diminish <!-- alternative to ethnic assimilation of minority is majority counter-part to relocate randomly, then ethnic  segregation due to value preference -->
-We show how integration can emerge from the condition where majority increase ethnic preference, through adaptation between liberals and conservatives of minority group  and the spatial configurations formed.
-
-
-
-
-\rocco{to compare with Schelling: how segregation is a stable results, when and why in our model integration can emerge}
-In Schelling, segregation as unstable condition results from all agents holding the same threshold (hold same preference) within spatial constraints and cascades that change neighborhood composition. In our results, segregation would equally emerge if agents hold high deterministic preference (higher $\beta$) for both dimensions. Integration will persist if agents hold random behavior for either or both dimensions, and the structural conditions of ethnic sizes and value distribution
-
-
-Limits: a mix of linear combinations, all can be predicted, once the model is understood.
-
-
-Next steps: to overcome tendency to segregation, a first step is to change the shape of utility function, along with the two-dimensional homophily behavior. \rocco{This links to the literature showing how segregation emerges also for integrationist preferences (Zhang, Van Rijt etc.) third paper of the dissertation I am working on}
-
-<!--
-# Old notes and thoughts, to incorporate or delete
-
-We focus on possible emerging patterns due to homophily preferences. This does not explain why people belonging to some categories might have some preferences over others. In the future, the project might include the individual determinants of homophily preferences,  e.g. correlating with social mobility intentions, life course approach, etc.
-
-old intro: spatial segregation. Although such complex segregation scenarios result from a mix of preferences, constraints and resources \citep{clark2015residential}, in this paper we concentrate on the role of preferences because core to Schelling’s dynamics to link individual behavior to change in segregation. In addition to ethnic preferences, we build on how people in diverse societies, belonging to different social distinctions, can adopt arbitrary criteria to define the limits of in-group inclusion, independent of ethnicity and attributing them different salience \citep{albeda2018symbolic}.  
-
-A common trait of most Western societies which have experienced decades of migration in-flows and further generations of children of migrants is that of super-diversity \citep{vertovec2007super}. The concept refers not only to increased ethnic diversity, but also to the “diversification of diversity” \citep{martiniello2004combine} or \citep{hollinger1995beyond}, i.e. how diversity spans along different domains in addition to ethnicity, and how members of the same ethnic group can experience different rates of integration along such domains.  
-
-About diversity in society: Further material I could not integrate properly in this line argument. I propose to move this towards the discussion section of the paper: This condition results not only from a mix of increased diversity and demographic changes accumulated through years \citep{crul2016super} and categories of self-identification elaborated within each domain \citep{vertovec2007super}, but also from inequalities in economic and cultural capital. On the last point, differences can emerge both between cohorts of the same ethnic group as result of integration policies adopted by countries  \citep{crul2017upcoming}, and between individuals due to transmission within families and success in social mobility \citep{Esser2010assimilation}.  
-
--->
-
-# Annex A: ß secondary as function of ß dominant
-
-In this version of the model (e_v_rum_secfdom.nlogo), secondary preference is derived from dominant preference
-
-$$
-\beta \ secondary  = \beta \ dominant * w
-$$
-
-with $w \in [0,1]$. For $w = 0$, ß secondary is equal 0; for $w = 1$, ß secondary is equal to ß dominant.
-
-Fig. \ref{fig:secfdom} compares increase in secondary preference for liberals (top row) and conservatives (bottom row) for all ranges of ß dominant which is reported on the x-axis. It reports 3 conditions: $w = 0$, $w = 1$ and the intermediate condition $w = 0.5$, i.e. ß secondary is half of ß dominant.
-
-
-Fig: \ref{fig:lib_fsec_all} focuses on change in secondary ß ethnic of liberals for all levels of $w$, showing results for conservatives (top row) and liberals (bottom row). Fig: \ref{fig:con_fsec_all} repeats for change in secondary ß value of conservatives
-
-Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all} show all levels of $w$ for secondary preference of liberals or conservatives. 
-
-Fig. \ref{fig:secfdom} is a filtered and more text-wise combination of Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all}. In all conditions we have too much information in the figures. For sake of simplicity we could decide:
-1) Keep Fig. \ref{fig:secfdom} in the text, deleting what are now Fig: \ref{fig:bsl_dom}, equal to $w = 0$ and \ref{fig:bsl_sec} equal to $w = 1$ and leave Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all} in an Annex
-2) Leave as it is now with \ref{fig:bsl_dom} and \ref{fig:bsl_sec}, and still Fig: \ref{fig:lib_fsec_all} and Fig: \ref{fig:con_fsec_all} in an Annex
-
-
-```{r secfdom, fig.width = 8,fig.height= 8, out.width="100%",  fig.pos = "H", fig.cap="Baseline condition, ß secondary as function of ß dominant. X-axis reports ß dominant for all agents (value for liberals and ethnic for conservative). In the top row, change in secondary ß ethnic of liberals (secondary ß value of conservative = 0 in all conditions). In the bottom row, change in secondary ß value of conservatives (secondary ß ethnic of liberals = 0 in all conditions). Each panel refers to one level of w", warning=FALSE}
-
-lib_fsec <- df_secf_pic %>% filter(ID == "lib") %>% filter(lib_eth == 0 | lib_eth == 0.5 | lib_eth == 1) %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ lib_eth, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
-  ylab("outcome")+
-  xlab("ß dominant") +
-  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
- # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
-  ggtitle("ß ethnic liberal = ß dominant * w") +
+# ggpubr::ggarrange(libval,coneth,nrow = 2)
+# ggsave("images/totsens.jpg",width = 7,height = 7)
+
+####
+
+libval.labs <- c("ß value liberal = 0", "ß value liberal = 20")
+names(libval.labs) <- c("0", "20")
+
+libv <- df_bsl_pic %>% filter(ID=="sens_lib" & orientation_bsl == "Conservative") %>%
+  ggplot(aes(x=con_eth,y=Segra_bsl,color=outcome_bsl)) +
+  geom_point(size=1.5, shape = "square") + geom_line() +
+  scale_color_manual(name = "Outcome",
+                     values = c("Ethnic" = "purple","Value" = "darkgreen", "Density" = "gray"),
+                     labels = c("Ethnic" = "Ethnic\nsegregation", "Value" = "Value\nsegregation","Density" = "Density")) +
+  facet_wrap(~ as.factor(lib_val), labeller = as_labeller(c("0" = "ß value liberal = 0","20" = "ß value liberal = 20"))) +
+  ylab("Outcome conservative") +
+  xlab("ß ethnic conservative") +
+ # ggtitle("Effect liberal value preferences over conservative agents") +
   theme_bw()
 
-con_fsec <- df_secf_pic %>% filter(ID == "con") %>% filter(con_val == 0 | con_val == 0.5 | con_val == 1) %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, color = outcome, shape = orientation)) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ con_val, dir = "h", labeller = as_labeller(c("0" = "w = 0", "0.5" = "w = 0.5", "1" = "w = 1"))) +
-  ylab("outcome")+
-  xlab("ß dominant") +
-  scale_color_manual(values = c("Ethnic" = "purple","Value" = "dark green","Density"= "gray"), guide = guide_legend(title = "Segregation"))+
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
- # scale_linetype_manual(values = c("0" = "dotted", "0.5" = "dashed","1" = "solid"), guide = guide_legend(title = "weight ß secondary")) +
-  ggtitle("ß value conservative = ß dominant * w") +
-  theme_bw() 
+cone <- df_bsl_pic %>% filter(ID=="sens_con" & orientation_bsl == "Liberal") %>%
+  ggplot(aes(x=lib_val,y=Segra_bsl,color=outcome_bsl)) +
+  geom_point(size=1.5, shape = "circle") + geom_line() +
+  scale_color_manual(name = "Outcome",
+                     values = c("Ethnic" = "purple","Value" = "darkgreen", "Density" = "gray"),
+                     labels = c("Ethnic" = "Ethnic\nexposure", "Value" = "Value\nexposure","Density" = "Density")) +
+  facet_wrap(~as.factor(con_eth), labeller = as_labeller(c("0" = "ß ethnic conservative = 0","20" = "ß ethnic conservative = 20"))) +
+  ylab("Outcome liberal") +
+  xlab("ß value liberal") +
+ # ggtitle("Effect conservative ethnic preferences over liberal agents") +
+  theme_bw()
 
-secf_pic <- ggpubr::ggarrange(lib_fsec,con_fsec,common.legend = TRUE, nrow = 2, legend  = "bottom")
+ggpubr::ggarrange(libv,cone,nrow = 2, common.legend = TRUE, legend = "right")
+ggsave("images/totsens2.jpg",width = 7,height = 5)
 
-ggsave("secf_pic.jpg", secf_pic, path = "images",width = 8, height = 8, dpi = 300) 
-
-secf_pic
 ```
 
-
-
-```{r lib_fsec_all, fig.width = 8,fig.height= 5, out.width="100%", fig.pos = "H", fig.cap="Focus on secondary ß ethnic of liberals for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß value of conservative = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
-
-# Facet by outcome
-
-
-
-lib_fsec_all <- df_secf_pic %>% filter(ID == "lib") %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, shape = orientation, color = as.factor(lib_eth))) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_grid(orientation~outcome, labeller = as_labeller(c("Ethnic" = "Ethnic Segregation","Density" = "Density","Value" = "Value Segregation","Conservative" = "Conservative","Liberal" = "Liberal" ))) +
-  ylab("")+
-  xlab("ß dominant") +
- scale_color_manual(values = brewer.pal(11, "Spectral"), guide = guide_legend(title = "w"))+
+```{r libeth,include = TRUE}
  
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
- ggtitle("ß ethnic liberal = ß dominant * w") +
-  theme_bw() 
-
-ggsave("lib_fsec_all.jpg", lib_fsec_all, path = "images",width = 10,  dpi = 300) 
-
-lib_fsec_all
-```
+ outcome.labs <- c("Ethnic Exposure", "Density", "Value Exposure")
+names(outcome.labs) <- c("Ethnic", "Density", "Value")
 
 
-```{r con_fsec_all,  fig.width = 8,fig.height= 5, out.width="100%",fig.cap="Focus on secondary ß value of conservatives for all levels of w. On x-axis is the increase in ß dominant for all agents (secondary ß ethnic of liberals = 0 in all conditions). Each panel reports one outcome: ethnic segregation, density, value segregation. On the top row, change in outcome of conservatives is reported. On the bottom row, change in outcome of liberals is reported", warning=FALSE}
-
-# Facet by outcome
-
-con_fsec_all <- df_secf_pic %>% filter(ID == "con") %>% 
-  ggplot(aes(x = dominant,y = Segra_bsl, shape = orientation, color = as.factor(con_val))) + 
-  geom_point(size = 1.5) + geom_line() +
-  facet_grid(orientation~outcome, labeller = as_labeller(c("Ethnic" = "Ethnic Segregation","Density" = "Density","Value" = "Value Segregation","Conservative" = "Conservative","Liberal" = "Liberal" ))) +
-  ylab("")+
+ggplot(df_bsl_pic[df_bsl_pic$ID == "bsc_libeth",],aes(x = dominant, y = Segra_bsl, color = as.factor(lib_eth), shape = orientation_bsl)) + 
+  geom_point() + geom_line() +
+  scale_shape_manual(name = "Orientation",values = c("Liberal" = "circle","Conservative" = "square")) +
+scale_color_manual(values = brewer.pal(11, "Spectral"))+
+  facet_grid(orientation_bsl~outcome_bsl, labeller = labeller(outcome_bsl = outcome.labs)) +
+  ylab("Outcome") +
   xlab("ß dominant") +
- scale_color_manual(values = brewer.pal(11, "Spectral"), guide = guide_legend(title = "w"))+
- 
-  scale_shape_manual(values = c("Conservative" = "square","Liberal" = "circle"), guide = guide_legend(title = "Orientation")) +
-ggtitle("ß value conservative = ß dominant * w") +
-  theme_bw() 
-
-ggsave("con_fsec_all.jpg", con_fsec_all, path = "images",width = 10, dpi = 300) 
-
-con_fsec_all
-```
-
-# Annex A2: Asymmetric conditions: ß secondary as function of ß dominant
-
-Model: e_v_rum_secfdom.nlogo
-
-
-The aim is to observe what difference occurs if majority or minority group holds ß secondary (ethnic similarity preference) as function of ß dominant (value similarity):
-
-$$
-\beta \ secondary  = \beta \ dominant * w
-$$
-
-with $w \in [0,1]$. For $w = 0$, ß secondary is equal 0; for $w = 1$, ß secondary is equal to ß dominant.
-
-
-```{r et_lib_asm, fig.align='center',fig.pos = "H", out.width="100%",fig.cap="ß ethnic liberals as function of ß value liberals, range w [0,1] ", warning=FALSE}
-
-library(ggpubr)
-
-
-sec_etlib <- read.csv("secfdom_data/sec_etlib.csv") %>% select(
-  ID,density,majority,liberal_maj,liberal_min,dominant_distribution,secondary_distribution,dominant,secondary,con_eth,con_val,lib_val,lib_eth,eth_con_maj,val_con_maj,eth_con_min,val_con_min,val_lib_maj,eth_lib_maj,val_lib_min,eth_lib_min,step,
-  cls_et_cl_bl,cls_et_cl_or,cls_et_sq_bl,cls_et_sq_or,cls_vl_cl_bl,cls_vl_cl_or,cls_vl_sq_bl,cls_vl_sq_or) %>% group_by(ID, density,majority,liberal_maj,liberal_min,dominant_distribution,secondary_distribution,dominant,secondary,con_eth,con_val,lib_val,lib_eth,eth_con_maj,val_con_maj,eth_con_min,val_con_min,val_lib_maj,eth_lib_maj,val_lib_min,eth_lib_min,step )  %>% 
-  summarise_all(c("m"= mean,"sd"= sd)) 
-  
-  
-sec_etlibpic <- sec_etlib %>%  gather(key = group_asm, value = Segra_asm, cls_et_cl_bl_m,cls_et_cl_or_m,cls_et_sq_bl_m,cls_et_sq_or_m,cls_vl_cl_bl_m,cls_vl_cl_or_m,cls_vl_sq_bl_m,cls_vl_sq_or_m)  %>%
-  mutate(`outcome` = fct_relevel(fct_collapse(group_asm,
-                                              "Ethnic Segregation" = c("cls_et_cl_bl_m","cls_et_cl_or_m","cls_et_sq_bl_m","cls_et_sq_or_m"),
-                                              "Value Segregation" = c("cls_vl_cl_bl_m","cls_vl_cl_or_m","cls_vl_sq_bl_m","cls_vl_sq_or_m")),"Ethnic"),
-         `type` = fct_relevel(fct_collapse(group_asm,
-                                                  "Conservative Majority" = c("cls_et_sq_bl_m","cls_vl_sq_bl_m"),
-                                                  "Conservative Minority" = c("cls_et_sq_or_m","cls_vl_sq_or_m"),
-                                                  "Liberal Majority" = c("cls_et_cl_bl_m","cls_vl_cl_bl_m"),
-                                                  "Liberal Minority" = c("cls_et_cl_or_m","cls_vl_cl_or_m")), "Conservative Majority"))
-
-
-
-for(f in c("Conservative Majority","Conservative Minority","Liberal Majority","Liberal Minority")){
-majj <-  sec_etlibpic %>% filter(type == f & ID == "sec_etlbmaj") %>% ggplot(aes(
-  x = dominant,
-  y = Segra_asm, 
-  color = as.factor(eth_lib_maj))) +
-  geom_point(size = 1.5) + geom_line()  +
-  facet_wrap(~outcome, ncol = 1, scales = "free_y", labeller = as_labeller( c("Ethnic Segregation" = "Ethnic Segregation", "Value Segregation" = "Value Segregation" ,"sec_etlbmaj" = "ß eth liberal majority: \nß value * w"))) +
-   scale_color_manual(values = brewer.pal(11, "Spectral"), guide = guide_legend(title = "w")) + 
-  xlab("ß dominant") + 
-  ylab("Clustering") +
-  labs(title = "ß ethnic liberal majority",
-       subtitle = "ß value * w" ) +
   theme_bw() +
-   theme(plot.title = element_text(size = 12, hjust = 0.5), plot.subtitle = element_text(size = 11, hjust = 0.5),
-          plot.background = element_rect(colour = "black", fill=NA, size=0.5), legend.background = element_rect(colour = "black", fill = NA, size = 0.4))
-
+  guides(color = guide_legend(title = "w ethnic\nliberal", order = 1), shape = FALSE)
+ ggsave("images/libeth.jpg",width = 7, height = 4)
  
-  
-minn <- sec_etlibpic %>% filter(type == f & ID == "sec_etlbmin") %>% ggplot(aes(
-  x = dominant,
-  y = Segra_asm, 
-  color = as.factor(eth_lib_min))) +
-  geom_point(size = 1.5) + geom_line()  +
-facet_wrap(~outcome, ncol = 1, scales = "free_y", labeller = as_labeller( c("Ethnic Segregation" = "Ethnic Segregation", "Value Segregation" = "Value Segregation" , "sec_etlbmin" = "ß eth liberal minority: \nß value * w"))) +
-   scale_color_manual(values = brewer.pal(11, "Spectral"), guide = guide_legend(title = "w")) +
-   xlab("ß dominant") + 
-   ylab("Clustering") +
-  labs(title = "ß ethnic liberal minority",
-       subtitle = "ß value * w" ) +
+```
+
+
+
+```{r asym_native, include = TRUE}
+
+wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
+names(wmaj.labs) <- c("0", "0.5", "1")
+
+ df_asm_bsl %>% filter(ID == "valuesize") %>%   filter(liberal_maj == 80) %>% 
+  filter(type %in% c("Conservative Native","Liberal Native")) %>% filter(outcome %in% c("Ethnic","Value")) %>%
+ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_lib_min)
+           )) +
+  geom_point(size =2) + geom_line() +
+ 
+ scale_color_manual(values = c("0" = "orange","0.5" = "red","1" = "brown"))+
+    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk")) +
+   xlab("ß dominant") +
+   ylab("Exposure") +
+  facet_grid(eth_lib_maj~type, labeller = labeller(eth_lib_maj = wmaj.labs)) +
+   scale_y_continuous(breaks = c(0.4,0.5,0.6,0.8,1)) +
+   geom_hline(yintercept = 0.5,linetype = "dashed") +
   theme_bw() +
- theme(plot.title = element_text(size = 12, hjust = 0.5), plot.subtitle = element_text(size = 11, hjust = 0.5),
-          plot.background = element_rect(colour = "black", fill=NA, size=0.5), legend.background = element_rect(colour = "black", fill = NA, size = 0.4))
+guides(shape = guide_legend(title = "Exposure",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
+ ggsave("images/asym_native.jpg",width = 6,height = 5)
 
 
 
-picf <- annotate_figure(  ggpubr::ggarrange(majj,minn,common.legend = TRUE, ncol = 2, legend  = "right") , top = text_grob(f, 
-                face = "bold", size = 13))
+```
 
+```{r asym_migrant, include = TRUE}
 
-ggsave(paste0(f,".pdf"), picf, path = "ev_rum_files/figure-latex/",width = 10,height = 6,  dpi = 300) 
+wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
+names(wmaj.labs) <- c("0", "0.5", "1")
 
-show(picf)
+df_asm_bsl %>% filter(ID == "valuesize") %>% filter(liberal_maj == 80) %>% 
+  filter(type %in% c("Liberal Migrant","Conservative Migrant")) %>% filter(outcome %in% c("Ethnic","Value")) %>%
+ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_lib_min)
+           )) +
+  geom_point(size =2) + geom_line() +
+ 
+ scale_color_manual(values = c("0" = "orange","0.5" = "red","1" = "brown"))+
+    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+   xlab("ß dominant") +
+   ylab("Exposure") +
+  facet_grid(eth_lib_maj~factor(type, levels = c("Conservative Migrant","Liberal Migrant")), labeller = labeller(eth_lib_maj = wmaj.labs)) +
+    geom_hline(yintercept = 0.5,linetype = "dashed") +
+    scale_y_continuous(breaks = c(0.2,0.4,0.5,0.6,0.8,1)) +
+  theme_bw() +
+guides(shape = guide_legend(title = "Exposure",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
+ggsave("images/asym_migrant.jpg",width = 6,height = 5)
 
-}
 
 ```
 
 
 
+# ANNEX ####
+
+```{r conval, include = TRUE}
+ outcome.labs <- c("Ethnic Exposure", "Density", "Value Exposure")
+names(outcome.labs) <- c("Ethnic", "Density", "Value")
 
 
-
-This one \ref{fig: et_lib} in the text would be to be deleted. It combined baseline (w = 0) with either majority or minority holding ß value = ß ethnic (w = 1)
-
-```{r et_lib, fig.align='center',fig.pos = "H", out.width="100%",fig.cap="Ethnic asymmetric: effect of ß ethnic of liberals (secondary) equal to ß value liberals (dominant. x-axis: increase dominant preference for all agents (global parameter). Each panel reports segregation patterns of each group-type (ethnicXvalue). Linetype represents conditions compared: baseline: liberals of both ethnic groups hold  only to dominant preference (ß secondary = 0); ß liberal majority = liberals majority hold same ethnic and value preference (liberals minority hold only to value preference), ß liberal minority = liberals minorty hold same ethnic and value preference (liberals majority hold only to value preference)", warning=FALSE}
-
-
-df_asm_pc$new = factor(df_asm_pc$type, levels = c("Conservative Majority", "Conservative Minority", "Liberal Majority", "Liberal Minority"))
-
-etlib_pc <- df_asm_pc %>%   filter(ID == "etlib_bsl"|ID == "etlib_maj"|ID == "etlib_min")  %>%  ggplot(aes(
-  x = dominant,
-  y = Segra_asm, color = outcome, shape = type, 
-  linetype = as.factor(ID))) +
-  geom_point(size = 1.5) + geom_line() +
-  facet_wrap(~ new, scales = "free",nrow = 2) +
-  scale_color_manual(values = c("Ethnic"="purple","Value"="dark green"), guide = guide_legend(title = "Segregation", order = 1)) +
-  scale_shape_manual(values = c( "Conservative Majority" = "square", "Conservative Minority" = "square", "Liberal Majority" = "circle", "Liberal Minority" = "circle"), guide = guide_legend(title = "Orientation")) +
-  geom_hline(yintercept=1,color="red") +
-  scale_linetype_manual(values = c("etlib_bsl" = "solid", "etlib_maj" = "dashed", "etlib_min" = "dotted"), labels = c("Baseline","ß liberal majority","ß liberal minority"), guide = guide_legend(title = "ß ethnic liberal" )) +
+ggplot(df_bsl_pic[df_bsl_pic$ID == "bsc_conval",],aes(x = dominant, y = Segra_bsl, color = as.factor(con_val), shape = orientation_bsl)) + 
+  geom_point() + geom_line() +
+  scale_shape_manual(name = "Orientation",values = c("Liberal" = "circle","Conservative" = "square")) +
+scale_color_manual(values = brewer.pal(11, "Spectral"))+
+  facet_grid(orientation_bsl~outcome_bsl, labeller = labeller(outcome_bsl = outcome.labs)) +
+  ylab("Outcome") +
   xlab("ß dominant") +
-  ylab("Segregation")  +
   theme_bw() +
-  theme(legend.position = "right") +
-  guides(shape = "none")  
-
-
-ggsave("asm_etlib.jpg",etlib_pc,path = "images", width = 8, height = 6 ,dpi = 300)
-
-etlib_pc
+  guides(color = guide_legend(title = "w value\nconservative", order = 1), shape = FALSE)
+  ggsave("images/conval.jpg",width = 7, height = 4)
 ```
 
+```{r asym_native_density, include = TRUE}
 
+wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
+names(wmaj.labs) <- c("0", "0.5", "1")
 
-
-
-
-#  Annex B: Robustness Analysis
-
-
-```{r robustness_table, include = TRUE}
-
-
-# Function for table, symmetric conditions: it saves the .tex of table in "latex" folder and presents table in the text (in appendix). Name of .tex is ID variable of dataset (df in function) (specified otherwise) and caption changes (cp in function)
-
-bsl_t <- function(df,cp){
-
-x <- df %>% ungroup() %>% select(dominant,et_sq_m,et_sq_sd,vl_sq_m,vl_sq_sd,den_sq_m,den_sq_sd,et_cl_m,et_cl_sd,vl_cl_m,vl_cl_sd,den_cl_m,den_cl_sd) %>% 
-    kable(digits = 3, col.names = c( "Dominant", "Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"), 
-          caption = cp, format = 'latex',escape = TRUE) %>% 
-    add_header_above(c(" " = 1 ,"Ethnic" = 2, "Value" = 2, "Density" =2, "Ethnic" = 2, "Value" = 2, "Density" = 2) ) %>%
-    add_header_above(c(" " = 1 ,"Conservatives" = 6, "Liberals" = 6) ) %>% 
-    kable_styling(latex_options=c("scale_down","HOLD_position")) %>%  kable_paper() %>% save_kable(paste0("latex/",as.name(df$ID),".tex"))
-
-x
-  
-}
-
-
-# function for robustness table of asymmetric condition. Arguments in function: df:dataset, xx: specific conditions, pk_ grouping rowing for various subconditions (e.g. facet conditions), cp: caption
-
-asm_t <- function(df,xx,pk1,pk1n1,pk1n2,pk2,pk2n1,pk2n2,cp){
-x <- df %>% ungroup () %>% select(xx,cls_et_sq_bl_m,cls_et_sq_bl_sd,et_sq_bl_m,et_sq_bl_sd,cls_vl_sq_bl_m,cls_vl_sq_bl_sd,vl_sq_bl_m,vl_sq_bl_sd, cls_et_sq_or_m,cls_et_sq_or_sd,et_sq_or_m,et_sq_or_sd,cls_vl_sq_or_m,cls_vl_sq_or_sd,vl_sq_or_m,vl_sq_or_sd, cls_et_cl_bl_m,cls_et_cl_bl_sd,et_cl_bl_m,et_cl_bl_sd,cls_vl_cl_bl_m,cls_vl_cl_bl_sd,vl_cl_bl_m,vl_cl_bl_sd, cls_et_cl_or_m,cls_et_cl_or_sd,et_cl_or_m,et_cl_or_sd,cls_vl_cl_or_m,cls_vl_cl_or_sd,vl_cl_or_m,vl_cl_or_sd) %>% 
-  knitr::kable(digits = 3, 
-                 col.names = c("Dominant", "Mean","SD","Mean","SD", "Mean","SD","Mean","SD","Mean","SD","Mean","SD", "Mean","SD","Mean","SD",
-                               "Mean","SD","Mean","SD", "Mean","SD","Mean","SD","Mean","SD","Mean","SD", "Mean","SD","Mean","SD") , 
-                 format = 'latex',
-                 caption = paste0("Robustness analysis for Fig: \\ref{fig:",cp,"}"), escape = TRUE) %>% 
-  add_header_above(c(" " = 1, "Clustering" = 2, "Exposure" =2, "Clustering" =2, "Exposure" =  2, "Clustering" = 2, "Exposure" =2, "Clustering" =2,
-                     "Exposure" =  2,"Clustering" = 2, "Exposure" =2, "Clustering" =2, "Exposure" =  2, "Clustering" = 2, "Exposure" =2, "Clustering" =2,
-                     "Exposure" =  2), escape = FALSE) %>%
-    add_header_above(c(" " = 1, "Ethnic" = 4, "Value" =4, "Ethnic" = 4, "Value" =4,"Ethnic" = 4, "Value" =4, "Ethnic" = 4, "Value" =4)) %>% 
-    add_header_above(c(" " = 1, "Conservative Majority" = 8,"Conservative Minority" = 8, "Liberal Majority" = 8,"Liberal Minority" = 8))  %>%
-    kable_paper()  %>%
-  pack_rows(pk1,pk1n1,pk1n2) %>% 
-    pack_rows(pk2,pk2n1,pk2n2) %>%
-  kable_styling(latex_options = c("scale_down", "HOLD_position")) %>% 
-  save_kable(paste0("latex/",as.name(df$ID),".tex"))
-
-x
-
-}
-
-# function for robustness table, ethnic asymmetric ethnicXdistribution liberals
-
-
-listdis <- function(df,xx,xcol,pk1,n1_1,n1_2,pk2,n2_1,n2_2,pk3,n3_1,n3_2,id,cp){
-  
-cns <-  df %>% ungroup() %>%
-  select(xx,cls_et_sq_bl_m,cls_et_sq_bl_sd,et_sq_bl_m,et_sq_bl_sd,cls_vl_sq_bl_m,cls_vl_sq_bl_sd,vl_sq_bl_m,vl_sq_bl_sd,
-         cls_et_sq_or_m,cls_et_sq_or_sd,et_sq_or_m,et_sq_or_sd,cls_vl_sq_or_m,cls_vl_sq_or_sd,vl_sq_or_m,vl_sq_or_sd
-         )
-
-lib <-  df %>% ungroup() %>%
-  select(xx,cls_et_cl_bl_m,cls_et_cl_bl_sd,et_cl_bl_m,et_cl_bl_sd,cls_vl_cl_bl_m,cls_vl_cl_bl_sd,vl_cl_bl_m,vl_cl_bl_sd,
-         cls_et_cl_or_m,cls_et_cl_or_sd,et_cl_or_m,et_cl_or_sd,cls_vl_cl_or_m,cls_vl_cl_or_sd,vl_cl_or_m,vl_cl_or_sd
-         )
-  
-x <-   knitr::kables(
-  list(
-  knitr::kable(cns,digits=3,
-               col.names = c(xcol,"Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-format = "latex",
-escape = TRUE) %>%
-add_header_above(c(" "=1,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2)) %>%
-  add_header_above(c(" " =1,"Ethnic" = 4, "Value"=4,"Ethnic" = 4, "Value"=4)) %>%
-  add_header_above(c(" "=1, "Conservative Majority" = 8, "Conservative Minority" = 8))  %>%
-  pack_rows(pk1,n1_1,n1_2) %>%
-pack_rows(pk2, n2_1,n2_2) %>%
-pack_rows(pk3,n3_1,n3_2)  ,
-
- knitr::kable(lib, digits=3,
-               col.names = c(xcol,"Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-format = "latex",
-escape = TRUE) %>%
-add_header_above(c(" "=1,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2)) %>%
-  add_header_above(c(" " =1,"Ethnic" = 4, "Value"=4,"Ethnic" = 4, "Value"=4)) %>%
-  add_header_above(c(" "=1, "Liberal Majority" = 8, "Liberal Minority" = 8))  %>%
-  pack_rows(pk1,n1_1,n1_2) %>%
-pack_rows(pk2, n2_1,n2_2) %>%
-pack_rows(pk3,n3_1,n3_2)   %>% kable_styling(latex_options = "scale_down")
-),
-caption = cp
-  ) %>% kable_styling(latex_options = c("scale_down","HOLD_position"))
-
-save_kable(x,paste0("latex/",id,".tex"))
-
-  x
-}
-
-```
-
-
-```{r bsl_t}
-bsl_t( subset(df_bsl,ID == "bsl"), "$\\beta$ dominant = liberal")
-```
-
-```{r bsl_dom_t}
-bsl_t( subset(df_bsl,ID == "bsl_dom"), "$\\beta$ secondary = 0")
-```
-
-```{r bls_fct_t}
-lib_c0 <- df_bsl %>% ungroup() %>% filter(ID == "bsl_lib_con" & con_eth == 0) %>% select(lib_val,et_cl_m,et_cl_sd,vl_cl_m,vl_cl_sd,den_cl_m,den_cl_sd)
-lib_c20 <- df_bsl %>% ungroup() %>% filter(ID == "bsl_lib_con" & con_eth == 20) %>% select(lib_val,et_cl_m,et_cl_sd,vl_cl_m,vl_cl_sd,den_cl_m,den_cl_sd)
-
-
-con_l0 <- df_bsl %>% ungroup() %>% filter(ID == "bsl_con_lib" & lib_val == 0) %>% select(con_eth,et_sq_m,et_sq_sd,vl_sq_m,vl_sq_sd,den_sq_m,den_sq_sd)
-con_l20 <- df_bsl %>% ungroup() %>% filter(ID == "bsl_con_lib" & lib_val == 20) %>% select(con_eth,et_sq_m,et_sq_sd,vl_sq_m,vl_sq_sd,den_sq_m,den_sq_sd)
-# 
-lib_c <- merge(lib_c0,lib_c20,by="lib_val")
-
-
-con_c <- merge(con_l0,con_l20,by = "con_eth")
-
-bls_fct_t <- knitr::kables(list(
-  
-  knitr::kable(lib_c, digits =3,
-               col.names= c("ß liberal","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-               format = "latex",
-               escape = TRUE
-               ) %>%
-    add_header_above(c(" " =1, "Ethnic" = 2, "Value" = 2, "Density" = 2,  "Ethnic" = 2, "Value" = 2, "Density" = 2)) %>%
-    add_header_above(c(" " = 1, "ß conservative = 0" = 6, "ß conservative = 20"= 6)) %>%
-    add_header_above(c("Liberals Segregation" = 13)),
-   knitr::kable(con_c, digits =3,
-               col.names= c("ß cons","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-               format = "latex",
-               escape = TRUE
-               ) %>%
-    add_header_above(c(" " =1, "Ethnic" = 2, "Value" = 2, "Density" = 2,  "Ethnic" = 2, "Value" = 2, "Density" = 2)) %>%
-    add_header_above(c(" " = 1, "ß liberal = 0" = 6, "ß liberal = 20" = 6)) %>% 
-     add_header_above(c("Conservatives Segregation" = 13)) %>%
-    kable_styling(latex_options = c("scale_down"))
-  ),
-  caption = "Referred to Fig: \\ref{fig:bsl_fct}") %>% kable_styling(latex_options = c("scale_down","HOLD_position"))
-
-bls_fct_t
-
-save_kable(bls_fct_t,"bsl_fct_t.tex")
-
-```
-
-```{r bsl_sec_t}
-
-bsl_sec_t <- rbind(subset(df_bsl,ID == "bsl_sec_cl"),subset(df_bsl,ID == "bsl_sec_sq")) %>% ungroup() %>% select(dominant,et_sq_m,et_sq_sd,vl_sq_m,vl_sq_sd,den_sq_m,den_sq_sd,et_cl_m,et_cl_sd,vl_cl_m,vl_cl_sd,den_cl_m,den_cl_sd) %>% 
-    kable(digits = 3, col.names = c( "Dominant", "Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"), 
-          caption = "Sensitivity secondary preference by type-group", format = 'latex',escape = TRUE) %>% 
-    add_header_above(c(" " = 1 ,"Ethnic" = 2, "Value" = 2, "Density" =2, "Ethnic" = 2, "Value" = 2, "Density" = 2) ) %>%
-    add_header_above(c(" " = 1 ,"Conservatives" = 6, "Liberals" = 6) ) %>%  pack_rows("ß value liberal = ethnic",1,21) %>% pack_rows("ß ethnic conservative = value",22,42) %>%
-    kable_styling(latex_options=c("scale_down","HOLD_position")) %>%  kable_paper() %>% save_kable("latex/bsl_sec.tex")
-
-bsl_sec_t
-```
-
-```{r asm_dom_t }
-
-asm_t <- function(df,xx,xcol,id,cp){
-  
-cns <-  df %>% ungroup() %>%
-  select(xx,cls_et_sq_bl_m,cls_et_sq_bl_sd,et_sq_bl_m,et_sq_bl_sd,cls_vl_sq_bl_m,cls_vl_sq_bl_sd,vl_sq_bl_m,vl_sq_bl_sd,
-         cls_et_sq_or_m,cls_et_sq_or_sd,et_sq_or_m,et_sq_or_sd,cls_vl_sq_or_m,cls_vl_sq_or_sd,vl_sq_or_m,vl_sq_or_sd
-         )
-
-lib <-  df %>% ungroup() %>%
-  select(xx,cls_et_cl_bl_m,cls_et_cl_bl_sd,et_cl_bl_m,et_cl_bl_sd,cls_vl_cl_bl_m,cls_vl_cl_bl_sd,vl_cl_bl_m,vl_cl_bl_sd,
-         cls_et_cl_or_m,cls_et_cl_or_sd,et_cl_or_m,et_cl_or_sd,cls_vl_cl_or_m,cls_vl_cl_or_sd,vl_cl_or_m,vl_cl_or_sd
-         )
-  
-x <-   knitr::kables(
-  list(
-  knitr::kable(cns,digits=3,
-               col.names = c(xcol,"Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-format = "latex",
-escape = TRUE) %>%
-add_header_above(c(" "=1,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2)) %>%
-  add_header_above(c(" " =1,"Ethnic" = 4, "Value"=4,"Ethnic" = 4, "Value"=4)) %>%
-  add_header_above(c(" "=1, "Conservative Majority" = 8, "Conservative Minority" = 8)),
-
- knitr::kable(lib, digits=3,
-               col.names = c(xcol,"Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-format = "latex",
-escape = TRUE) %>%
-add_header_above(c(" "=1,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2)) %>%
-  add_header_above(c(" " =1,"Ethnic" = 4, "Value"=4,"Ethnic" = 4, "Value"=4)) %>%
-  add_header_above(c(" "=1, "Liberal Majority" = 8, "Liberal Minority" = 8))  %>% kable_styling(latex_options = "scale_down")
-),
-caption = cp
-  ) %>% kable_styling(latex_options = c("scale_down","HOLD_position"))
-
- save_kable(x,paste0("latex/",id,".tex"))
+ df_asm_bsl %>% filter(ID == "valuesize") %>%   filter(liberal_maj == 80) %>% 
+  filter(type %in% c("Conservative Native","Liberal Native")) %>%
+ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_lib_min)
+           )) +
+  geom_point(size =2) + geom_line() +
  
- x
+ scale_color_manual(values = c("0" = "orange","0.5" = "red","1" = "brown"))+
+    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+   xlab("ß dominant") +
+   scale_y_continuous(name = "Outcome",breaks = seq(0.4,1,by=0.1)) +
+ #  ylab("Outcome") +
+  facet_grid(eth_lib_maj~type, labeller = labeller(eth_lib_maj = wmaj.labs)) +
+     geom_hline(yintercept = 0.5,linetype = "dashed") +
+  theme_bw() +
+guides(shape = guide_legend(title = "Outcome",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
+ ggsave("images/asym_nativedensity.jpg",width = 6,height = 5)
+
+
+
+```
+
+```{r asym_migrant_density, include = TRUE}
+
+wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
+names(wmaj.labs) <- c("0", "0.5", "1")
+
+df_asm_bsl %>% filter(ID == "valuesize") %>% filter(liberal_maj == 80) %>% 
+  filter(type %in% c("Conservative Migrant","Liberal Migrant")) %>%
+ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_lib_min)
+           )) +
+  geom_point(size =2) + geom_line() +
+ 
+ scale_color_manual(values = c("0" = "orange","0.5" = "red","1" = "brown"))+
+    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+  scale_y_continuous(name = "Outcome",breaks = seq(0.2,1,by=0.1)) +
+    xlab("ß dominant") +
+   ylab("Outcome") +
+  facet_grid(eth_lib_maj~factor(type, levels = c("Conservative Migrant","Liberal Migrant")), labeller = labeller(eth_lib_maj = wmaj.labs)) +
+   geom_hline(yintercept = 0.5,linetype = "dashed") +
+  theme_bw() +
+guides(shape = guide_legend(title = "Outcome",order = 2), color = guide_legend(title = "w ethnic\nliberal migrant",order = 1))
+ ggsave("images/asym_migrantdensity.jpg",width = 6,height = 5)
+
+
+```
+
+```{r asym_value_annex, include = TRUE}
+
+wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
+names(wmaj.labs) <- c("0", "0.5", "1")
+wmin.labs <- c("w ethnic\nliberal migrant\n0", "w ethnic\nliberal migrant\n0.5", "w ethnic\nliberal migrant\n1")
+names(wmin.labs) <- c("0", "0.5", "1")
+
+#sbj <- "Conservative Migrant"
+for (sbj in c("Liberal Migrant","Conservative Migrant","Liberal Native","Conservative Native")) {
   
+
+et <- df_asm_bsl %>% filter(ID == "valuesize") %>% 
+  filter(type == sbj) %>% filter(outcome == "Ethnic") %>%
+ggplot(aes(x = dominant, y = Segra_asm, color = as.factor(liberal_maj)
+           )) +
+  geom_point(size =2,shape="circle") + geom_line() +
+ 
+ scale_color_manual("% Liberal Native/\n% Liberal Migrant", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
+                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
+                     
+                     ) +
+ #   scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+ # scale_y_continuous(name = "Outcome",breaks = seq(0.2,1,by=0.1)) +
+   ylab("Ethnic Exposture") +
+  xlab("ß dominant") +
+  facet_grid(eth_lib_maj~eth_lib_min , labeller = labeller(eth_lib_maj = wmaj.labs, eth_lib_min = wmin.labs)) + 
+   geom_hline(yintercept = 0.5,linetype = "dashed") +
+  theme_bw() + 
+  theme(legend.position = "bottom") 
+
+
+vl <- df_asm_bsl %>% filter(ID == "valuesize") %>% 
+  filter(type == sbj)  %>% filter(outcome == "Value") %>%
+ggplot(aes(x = dominant, y = Segra_asm, color = as.factor(liberal_maj)
+           )) +
+  geom_point(size =2,shape="circle") + geom_line() +
+ 
+ scale_color_manual("% Liberal Native\n% Liberal Migrant", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
+                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
+                     
+                     ) +
+ #   scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+ # scale_y_continuous(name = "Outcome",breaks = seq(0.2,1,by=0.1)) +
+   ylab("Value Exposture") +
+  xlab("ß dominant") +
+  facet_grid(eth_lib_maj~eth_lib_min , labeller = labeller(eth_lib_maj = wmaj.labs, eth_lib_min = wmin.labs)) + 
+   geom_hline(yintercept = 0.5,linetype = "dashed") +
+  theme_bw() + 
+  theme(legend.position = "bottom") 
+
+
+
+pic <- annotate_figure(ggpubr::ggarrange(et,vl, common.legend = T, legend = "right",nrow = 2), 
+                top = text_grob(sbj, size = 12))
+ggsave(pic, file = paste0("images/",sbj,"_vlsz.jpg"), width = 6, height = 8)
+}
+# ggpubr::ggarrange(et,vl, common.legend = T, legend = "bottom")
+
+
+```
+
+```{r asym_ethnic_annex, include = TRUE}
+
+wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
+names(wmaj.labs) <- c("0", "0.5", "1")
+wmin.labs <- c("w ethnic\nliberal migrant\n0", "w ethnic\nliberal migrant\n0.5", "w ethnic\nliberal migrant\n1")
+names(wmin.labs) <- c("0", "0.5", "1")
+
+for (sbj in c("Liberal Migrant","Conservative Migrant","Liberal Native","Conservative Native")){
+
+et <- df_asm_pic %>% filter(ID == "ethnicsize") %>% 
+  filter(type == sbj) %>% filter(outcome == "Ethnic") %>%
+ggplot(aes(x = dominant, y = Segra_asm, color = as.factor(majority)
+           )) +
+  geom_point(size =2,shape="circle") + geom_line() +
+ 
+ scale_color_manual("% Ethnic Native / % Ethnic Migrant", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
+                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
+                     
+                     ) +
+ #   scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+ # scale_y_continuous(name = "Outcome",breaks = seq(0.2,1,by=0.1)) +
+   ylab("Ethnic Exposture") +
+  xlab("ß dominant") +
+  facet_grid(eth_lib_maj~eth_lib_min , labeller = labeller(eth_lib_maj = wmaj.labs, eth_lib_min = wmin.labs)) + 
+   geom_hline(yintercept = 1,linetype = "dashed") +
+  theme_bw() + 
+  theme(legend.position = "bottom") 
+
+
+vl <- df_asm_pic %>% filter(ID == "ethnicsize") %>% 
+  filter(type == sbj)  %>% filter(outcome == "Value") %>%
+ggplot(aes(x = dominant, y = Segra_asm, color = as.factor(majority)
+           )) +
+  geom_point(size =2,shape="circle") + geom_line() +
+ 
+ scale_color_manual("% Ethnic Native / % Ethnic Migrant", values = c("50" = "coral2", "60" = "olivedrab", "70" = "cyan", "80" = "violet"), 
+                     labels = c("50" = "50/50", "60" = "60/40", "70" = "70/30", "80" = "80/20")
+                     
+                     ) +
+ #   scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+ # scale_y_continuous(name = "Outcome",breaks = seq(0.2,1,by=0.1)) +
+   ylab("Value Exposture") +
+  xlab("ß dominant") +
+  facet_grid(eth_lib_maj~eth_lib_min , labeller = labeller(eth_lib_maj = wmaj.labs, eth_lib_min = wmin.labs)) + 
+   geom_hline(yintercept = 1,linetype = "dashed") +
+  theme_bw() + 
+  theme(legend.position = "bottom") 
+
+
+
+picet <- annotate_figure(ggpubr::ggarrange(et,vl, common.legend = T, legend = "bottom",nrow = 2), 
+                top = text_grob(sbj, size = 12))
+ggsave(picet, file = paste("images/",sbj,"_etsz.jpg"), width = 6, height = 9)
+# ggpubr::ggarrange(et,vl, common.legend = T, legend = "bottom")
 }
 
-asm_t(subset(df_asm, ID == "asm_dom" & majority == 50),
-      "dominant",
-      "Dominant",
-      "asm_dom",
-      "Referred to Fig: \\ref{fig:asm_dom}. $50\\%$ Majority"
-)
-      
-asm_t(subset(df_asm, ID == "asm_dom" & majority == 80),
-      "dominant",
-      "Dominant",
-      "asm_dom",
-      "Referred to Fig: \\ref{fig:asm_dom}. $80\\%$Majority"
-)
-
-
 ```
-
-```{r asm_lib_majt_t}
-
-
-asm_lib_mj <-  rbind(subset(df_asm, ID == "libmj" & val_lib_min == 0),
-      subset(df_asm, ID == "libmj" & val_lib_min == 1),
-      subset(df_asm, ID == "libmj" & val_lib_min == 15) ) %>% ungroup() %>%
-  select(val_lib_maj,cls_et_cl_bl_m,cls_et_cl_bl_sd,et_cl_bl_m,et_cl_bl_sd,cls_vl_cl_bl_m,cls_vl_cl_bl_sd,vl_cl_bl_m,vl_cl_bl_sd) %>% 
-  
-knitr::kable(digits=3,
-               col.names=c("ß lib maj","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-               format = "latex",
-               escape = TRUE,
-               caption = "Referred to Fig: \\ref{fig:asm_lib_lib}. Focus on liberals majority"
-             ) %>%
-    add_header_above(c(" " = 1, "Clustering" = 2, "Exposure" = 2, "Clustering" = 2, "Exposure" = 2)) %>%
-    add_header_above(c(" " = 1, "Ethnic" = 4 , "Value" = 4)) %>%
-   pack_rows("ß liberal minority = 0",1,16) %>%
-  pack_rows("ß liberal minority = 1",17,32) %>%
-  pack_rows("ß liberal minority = 15",33,48)  %>% kable_styling(font_size  = 9)
-
-save_kable(asm_lib_mj,"latex/asm_lib_lib_mj.tex")
-
- asm_lib_mj
- 
- 
-```
-
-
-
-```{r asm_lib_mint_t}
-
-asm_lib_mint <-rbind(subset(df_asm, ID == "libmn" & val_lib_maj == 0),
-      subset(df_asm, ID == "libmn" & val_lib_maj == 1),
-      subset(df_asm, ID == "libmn" & val_lib_maj == 15) ) %>% ungroup() %>%
-  select(val_lib_min,cls_et_cl_or_m,cls_et_cl_or_sd,et_cl_or_m,et_cl_or_sd,cls_vl_cl_or_m,cls_vl_cl_or_sd,vl_cl_or_m,vl_cl_or_sd) %>%
-
-  knitr::kable(digits=3,
-               col.names=c("ß lib min","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-               format = "latex",
-               escape = TRUE,
-               caption = "Referred to . Focus on liberals minority"
-             ) %>%
-    add_header_above(c(" " = 1, "Clustering" = 2, "Exposure" = 2, "Clustering" = 2, "Exposure" = 2)) %>%
-    add_header_above(c(" " = 1, "Ethnic" = 4 , "Value" = 4)) %>%
-   pack_rows("ß liberal majority = 0",1,16) %>%
-  pack_rows("ß liberal majority = 1",17,32) %>%
-  pack_rows("ß liberal majority = 15",33,48) %>% kable_styling(font_size  = 9)
-
-save_kable(asm_lib_mint,"latex/asm_lib_lib_mn.tex")
-
- asm_lib_mint
-
-```
-
-
-```{r asm_lib_con_t_maj}
-
-asm_con <- function(df,xx,xcol,cp,pk1,n1_1,n1_2,pk2,n2_1,n2_2,pk3,n3_1,n3_2,id){
-  x <- df %>% ungroup() %>%
-  select(xx,cls_et_sq_bl_m,cls_et_sq_bl_sd,et_sq_bl_m,et_sq_bl_sd,cls_vl_sq_bl_m,cls_vl_sq_bl_sd,vl_sq_bl_m,vl_sq_bl_sd,
-         cls_et_sq_or_m,cls_et_sq_or_sd,et_sq_or_m,et_sq_or_sd,cls_vl_sq_or_m,cls_vl_sq_or_sd,vl_sq_or_m,vl_sq_or_sd
-         ) %>% 
-  knitr::kable(digits=3,
-               col.names = c(xcol,"Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-format = "latex",
-caption = cp , 
-escape = TRUE) %>%
-add_header_above(c(" "=1,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2)) %>%
-  add_header_above(c(" " =1,"Ethnic" = 4, "Value"=4,"Ethnic" = 4, "Value"=4)) %>%
-  add_header_above(c(" "=1, "Conservative Majority" = 8, "Conservative Minority" = 8))  %>%
-  pack_rows(pk1,n1_1,n1_2) %>%
-pack_rows(pk2, n2_1,n2_2) %>%
-pack_rows(pk3,n3_1,n3_2) %>% kable_styling(latex_options = c("scale_down","HOLD_position")) %>% save_kable(paste0("latex/",id,".tex"))
-  
-  x
-}
-
-asm_lib <- function(df,xx,xcol,cp,pk1,n1_1,n1_2,pk2,n2_1,n2_2,pk3,n3_1,n3_2,id){
-  x <- df %>% ungroup() %>%
-  select(xx,cls_et_cl_bl_m,cls_et_cl_bl_sd,et_cl_bl_m,et_cl_bl_sd,cls_vl_cl_bl_m,cls_vl_cl_bl_sd,vl_cl_bl_m,vl_cl_bl_sd,
-         cls_et_cl_or_m,cls_et_cl_or_sd,et_cl_or_m,et_cl_or_sd,cls_vl_cl_or_m,cls_vl_cl_or_sd,vl_cl_or_m,vl_cl_or_sd
-         ) %>% 
-  knitr::kable(digits=3,
-               col.names = c(xcol,"Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD","Mean","SD"),
-format = "latex",
-caption = cp , 
-escape = TRUE) %>%
-add_header_above(c(" "=1,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2,"Clustering"=2,"Exposure"=2)) %>%
-  add_header_above(c(" " =1,"Ethnic" = 4, "Value"=4,"Ethnic" = 4, "Value"=4)) %>%
-  add_header_above(c(" "=1, "Liberal Majority" = 8, "Liberal Minority" = 8))  %>%
-  pack_rows(pk1,n1_1,n1_2) %>%
-pack_rows(pk2, n2_1,n2_2) %>%
-pack_rows(pk3,n3_1,n3_2) %>% kable_styling(latex_options = c("scale_down","HOLD_position")) %>% save_kable(paste0("latex/",id,".tex"))
-  
-  x
-  }
-
-asm_con( rbind(subset(df_asm, ID == "libmj" & val_lib_min == 0),
-      subset(df_asm, ID == "libmj" & val_lib_min == 1),
-      subset(df_asm, ID == "libmj" & val_lib_min == 15) ),
-      "val_lib_maj",
-"ß liberal majority",
-"Referred to Fig: \\ref{fig:asm_lib_con}: effect of liberal majority",
-"ß liberal minority = 0",
-1,16,
-"ß liberal minority = 1",
-17,32,
-"ß liberal minority = 15",
-33,48,
-"asm_libcon_maj"
-)
-
-```
-
-```{r asm_lib_con_t_min}
-
-
-asm_con( rbind(subset(df_asm, ID == "libmn" & val_lib_maj == 0),
-      subset(df_asm, ID == "libmn" & val_lib_maj == 1),
-      subset(df_asm, ID == "libmn" & val_lib_maj == 15) ),
-      "val_lib_min",
-"ß liberal minority",
-"Referred to Fig: \\ref{fig:asm_lib_con}: effect of liberal minority",
-"ß liberal majority = 0",
-1,16,
-"ß liberal majority = 1",
-17,32,
-"ß liberal majority = 15",
-33,48,
-"asm_libcon_min"
-)
-
-
-```
-
-```{r etlib_pc_con_t}
-
-asm_con(rbind(subset(df_asm,ID ==  "etlib_bsl"),
-        subset(df_asm,ID ==  "etlib_maj"),
-         subset(df_asm,ID ==  "etlib_min")),
-        "dominant",
-        "ß dom",
-        "Referred to Fig: \\ref{fig:et_lib}: focus on conservatives",
-        "Baseline (ß ethnic liberal = 0)",
-        1,21,
-        "ß value liberal majority = ethnic",
-        22,42,
-        "ß value liberal minority = ethnic",
-        43,63,
-        "asm_etlib"
-        )
-
-
-```
-
-```{r etlib_pc_lib_t}
-
-asm_lib(rbind(subset(df_asm,ID ==  "etlib_bsl"),
-        subset(df_asm,ID ==  "etlib_maj"),
-         subset(df_asm,ID ==  "etlib_min")),
-        "dominant",
-        "ß dom",
-        "Referred to Fig: \\ref{fig:et_lib}: focus on liberals",
-        "Baseline (ß ethnic liberal = 0)",
-        1,21,
-        "ß value liberal majority = ethnic",
-        22,42,
-        "ß value liberal minority = ethnic",
-        43,63,
-        "asm_etlib"
-        )
-
-
-
-
-```
-
-```{r dislib_50}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 50),
-              subset(df_asm,ID=="dislib_maj" & majority == 50),
-              subset(df_asm,ID=="dislib_min" & majority == 50)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislib_50_t",
-        "Referred to Fig: \\ref{fig:dislib_fig}, $50\\%$ Majority"
-        
-        )
-
-
-```
-
-```{r dislib_60}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 60),
-              subset(df_asm,ID=="dislib_maj" & majority == 60),
-              subset(df_asm,ID=="dislib_min" & majority == 60)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislib_60_t",
-        "Referred to Fig: \\ref{fig:dislib_fig}, $60\\%$ Majority"
-        
-        )
-
-```
-
-```{r dislib_70}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 70),
-              subset(df_asm,ID=="dislib_maj" & majority == 70),
-              subset(df_asm,ID=="dislib_min" & majority == 70)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislib_70_t",
-        "Referred to Fig: \\ref{fig:dislib_fig}, $70\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislib_80}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 80),
-              subset(df_asm,ID=="dislib_maj" & majority == 80),
-              subset(df_asm,ID=="dislib_min" & majority == 80)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislib_80_t",
-        "Referred to Fig: \\ref{fig:dislib_fig}, $80\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislib_90}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 90),
-              subset(df_asm,ID=="dislib_maj" & majority == 90),
-              subset(df_asm,ID=="dislib_min" & majority == 90)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislib_90_t",
-        "Referred to Fig: \\ref{fig:dislib_fig}, $90\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislibet_50}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 50),
-              subset(df_asm,ID=="dislibet_maj" & majority == 50),
-              subset(df_asm,ID=="dislibet_min" & majority == 50)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislibet_50_t",
-        "Referred to Fig: \\ref{fig:dislib_ethnic}, $50\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislibet_60}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 60),
-              subset(df_asm,ID=="dislibet_maj" & majority == 60),
-              subset(df_asm,ID=="dislibet_min" & majority == 60)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislibet_60_t",
-        "Referred to Fig: \\ref{fig:dislib_ethnic}, $60\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislibet_70}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 70),
-              subset(df_asm,ID=="dislibet_maj" & majority == 70),
-              subset(df_asm,ID=="dislibet_min" & majority == 70)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislibet_70_t",
-        "Referred to Fig: \\ref{fig:dislib_ethnic}, $70\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislibet_80}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 80),
-              subset(df_asm,ID=="dislibet_maj" & majority == 80),
-              subset(df_asm,ID=="dislibet_min" & majority == 80)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislibet_80_t",
-        "Referred to Fig: \\ref{fig:dislib_ethnic}, $80\\%$ Majority"
-        
-        )
-
-```
-
-
-```{r dislibet_90}
-
-listdis(rbind(subset(df_asm,ID=="dislib" & majority == 90),
-              subset(df_asm,ID=="dislibet_maj" & majority == 90),
-              subset(df_asm,ID=="dislibet_min" & majority == 90)),
-        "liberal_min",
-        "% liberal min",
-          "Baseline",
-        1,9,
-        "ß liberal majority = 1",
-        10,18,
-        "ß liberal minority = 1",
-        19,27,
-        "dislibet_90_t",
-        "Referred to Fig: \\ref{fig:dislib_ethnic}, $90\\%$ Majority"
-        
-        )
-
-```
-
-
-# References
-
-
-
-
-
-
-
 
 
 

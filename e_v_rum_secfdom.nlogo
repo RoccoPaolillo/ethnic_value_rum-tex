@@ -107,8 +107,8 @@ to move-turtles          ; here the relocation decision, with the beta distribut
       set systemic_utility ((beta-ie * uti-eth) + (beta-iv * uti-val)) ; just to simplify and not repeat for each option
     ]
 
-    let proba (1 / (1 + exp([systemic_utility] of patch-here - [systemic_utility] of alternative))) ; probability as logistic function. Kenneth Train (2009) p.3 shows how this is the simplification of
-                                                                                                  ; logit (exp(beta*U)/Sum(exp(beta*U)) for 2 options (as probability to move to alternative)
+    let proba (1 / (1 + exp([systemic_utility] of patch-here - [systemic_utility] of alternative))) ; Kenneth Train (2009) p.39 shows how this is the binary logit as simplification of
+                                                                                                  ; softmax function (exp(beta*U)/Sum(exp(beta*U)) for 2 options (as probability to move to alternative)
                                                                                                   ; (https://eml.berkeley.edu/books/choice2nd/Ch03_p34-75.pdf)
 
     if trial <  proba [move-to alternative] ; if probability calculated is higher than trial number [0,1], then the agent relocates  to alternative
@@ -291,7 +291,7 @@ SLIDER
 %liberal_maj
 0
 100
-50.0
+80.0
 1
 1
 NIL
@@ -306,7 +306,7 @@ SLIDER
 %liberal_min
 0
 100
-50.0
+20.0
 1
 1
 NIL
@@ -529,9 +529,9 @@ TEXTBOX
 
 TEXTBOX
 19
-400
+420
 82
-418
+438
 conservatives
 10
 0.0
@@ -556,7 +556,7 @@ dominant
 dominant
 0
 20
-10.0
+16.0
 1
 1
 NIL
@@ -581,7 +581,7 @@ con_eth
 con_eth
 0
 20
-0.0
+7.0
 1
 1
 NIL
@@ -596,7 +596,7 @@ lib_eth
 lib_eth
 0
 1
-0.0
+0.8
 0.1
 1
 NIL
@@ -611,7 +611,7 @@ con_val
 con_val
 0
 1
-0.0
+0.6
 0.1
 1
 NIL
@@ -641,7 +641,7 @@ secondary
 secondary
 0
 1
-0.0
+0.6
 0.1
 1
 NIL
@@ -770,7 +770,7 @@ beta value-orientation distribution
 TEXTBOX
 19
 329
-74
+93
 375
 beta group-type distribution
 11
@@ -805,7 +805,7 @@ CHOOSER
 secondary_distribution
 secondary_distribution
 "global" "by-value" "group-type"
-2
+0
 
 CHOOSER
 350
@@ -1178,7 +1178,7 @@ false
 Polygon -7500403 true true 270 75 225 30 30 225 75 270
 Polygon -7500403 true true 30 75 75 30 270 225 225 270
 @#$#@#$#@
-NetLogo 6.1.1
+NetLogo 6.4.0
 @#$#@#$#@
 @#$#@#$#@
 @#$#@#$#@
@@ -1772,6 +1772,242 @@ NetLogo 6.1.1
     <enumeratedValueSet variable="con_val">
       <value value="0"/>
     </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="basic_libeth" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_gl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_gl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="relative_size">
+      <value value="&quot;ethnic&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="lib_eth" first="0" step="0.1" last="1"/>
+    <enumeratedValueSet variable="eth_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_con_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="val_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_maj">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="eth_lib_min">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="visualize">
+      <value value="&quot;exposure&quot;"/>
+    </enumeratedValueSet>
+  </experiment>
+  <experiment name="basic_conval" repetitions="10" runMetricsEveryStep="false">
+    <setup>setup</setup>
+    <go>go</go>
+    <timeLimit steps="1000"/>
+    <metric>et_gl</metric>
+    <metric>et_sq</metric>
+    <metric>et_cl</metric>
+    <metric>et_bl</metric>
+    <metric>et_or</metric>
+    <metric>et_sq_bl</metric>
+    <metric>et_cl_bl</metric>
+    <metric>et_sq_or</metric>
+    <metric>et_cl_or</metric>
+    <metric>vl_gl</metric>
+    <metric>vl_sq</metric>
+    <metric>vl_cl</metric>
+    <metric>vl_bl</metric>
+    <metric>vl_or</metric>
+    <metric>vl_sq_bl</metric>
+    <metric>vl_cl_bl</metric>
+    <metric>vl_sq_or</metric>
+    <metric>vl_cl_or</metric>
+    <metric>den_gl</metric>
+    <metric>den_sq</metric>
+    <metric>den_cl</metric>
+    <metric>den_bl</metric>
+    <metric>den_or</metric>
+    <metric>den_sq_bl</metric>
+    <metric>den_sq_or</metric>
+    <metric>den_cl_bl</metric>
+    <metric>den_cl_or</metric>
+    <metric>cls_et_sq_bl</metric>
+    <metric>cls_et_cl_bl</metric>
+    <metric>cls_et_sq_or</metric>
+    <metric>cls_et_cl_or</metric>
+    <metric>cls_et_bl</metric>
+    <metric>cls_et_or</metric>
+    <metric>cls_et_sq</metric>
+    <metric>cls_et_cl</metric>
+    <metric>cls_vl_sq_bl</metric>
+    <metric>cls_vl_cl_bl</metric>
+    <metric>cls_vl_sq_or</metric>
+    <metric>cls_vl_cl_or</metric>
+    <metric>cls_vl_bl</metric>
+    <metric>cls_vl_or</metric>
+    <metric>cls_vl_sq</metric>
+    <metric>cls_vl_cl</metric>
+    <metric>cls_den_sq_bl</metric>
+    <metric>cls_den_cl_bl</metric>
+    <metric>cls_den_sq_or</metric>
+    <metric>cls_den_cl_or</metric>
+    <metric>cls_den_bl</metric>
+    <metric>cls_den_or</metric>
+    <metric>cls_den_sq</metric>
+    <metric>cls_den_cl</metric>
+    <enumeratedValueSet variable="density">
+      <value value="70"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="relative_size">
+      <value value="&quot;ethnic&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%majority">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_maj">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="%liberal_min">
+      <value value="50"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="dominant_distribution">
+      <value value="&quot;global&quot;"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="secondary_distribution">
+      <value value="&quot;by-value&quot;"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="dominant" first="0" step="1" last="20"/>
+    <enumeratedValueSet variable="secondary">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="con_eth">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <enumeratedValueSet variable="lib_val">
+      <value value="0"/>
+    </enumeratedValueSet>
+    <steppedValueSet variable="con_val" first="0" step="0.1" last="1"/>
     <enumeratedValueSet variable="lib_eth">
       <value value="0"/>
     </enumeratedValueSet>
