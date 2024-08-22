@@ -216,6 +216,22 @@ scale_color_manual(values = brewer.pal(11, "Spectral"))+
  
 ```
 
+```{r conval, include = TRUE}
+ outcome.labs <- c("Ethnic exposure", "Density", "Value exposure")
+names(outcome.labs) <- c("Ethnic", "Density", "Value")
+
+
+ggplot(df_bsl_pic[df_bsl_pic$ID == "bsc_conval",],aes(x = dominant, y = Segra_bsl, color = as.factor(con_val), shape = orientation_bsl)) + 
+  geom_point() + geom_line() +
+  scale_shape_manual(name = "Orientation",values = c("Liberal" = "circle","Conservative" = "square")) +
+scale_color_manual(values = brewer.pal(11, "Spectral"))+
+  facet_grid(orientation_bsl~outcome_bsl, labeller = labeller(outcome_bsl = outcome.labs)) +
+  ylab("Outcome") +
+  xlab("ß dominant") +
+  theme_bw() +
+  guides(color = guide_legend(title = "w value\nconservative", order = 1), shape = FALSE)
+  ggsave("img_analysis/conval.jpg",width = 7, height = 4)
+```
 
 
 ```{r asym_native, include = TRUE}
@@ -273,22 +289,6 @@ ggsave("img_analysis/asym_migrant.jpg",width = 6,height = 5)
 
 # ANNEX ####
 
-```{r conval, include = TRUE}
- outcome.labs <- c("Ethnic exposure", "Density", "Value exposure")
-names(outcome.labs) <- c("Ethnic", "Density", "Value")
-
-
-ggplot(df_bsl_pic[df_bsl_pic$ID == "bsc_conval",],aes(x = dominant, y = Segra_bsl, color = as.factor(con_val), shape = orientation_bsl)) + 
-  geom_point() + geom_line() +
-  scale_shape_manual(name = "Orientation",values = c("Liberal" = "circle","Conservative" = "square")) +
-scale_color_manual(values = brewer.pal(11, "Spectral"))+
-  facet_grid(orientation_bsl~outcome_bsl, labeller = labeller(outcome_bsl = outcome.labs)) +
-  ylab("Outcome") +
-  xlab("ß dominant") +
-  theme_bw() +
-  guides(color = guide_legend(title = "w value\nconservative", order = 1), shape = FALSE)
-  ggsave("img_analysis/conval.jpg",width = 7, height = 4)
-```
 
 ```{r asym_native_density, include = TRUE}
 
@@ -328,7 +328,8 @@ ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_li
   geom_point(size =2) + geom_line() +
  
  scale_color_manual(values = c("0" = "orange","0.5" = "red","1" = "brown"))+
-    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus"),
+                       labels = c("Ethnic exposure", "Density", "Value exposure")) +
    xlab("ß dominant") +
    scale_y_continuous(name = "Outcome",breaks = seq(0.4,1,by=0.1)) +
  #  ylab("Outcome") +
@@ -370,8 +371,8 @@ guides(shape = guide_legend(title = "Outcome",order = 2), color = guide_legend(t
 
 ```{r asym_migrant_density50, include = TRUE}
 
-wmaj.labs <- c("w ethnic\nliberal native\n0", "w ethnic\nliberal native\n0.5", "w ethnic\nliberal native\n1")
-names(wmaj.labs) <- c("0", "0.5", "1")
+wmin.labs <- c("w ethnic\nliberal migrant\n0", "w ethnic\nliberal migrant\n0.5", "w ethnic\nliberal migrant\n1")
+names(wmin.labs) <- c("0", "0.5", "1")
 
 df_asm_bsl %>% filter(ID == "valuesize") %>% filter(liberal_maj == 50) %>% 
   filter(type %in% c("Conservative Migrant","Liberal Migrant")) %>%
@@ -380,7 +381,8 @@ ggplot(aes(x = dominant, y = Segra_asm,shape = outcome, color = as.factor(eth_li
   geom_point(size =2) + geom_line() +
  
  scale_color_manual(values = c("0" = "orange","0.5" = "red","1" = "brown"))+
-    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus")) +
+    scale_shape_manual(values = c("Ethnic" = "diamond","Value" = "asterisk","Density" = "plus"),
+                       labels = c("Ethnic exposure", "Density", "Value exposure")) +
   scale_y_continuous(name = "Outcome",breaks = seq(0.2,1,by=0.1)) +
     xlab("ß dominant") +
    ylab("Outcome") +
@@ -393,7 +395,6 @@ guides(shape = guide_legend(title = "Outcome",order = 2), color = guide_legend(t
 
 ```
 
-# References
 
 ```{r asym_value_annex, include = TRUE}
 
