@@ -851,27 +851,109 @@ count turtles with [shape = \"square\"] / count turtles
 11
 
 @#$#@#$#@
-# What is new
+# WHAT IS IT?
 
-secondary preference is a dependent function of dominant preference:
+The model is a discrete choice model for spatial sorting in urban diversity. The work stems from the framework of super-diversity and how diversity is experienced over different intersecting categories in addition to ethnicity. The model aims at reproducing hybrid forms of spatial sorting, where segregation patterns between integration, assimilation or segregation for the two dimensions can emerge. The main parameters of the model are the strength of preferences and their relative ranking between dominant and secondary preferences to different types of agents, and relative sizes for types of agents and ethnic groups. Liberal agents are driven by value similarity more than ethnic membership; conservative agents are driven more by ethnic membership than value similarity, but both hold both types of preferences to different ranking.
 
-Secondary preference = *ß dominant * s*
+# HOW IT WORKS?
 
-with s [0,1]
+Agents make a decision between their current location and an alternative empty spot, computing utility derived from the two spots as linear combination of their ethnic utility and value utility. Modelled as a linear function, utility is commputed as the proportion of agents similar for that dimension the Moore neighborhood of each spot. The softmax function is implemented to calculate the probability to select the alternative spot compared to current one, including a random term in the relocation decision. Parameters of determinism (*ß*) influence how much the observed differences in neighborhoods (systemic utility) will matter over the random term in the relocation decision. Dominant preferences for each agent-type are modelled as tunable parameters, secondary preferences are computed as weighted function of dominant preferences:
+
+Secondary preference = *ß dominant * w*
+
+with w [0,1]
 
 Example: 
-s = 0: Secondary preference is 0
-s = 1: Secondary preference is as equal as dominant preference
-s = 0.5: Secondary preference = (dominant preference / 2)
+w = 0: Secondary preference is 0
+w = 1: Secondary preference is equal to the dominant preference
+w = 0.5: Secondary preference = (dominant preference * 0.5) i.e. half of it
 
 # How to use it
 
+## Initialization
 
-* beta_distribution chooser: for distribution of dominant preference globally, by value-orientation or by group-type (value orientation X ethnicity)
+* density: density of population
+* %majority: percentage of native population over migrant population
+* %liberal_maj: percentage of liberal natives over conservative natives
+* %liberal_min: percentage of liberal migrants over conservative migrants
+* relative_size: allows for equal or unequal distribution of liberals between ethnic groups:
+	* ethnic: the value distribution of agents between ethnic groups is independent: tunable with %liberal_maj for distribution within native population and $liberal_min for distribution within the migrant population
+	* value: the conditional probability of liberal agents in the migrant group is computed as complementary to the distribution of liberal natives: %liberal_maj for the conditional probability of agents of the native group to be liberal, (100 - %liberal_maj) for the conditional probability of agents of the migrant group to be liberal [this was adopted also to reduce the number of conditions to run in BehaviorSpce]
 
-* For each selection: top parameter: ß dominant, bottom parameter: s seconadary
+## Preference distribution
+The distribution of dominant preference (*ß*) and weight (*w*) to compute the secondary preference can be distributed globally or more deeply to different group-type. This was functional to study inter-dependent effects in the experimental conditions of the manuscript:
 
-** Experiment secfdom
+* dominant_distribution: distribution of dominat preference (*ß*)
+* secondary_distribution: distribution of weight (*w*) to compute secondary preference
+For both:
+	* global: globally independent of ethnic membership or value-orientation of agents
+	* by-value: depending on the value-orientation of agents independently on the ethnic membership
+	* group-type: depending on the joint category of group-type due to ethnicity and value-orientation 
+
+See "Things to notice" section in relation to experimental conditions reported in the manuscript and registered in Behaviourspace
+
+# Things to notice (experiments reported)
+
+In each condition, "density" parameter set to 70. The list reports the conditions and parameters of interest for each experiment in BehaviorSpace and figures in manuscript. For the range of values of cited parameters, see BehaviorSpace or figures in the manuscript.
+
+## Baseline condition:
+
+### basic (Fig.3)
+* relative_size "ethnic"
+* %majority: 50, %liberal_maj:50, %liberal_min:50
+* dominant_distribution: global > dominant
+* seondary_distribution: global > secondary
+
+
+### sens_lib, sens_cons (Fig.4)
+* relative_size "ethnic"
+* %majority: 50, %liberal_maj:50, %liberal_min:50
+* dominant_distribution: by-value > con_eth (conservatives), lib_val (liberals)
+* seondary_distribution: by-value > con_val (conservatives, lib_eth (liberals)
+	
+
+## Increase in secondary preferences:
+
+### basic_libeth (Fig.5), basic_conval (Fig.6)
+* relative_size "ethnic"
+* %majority: 50, %liberal_maj:50, %liberal_min:50
+* dominant_distribution: by-value > con_eth (conservatives), lib_val (liberals)
+* seondary_distribution: by-value > con_val (conservatives), lib_eth (liberals)
+
+
+## Asymmetric conditions:
+
+### valuesize (Fig.8, Fig.9, Annex A)
+* relative_size "value"
+* %majority: 50, %liberal_ma:50,60,70,80
+* dominant_distribution: group-type > 
+	eth_con_maj (conservative native),
+	eth_con_min (conservative migrant),
+	val_lib_maj (liberal native),
+	val_lib_min (liberal migrant) 
+* seondary_distribution: group-type > 
+	val_con_maj (conservative native),
+	val_con_min (conservative migrant),
+	eth_lib_maj (liberal native),
+	eth_lib_min (liberal minority)
+
+### ethnicsize (Annex B)
+	* relative_size "ethnic"
+	* %majority: 50,60,70,80, %liberal_maj:50, %liberal_min:50
+	* dominant_distribution: group-type > 
+	eth_con_maj (conservative native),
+	eth_con_min (conservative migrant),
+	val_lib_maj (liberal native),
+	val_lib_min (liberal migrant) 
+	* seondary_distribution: group-type > 
+	val_con_maj (conservative native),
+	val_con_min (conservative migrant),
+	eth_lib_maj (liberal native),
+	eth_lib_min (liberal minority)
+
+# Credit and references
+
+Rocco Paolillo, in collaboration with Andreas Flache
 @#$#@#$#@
 default
 true
